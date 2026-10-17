@@ -66,6 +66,13 @@ the screen.
 To point the app at the API from an Android emulator, set `EXPO_PUBLIC_API_BASE_URL=http://10.0.2.2:5080`
 in `.env`.
 
+**Windows: keep the clone path short.** The Android native build (CMake and ninja for
+`react-native-worklets`, which Expo Router needs) embeds the full project path twice and fails with
+`ninja: error: mkdir(...): No such file or directory` once paths pass 260 characters. A `subst` drive
+does not help, because the build resolves it back to the real path. Clone to a short folder such as
+`C:\src\kindred` (about 30 characters or fewer), or add a second checkout with
+`git worktree add C:\k <branch>` and build from there. On macOS and Linux this does not apply.
+
 ## Everyday commands
 
 | Command | What it does |
