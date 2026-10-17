@@ -1,0 +1,9 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <PackageReference Include="Testcontainers.PostgreSql" />
+    <ProjectReference Include="..\..\Kindred.Api\Kindred.Api.csproj" />
+    <ProjectReference Include="..\..\Kindred.Infrastructure\Kindred.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>

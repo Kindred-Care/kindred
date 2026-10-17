@@ -1,0 +1,81 @@
+{
+  "openapi": "3.1.1",
+  "info": {
+    "title": "Kindred API",
+    "description": "Kindred API. Generated at build time; do not edit by hand.",
+    "version": "v1"
+  },
+  "paths": {
+    "/v1/health": {
+      "get": {
+        "tags": [
+          "Health"
+        ],
+        "operationId": "getHealth",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          },
+          "503": {
+            "description": "Service Unavailable",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HealthResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "HealthChecks": {
+        "required": [
+          "database"
+        ],
+        "type": "object",
+        "properties": {
+          "database": {
+            "$ref": "#/components/schemas/HealthStatus"
+          }
+        }
+      },
+      "HealthResponse": {
+        "required": [
+          "status",
+          "checks"
+        ],
+        "type": "object",
+        "properties": {
+          "status": {
+            "$ref": "#/components/schemas/HealthStatus"
+          },
+          "checks": {
+            "$ref": "#/components/schemas/HealthChecks"
+          }
+        }
+      },
+      "HealthStatus": {
+        "enum": [
+          "healthy",
+          "unhealthy"
+        ]
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Health"
+    }
+  ]
+}
