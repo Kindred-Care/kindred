@@ -4,6 +4,22 @@
  */
 
 export interface paths {
+    "/v1/enforcement-probe": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get: operations["getEnforcementProbe"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/health": {
         parameters: {
             query?: never;
@@ -45,6 +61,24 @@ export type SchemaHealthResponse = components['schemas']['HealthResponse'];
 export type SchemaHealthStatus = components['schemas']['HealthStatus'];
 export type $defs = Record<string, never>;
 export interface operations {
+    getEnforcementProbe: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description OK */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+        };
+    };
     getHealth: {
         parameters: {
             query?: never;

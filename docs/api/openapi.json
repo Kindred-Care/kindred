@@ -6,6 +6,19 @@
     "version": "v1"
   },
   "paths": {
+    "/v1/enforcement-probe": {
+      "get": {
+        "tags": [
+          "EnforcementProbe"
+        ],
+        "operationId": "getEnforcementProbe",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/v1/health": {
       "get": {
         "tags": [
@@ -74,6 +87,9 @@
     }
   },
   "tags": [
+    {
+      "name": "EnforcementProbe"
+    },
     {
       "name": "Health"
     }
