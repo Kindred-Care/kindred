@@ -1,0 +1,31 @@
+# Docker build context for backend/Dockerfile. Keep it to what the image needs.
+
+# Never send local configuration or secrets into a build.
+.env
+.env.*
+!.env.example
+**/*.pem
+**/*.p12
+**/*.pfx
+**/*.key
+**/*.keystore
+
+# Host build output. Windows obj/ folders reference Windows-only package paths and break the
+# container's own restore.
+**/bin/
+**/obj/
+**/TestResults/
+artifacts/
+
+# Not needed by the API image.
+.git/
+.github/
+.githooks/
+apps/
+design/
+scripts/
+docs/acceptance/
+docs/architecture/
+docs/product/
+docs/security/
+**/node_modules/

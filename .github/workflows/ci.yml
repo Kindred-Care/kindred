@@ -168,6 +168,18 @@ jobs:
           global-json-file: global.json
       - name: Integration tests against PostgreSQL 18 (Testcontainers)
         run: dotnet test --project backend/tests/Kindred.IntegrationTests --filter-not-trait "Category=Security" --report-xunit-trx --results-directory TestResults
+      - name: Local stack smoke test (criterion 1)
+        run: |
+          set -euo pipefail
+          cp .env.example .env
+          docker compose up --build --detach
+          for i in $(seq 1 90); do curl -sf http://localhost:5080/v1/health && break; sleep 2; done
+          curl -sf http://localhost:5080/v1/health | grep -q '"database":"healthy"'
+          docker compose ps -a
+          test "$(docker compose ps -a --format '{{.Service}} {{.State}} {{.ExitCode}}' | grep '^migrate ')" = "migrate exited 0"
+      - name: Stop the local stack
+        if: always()
+        run: docker compose down --volumes || true
       - if: always()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:

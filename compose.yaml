@@ -34,7 +34,7 @@ services:
       dockerfile: backend/Dockerfile
       target: migrator
     environment:
-      KINDRED_MIGRATOR_CONNECTION: Host=db;Port=5432;Database=${POSTGRES_DB};Username=kindred_migrator;Password=${KINDRED_DB_MIGRATOR_PASSWORD}
+      KINDRED_MIGRATOR_CONNECTION: Host=db;Port=5432;Database=${POSTGRES_DB};Username=kindred_migrator;Password=${KINDRED_DB_MIGRATOR_PASSWORD};GSS Encryption Mode=Disable
     depends_on:
       db:
         condition: service_healthy
@@ -47,7 +47,7 @@ services:
       target: api
     environment:
       ASPNETCORE_ENVIRONMENT: ${ASPNETCORE_ENVIRONMENT:-Local}
-      ConnectionStrings__Kindred: Host=db;Port=5432;Database=${POSTGRES_DB};Username=kindred_app;Password=${KINDRED_DB_APP_PASSWORD}
+      ConnectionStrings__Kindred: Host=db;Port=5432;Database=${POSTGRES_DB};Username=kindred_app;Password=${KINDRED_DB_APP_PASSWORD};GSS Encryption Mode=Disable
     ports:
       - "127.0.0.1:${KINDRED_API_PORT:-5080}:8080"
     depends_on:

@@ -56,9 +56,12 @@ public sealed class RedactingLoggerProvider(ILoggerProvider inner) : ILoggerProv
 
     public void SetScopeProvider(IExternalScopeProvider scopeProvider)
     {
+        // Scopes reach providers through this shared provider, not through ILogger.BeginScope, so they
+        // are sanitized here. ASP.NET Core's own request scope carries the raw request path, which can
+        // contain client details.
         if (inner is ISupportExternalScope scoped)
         {
-            scoped.SetScopeProvider(scopeProvider);
+            scoped.SetScopeProvider(new RedactingScopeProvider(scopeProvider));
         }
     }
 
@@ -83,14 +86,64 @@ public sealed class RedactingLoggerProvider(ILoggerProvider inner) : ILoggerProv
             {
                 foreach (var (key, value) in pairs)
                 {
-                    values.Add(new(key, value is string s ? LogRedactor.Redact(s) : value));
+                    values.Add(new(key, value switch
+                    {
+                        string s => WithholdExceptionText(LogRedactor.Redact(s), exception),
+                        Exception e => new WithheldMessageException(e).ToString(),
+                        _ => value,
+                    }));
                 }
             }
 
-            var message = LogRedactor.Redact(formatter(state, exception));
+            // Some templates (EF Core's query errors among them) embed the exception text in the message
+            // itself, and database errors can quote data values, so those messages are withheld here too.
+            var message = WithholdExceptionText(LogRedactor.Redact(formatter(state, exception)), exception);
             var safeException = exception is null ? null : new WithheldMessageException(exception);
             inner.Log(logLevel, eventId, new RedactedState(message, values), safeException, static (s, _) => s.Message);
         }
+    }
+
+    /// <summary>Replaces the message of the exception and of every inner exception wherever it appears.</summary>
+    public static string WithholdExceptionText(string text, Exception? exception)
+    {
+        var pending = new Stack<Exception>();
+        if (exception is not null)
+        {
+            pending.Push(exception);
+        }
+
+        while (pending.Count > 0)
+        {
+            var current = pending.Pop();
+            if (current.Message.Length > 0)
+            {
+                text = text.Replace(current.Message, "[message withheld]", StringComparison.Ordinal);
+            }
+
+            // Database drivers (Npgsql among them) copy server error fields such as MessageText and
+            // Detail into Exception.Data, which ToString prints; Detail can quote row values.
+            foreach (System.Collections.DictionaryEntry entry in current.Data)
+            {
+                if (entry.Value is string { Length: > 3 } value)
+                {
+                    text = text.Replace(value, "[withheld]", StringComparison.Ordinal);
+                }
+            }
+
+            if (current is AggregateException aggregate)
+            {
+                foreach (var inner in aggregate.InnerExceptions)
+                {
+                    pending.Push(inner);
+                }
+            }
+            else if (current.InnerException is not null)
+            {
+                pending.Push(current.InnerException);
+            }
+        }
+
+        return text;
     }
 
     private sealed class RedactedState(string message, List<KeyValuePair<string, object?>> values)
@@ -107,6 +160,61 @@ public sealed class RedactingLoggerProvider(ILoggerProvider inner) : ILoggerProv
         System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
 
         public override string ToString() => Message;
+    }
+}
+
+/// <summary>
+/// Presents every logging scope in sanitized form: keys that carry raw request input (the request path
+/// and query) are withheld, every other string value passes through <see cref="LogRedactor"/>, and
+/// the scope's text form is rebuilt from the sanitized values.
+/// </summary>
+public sealed class RedactingScopeProvider(IExternalScopeProvider inner) : IExternalScopeProvider
+{
+    public const string Withheld = "[withheld]";
+
+    private static readonly HashSet<string> _withheldKeys = new(StringComparer.OrdinalIgnoreCase)
+    {
+        "RequestPath",
+        "Path",
+        "QueryString",
+        "Query",
+    };
+
+    public IDisposable Push(object? state) => inner.Push(state);
+
+    public void ForEachScope<TState>(Action<object?, TState> callback, TState state) =>
+        inner.ForEachScope((scope, s) => callback(Sanitize(scope), s), state);
+
+    public static object? Sanitize(object? scope) => scope switch
+    {
+        null => null,
+        // Matches both nullable and non-nullable value annotations (they are the same runtime type).
+        IEnumerable<KeyValuePair<string, object?>> pairs => new SanitizedScope(pairs),
+        string text => LogRedactor.Redact(text),
+        _ => LogRedactor.Redact(scope.ToString()),
+    };
+
+    private sealed class SanitizedScope : IReadOnlyList<KeyValuePair<string, object?>>
+    {
+        private readonly List<KeyValuePair<string, object?>> _values;
+
+        public SanitizedScope(IEnumerable<KeyValuePair<string, object?>> pairs) =>
+            _values = pairs
+                .Where(p => p.Key != "{OriginalFormat}")
+                .Select(p => new KeyValuePair<string, object?>(
+                    p.Key,
+                    _withheldKeys.Contains(p.Key) ? Withheld : p.Value is string s ? LogRedactor.Redact(s) : p.Value))
+                .ToList();
+
+        public int Count => _values.Count;
+
+        public KeyValuePair<string, object?> this[int index] => _values[index];
+
+        public IEnumerator<KeyValuePair<string, object?>> GetEnumerator() => _values.GetEnumerator();
+
+        System.Collections.IEnumerator System.Collections.IEnumerable.GetEnumerator() => GetEnumerator();
+
+        public override string ToString() => string.Join(" ", _values.Select(p => $"{p.Key}:{p.Value}"));
     }
 }
 

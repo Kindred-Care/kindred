@@ -24,6 +24,13 @@
 - The OpenAPI document is generated at build time and not served at runtime, so it is not a second public
   endpoint.
 
+- **Unknown routes are denied too (decided 2026-10-17).** ASP.NET Core applies the fallback policy to
+  requests that match no endpoint, so an unauthenticated request to a path that does not exist gets the
+  same `401` problem response as one to a protected endpoint, not a `404`. This is kept on purpose: a
+  caller without a session cannot tell which routes exist. Once sign-in exists, authenticated callers
+  will still get `404` for unknown paths, and Section 6a's rule that another organization's resource
+  returns "not found" applies to resources, not routes.
+
 ## How the build fails
 
 `Kindred.ArchitectureTests` (security trait): every controller action declares a permission or is

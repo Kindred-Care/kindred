@@ -52,7 +52,7 @@ Section 8.
 
 | ID | Requirement | Source | Phase / epic | Implementation | Status | Tests |
 | --- | --- | --- | --- | --- | --- | --- |
-| REQ-PLAT-001 | `docker compose up` plus one documented command starts PostgreSQL and the API | §10 C1 | 1 / B1 | `compose.yaml`, `backend/Dockerfile`, `npm run setup` | Partial | Recorded run (acceptance evidence) |
+| REQ-PLAT-001 | `docker compose up` plus one documented command starts PostgreSQL and the API | §10 C1 | 1 / B1 | `compose.yaml`, `backend/Dockerfile`, `.dockerignore`, `npm run setup` | Partial | Local recorded run passed 2026-10-17 (docs/acceptance/m1/c1-compose-run.txt); CI smoke step pending first run |
 | REQ-PLAT-002 | `GET /v1/health` returns 200 with a database check, 503 when the database is unreachable, and no internal details | §10 C1, §10 scope | 1 / B1 | `HealthController`, `HealthService`, `DatabaseHealthProbe` | Implemented | HealthServiceTests<br>HealthEndpointTests<br>client.test.ts |
 | REQ-PLAT-003 | Every route is versioned under `/v1` | §3 R2.5 | 1 / B1 | `[Route("v1/...")]`; ADR 0015 | Implemented | EndpointDeclarationTests |
 | REQ-PLAT-004 | Standard error responses: problem details with a fixed title, status and correlation ID only | §10 scope | 1 / B1 | `ProblemResponses`; ADR 0021 | Implemented | ApiUnitTests<br>DefaultDenyTests |

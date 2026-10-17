@@ -71,15 +71,19 @@ public sealed class DefaultDenyTests(PostgresFixture database)
     }
 
     [Fact]
-    public async Task REQ_PLAT_004_an_unknown_route_returns_a_problem_404()
+    public async Task REQ_SEC_001_an_unknown_route_is_denied_without_revealing_whether_it_exists()
     {
-        await using var factory = new KindredApiFactory(database.AppConnectionString);
+        // The fallback policy also covers requests that match no endpoint, so an unauthenticated caller
+        // gets the same 401 for an unknown path as for a protected one and cannot enumerate routes.
+        await using var factory = new KindredApiFactory(database.AppConnectionString, includeProbeControllers: true);
         using var client = factory.CreateClient();
 
-        using var response = await client.GetAsync(new Uri("/v1/no-such-thing", UriKind.Relative), TestContext.Current.CancellationToken);
+        using var unknown = await client.GetAsync(new Uri("/v1/no-such-thing", UriKind.Relative), TestContext.Current.CancellationToken);
+        using var undeclared = await client.GetAsync(new Uri("/v1/test-probes/undeclared", UriKind.Relative), TestContext.Current.CancellationToken);
 
-        Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
-        Assert.Equal("application/problem+json", response.Content.Headers.ContentType?.MediaType);
+        Assert.Equal(HttpStatusCode.Unauthorized, unknown.StatusCode);
+        Assert.Equal(undeclared.StatusCode, unknown.StatusCode);
+        Assert.Equal("application/problem+json", unknown.Content.Headers.ContentType?.MediaType);
     }
 
     [Fact]

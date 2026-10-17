@@ -58,7 +58,8 @@ public sealed class DatabaseBaselineTests(PostgresFixture database)
         var row = await QueryAsync(database.AppConnectionString,
             "SELECT concat_ws(',', rolsuper, rolcreatedb, rolcreaterole, rolbypassrls, rolreplication) FROM pg_roles WHERE rolname = current_user");
 
-        Assert.Equal(["false,false,false,false,false"], row);
+        // PostgreSQL renders booleans as t/f.
+        Assert.Equal(["f,f,f,f,f"], row);
     }
 
     [Fact]

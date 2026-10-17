@@ -2,6 +2,7 @@ using Kindred.Api.Authorization;
 using Kindred.Api.Errors;
 using Kindred.Api.Logging;
 using Kindred.Api.Middleware;
+using Microsoft.Extensions.Logging;
 
 namespace Kindred.UnitTests.Api;
 
@@ -52,6 +53,61 @@ public sealed class LogRedactorTests
 
         Assert.DoesNotContain("Mary", safe.ToString(), StringComparison.Ordinal);
         Assert.Contains(nameof(REQ_PLAT_006_exception_messages_are_withheld_but_stack_traces_kept), safe.ToString(), StringComparison.Ordinal);
+    }
+}
+
+public sealed class ExceptionTextInMessageTests
+{
+    [Fact]
+    public void REQ_PLAT_006_exception_text_embedded_in_a_message_is_withheld()
+    {
+        // Shaped like EF Core's query-failure message, with a database error that quotes a data value.
+        var inner = new InvalidOperationException("23505: duplicate key value violates unique constraint. Key (email)=(marigold@example.org) already exists.");
+        var outer = new InvalidOperationException("An exception has been raised that is likely due to a transient failure.", inner);
+        var message = $"An exception occurred while iterating over the results of a query.{Environment.NewLine}{outer}";
+
+        var safe = RedactingLoggerProvider.WithholdExceptionText(message, outer);
+
+        Assert.DoesNotContain("marigold", safe, StringComparison.OrdinalIgnoreCase);
+        Assert.DoesNotContain("duplicate key", safe, StringComparison.Ordinal);
+        Assert.StartsWith("An exception occurred while iterating over the results of a query.", safe, StringComparison.Ordinal);
+    }
+
+    [Fact]
+    public void REQ_PLAT_006_driver_error_fields_in_exception_data_are_withheld()
+    {
+        var error = new InvalidOperationException("23505: duplicate key");
+        error.Data["Detail"] = "Key (email)=(marigold@example.org) already exists.";
+        var message = $"Query failed.{Environment.NewLine}{error}{Environment.NewLine}Exception data:{Environment.NewLine}    Detail: {error.Data["Detail"]}";
+
+        var safe = RedactingLoggerProvider.WithholdExceptionText(message, error);
+
+        Assert.DoesNotContain("marigold", safe, StringComparison.OrdinalIgnoreCase);
+    }
+}
+
+public sealed class RedactingScopeProviderTests
+{
+    [Fact]
+    public void REQ_PLAT_006_request_path_scopes_are_withheld_and_values_redacted()
+    {
+        var scopes = new LoggerExternalScopeProvider();
+        var provider = new RedactingScopeProvider(scopes);
+        using var _ = provider.Push(new Dictionary<string, object>
+        {
+            ["RequestPath"] = "/v1/clients/Marigold%20Fakeclient",
+            ["RequestId"] = "0HN1",
+            ["Note"] = "Authorization: Bearer abc.def",
+        });
+
+        var rendered = new List<string>();
+        provider.ForEachScope((scope, list) => list.Add(scope!.ToString()!), rendered);
+
+        var text = Assert.Single(rendered);
+        Assert.DoesNotContain("Marigold", text, StringComparison.Ordinal);
+        Assert.DoesNotContain("abc.def", text, StringComparison.Ordinal);
+        Assert.Contains("RequestPath:" + RedactingScopeProvider.Withheld, text, StringComparison.Ordinal);
+        Assert.Contains("RequestId:0HN1", text, StringComparison.Ordinal);
     }
 }
 

@@ -1,0 +1,46 @@
+# Criterion 1 recorded run, 2026-10-17T11:33:14Z
+# Fresh start: database volume removed first (docker compose down --volumes).
+# Images were cached from earlier builds; a first-ever build also downloads base images.
+
+$ docker compose up --build --detach
+exit code 0; API healthy 10s after the command started
+
+$ docker compose ps -a
+SERVICE   IMAGE             STATE     STATUS
+api       kindred-api       running   Up 2 seconds
+db        postgres:18.6     running   Up 7 seconds (healthy)
+migrate   kindred-migrate   exited    Exited (0) 3 seconds ago
+
+$ curl -i http://localhost:5080/v1/health
+HTTP/1.1 200 OK
+Content-Type: application/json; charset=utf-8
+Date: Sat, 17 Oct 2026 11:33:14 GMT
+Server: Kestrel
+Cache-Control: no-store
+Transfer-Encoding: chunked
+X-Correlation-Id: 01a149a3364a7e96ae04b52ab792a408
+
+{"status":"healthy","checks":{"database":"healthy"}}
+
+$ docker compose logs migrate
+Failed executing DbCommand (28ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
+SELECT migration_id, product_version
+FROM kindred.__ef_migrations_history
+ORDER BY migration_id;
+Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+Applying migration '20261017084856_Baseline'.
+Done.
+
+$ docker compose stop db; curl -i http://localhost:5080/v1/health
+HTTP/1.1 503 Service Unavailable
+Content-Type: application/json; charset=utf-8
+Date: Sat, 17 Oct 2026 11:33:15 GMT
+Server: Kestrel
+Cache-Control: no-store
+Transfer-Encoding: chunked
+X-Correlation-Id: 01a149a33b2c710890b5c7c475d9020f
+
+{"status":"unhealthy","checks":{"database":"unhealthy"}}
+
+$ docker compose start db; curl -s http://localhost:5080/v1/health
+{"status":"healthy","checks":{"database":"healthy"}}

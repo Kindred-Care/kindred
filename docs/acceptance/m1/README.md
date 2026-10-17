@@ -4,6 +4,72 @@ Evidence for the Section 10 acceptance criteria, collected as each check runs. O
 here. Results are reported exactly as observed: a check that could not run is listed as Blocked or Not
 yet run, never as Passed.
 
+## Status of all 15 criteria (2026-10-17)
+
+"Local evidence" means verified on the founder's Windows machine. GitHub CI has not run yet, because it
+starts with the first pull request and needs GitHub CLI sign-in to set up the protections first.
+
+| # | Criterion | Status | Evidence |
+| --- | --- | --- | --- |
+| 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed (local)**; CI smoke step added | [c1-compose-run.txt](c1-compose-run.txt) |
+| 2 | Splash then Log In, no console errors, iOS simulator and Android emulator | **Android passed; iOS Blocked** (needs the Mac) | Android section below |
+| 3 | Splash and Log In match Figma at 390 pt using tokens | **Provisional** (placeholder tokens, no approved mockups) | ADR 0022 |
+| 4 | Log In screen reader labels, 200% dynamic type, contrast | **Android passed, against placeholder tokens; iOS Blocked** | Android section below |
+| 5 | CI on every pull request runs every check, all pass | **Not yet run on GitHub**; all 20 checks pass locally | [local-full-run.txt](local-full-run.txt) |
+| 6 | Every project has a passing unit test; README gets a new developer running in under 30 minutes | **Partial**: tests pass; the timed walkthrough by a new developer has not been done | [local-full-run.txt](local-full-run.txt) |
+| 7 | No secrets; `.env.example` documents every variable; gitleaks | **Passed (local)**; CI run pending | gitleaks clean in [local-full-run.txt](local-full-run.txt) |
+| 8 | Protected main with required checks, ADRs, traceability, script guards in CI | **Blocked** (protections not yet applied: GitHub CLI sign-in) | ADR 0016 |
+| 9 | Direct push, force push, deletion and failing-check merge each rejected | **Blocked** (same) | ADR 0016 |
+| 10 | Undeclared endpoint denied and fails the build; health the only public endpoint | **Passed (local)**; CI run pending | `security-arch`, `security-integration` in [local-full-run.txt](local-full-run.txt) |
+| 11 | Fake token and fake client name never reach the logs | **Passed (local)** after two fixes; CI run pending | [c11-captured-logs.txt](c11-captured-logs.txt), ADR 0021 |
+| 12 | API change without client regeneration fails CI; breaking change flagged | **Not yet run on GitHub** (the check runs only in CI) | ADR 0014, 0015 |
+| 13 | EF baseline applies to an empty database; app role cannot change schema; version and extensions recorded | **Passed (local)**; CI run pending | [c13-postgres.json](c13-postgres.json), [c13-compose-roles.txt](c13-compose-roles.txt) |
+| 14 | Seed and dev scripts refuse outside local; seed synthetic | **Passed (local)**; CI run pending | `script-tests` in [local-full-run.txt](local-full-run.txt) |
+| 15 | EAS development build on one physical iOS and one physical Android device | **Blocked** (no Android phone yet; Apple Developer enrollment paused; EAS project not yet created) | — |
+
+## Docker stack and integration tests (criteria 1, 10, 11, 13) — 2026-10-17
+
+Docker Desktop with Docker Engine 29.8.2 (Linux containers, WSL2), Compose 5.6.0, PostgreSQL `postgres:18.6`.
+
+**Criterion 1.** After `npm run setup` (creates `.env`, installs the git hooks), one command,
+`docker compose up --build --detach`, started PostgreSQL, ran the baseline migration once as
+`kindred_migrator` (exit 0) and started the API as `kindred_app`. From an empty database volume and with
+images already cached, `GET /v1/health` returned `200 {"status":"healthy","checks":{"database":"healthy"}}`
+10 seconds after the command started. A first-ever build also downloads base images and takes longer.
+With the database stopped the endpoint returned `503 {"status":"unhealthy",...}` with no internal detail,
+and it recovered to 200 when the database restarted.
+
+The migration log's "Failed executing DbCommand ... `__ef_migrations_history`" line is EF Core's normal
+first-run probe of an empty database before the history table exists; the migration then applies and
+prints `Done.`
+
+**Integration tests.** 25 of 25 pass against a real PostgreSQL 18.6 container: 16 in `test-integration`
+and 9 in the security suite. The first run failed 3 tests, all real findings:
+
+| Finding | Kind | Fix |
+| --- | --- | --- |
+| Role-attribute test expected `false`, PostgreSQL prints `f` | Test bug; the attributes were correct | Expectation corrected |
+| Unknown routes return 401, not 404 | Design behaviour: the fallback policy also covers unmatched requests | Kept on purpose (no route enumeration); recorded in ADR 0020; test now asserts it |
+| A fake client name in a URL path reached the logs through ASP.NET Core's request scope | **Real leak** | Scopes are sanitized for every provider (ADR 0021) |
+
+Stopping the database under the running API then exposed a second leak route: EF Core embeds the full
+exception text, including PostgreSQL's error fields, inside its log message. That is now withheld too
+(ADR 0021). After both fixes, the API container's logs for an outage contain no raw database error
+text and no credentials, and the full console output of the integration run contains neither the fake
+token nor the fake client name.
+
+**Criterion 13.** Recorded by the integration test ([c13-postgres.json](c13-postgres.json)): server
+18.6, `btree_gist` 1.8 and `pg_trgm` 1.6 available, matching the AWS RDS for PostgreSQL 18
+documentation (ADR 0019). The baseline applied to a brand-new empty database. On the compose database
+([c13-compose-roles.txt](c13-compose-roles.txt)) `kindred_app` is refused `CREATE TABLE` and
+`DROP TABLE` and has no elevated attributes. `kindred_bootstrap` is the container's initialization
+superuser (the local stand-in for the RDS master user); the API and migrations never use it.
+
+**Local run of every CI check.** All 20 pass ([local-full-run.txt](local-full-run.txt)): 32 unit, 16
+integration, 4 architecture, 14 security-trait, 11 mobile and 33 script tests; lint, type check, both
+builds, the bundle guard, design tokens, traceability (465 requirements), feature matrix (65
+permissions), gitleaks, and the NuGet and npm vulnerability gates.
+
 ## Android emulator run (criteria 2 and 4, Android half) — 2026-10-17
 
 ### Environment
