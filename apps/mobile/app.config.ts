@@ -13,6 +13,9 @@ const bundleIdentifier = 'com.kindredcare.mobile';
 const config: ExpoConfig = {
   name: 'Kindred',
   slug: 'kindred',
+  // EAS project owner: the founder's Expo organization (free plan). The projectId is added by
+  // `eas init` once, under this owner; no other Expo project is created.
+  owner: 'kindred-care',
   version: '0.1.0',
   orientation: 'portrait',
   scheme: 'kindred',

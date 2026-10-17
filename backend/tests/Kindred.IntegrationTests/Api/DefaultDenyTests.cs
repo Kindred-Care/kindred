@@ -26,7 +26,7 @@ public sealed class DefaultDenyTests(PostgresFixture database)
 
     [Theory]
     [MemberData(nameof(Authorizations))]
-    public async Task REQ_SEC_001_an_undeclared_endpoint_is_denied_with_or_without_a_token(string authorization)
+    public async Task REQ_SEC_001_REQ_SEC_003_an_undeclared_endpoint_is_denied_with_or_without_a_token(string authorization)
     {
         await using var factory = new KindredApiFactory(database.AppConnectionString, includeProbeControllers: true);
         using var client = factory.CreateClient();
