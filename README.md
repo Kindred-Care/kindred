@@ -66,12 +66,35 @@ the screen.
 To point the app at the API from an Android emulator, set `EXPO_PUBLIC_API_BASE_URL=http://10.0.2.2:5080`
 in `.env`.
 
-**Windows: keep the clone path short.** The Android native build (CMake and ninja for
-`react-native-worklets`, which Expo Router needs) embeds the full project path twice and fails with
-`ninja: error: mkdir(...): No such file or directory` once paths pass 260 characters. A `subst` drive
-does not help, because the build resolves it back to the real path. Clone to a short folder such as
-`C:\src\kindred` (about 30 characters or fewer), or add a second checkout with
-`git worktree add C:\k <branch>` and build from there. On macOS and Linux this does not apply.
+### Windows: Android native builds need long paths and CMake 3.31 or newer
+
+The Android native build compiles C++ for libraries Expo Router depends on (`react-native-worklets`,
+`react-native-reanimated`, `react-native-gesture-handler`). Their object paths exceed Windows' 260-character
+limit even from a short folder such as `C:\k`, so the build fails with `ninja: error: mkdir(...): No
+such file or directory` or `Filename longer than 260 characters`. Shortening the clone path or mapping a
+`subst` drive does **not** fix it. Two one-time steps do:
+
+1. **Enable Windows long paths** (administrator PowerShell; affects programs started afterwards):
+
+   ```powershell
+   New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem" -Name LongPathsEnabled -Value 1 -PropertyType DWORD -Force
+   ```
+
+2. **Install CMake 3.31 or newer** in Android Studio (Settings → Languages & Frameworks → Android SDK →
+   SDK Tools → Show Package Details → CMake). The default CMake 3.22.1 ships ninja 1.10.2, which cannot
+   use long paths; CMake 4.1.2 (ninja 1.12.1) is verified with this project. Then select it in
+   `apps/mobile/android/local.properties`, using forward slashes (a single backslash is an escape
+   character in that file):
+
+   ```properties
+   sdk.dir=C\:/Users/<you>/AppData/Local/Android/Sdk
+   cmake.dir=C\:/Users/<you>/AppData/Local/Android/Sdk/cmake/4.1.2
+   ```
+
+   `android/` is generated and git-ignored, so `local.properties` is per machine. Add the `cmake.dir`
+   line again if you regenerate the folder with `npx expo prebuild --clean`.
+
+macOS and Linux need neither step.
 
 ## Everyday commands
 
