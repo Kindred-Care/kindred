@@ -1,0 +1,21 @@
+{
+  "$comment": "Known-vulnerable packages accepted temporarily (Section 9: they block release unless an ADR records the reason). Each entry needs a reason, the ADR, and a review date; an expired entry fails the dependency scan. Reviewed by the CI job dependency-scan via scripts/dev/check-npm-audit.mjs.",
+  "npm": [
+    {
+      "advisory": "GHSA-vfj7-8cjw-p6xm",
+      "package": "braces",
+      "severity": "high",
+      "reason": "Reached only through Expo's Metro bundler and Jest file matching at build and test time. Not part of the app bundle. No patched release exists (latest 3.0.3 is in range).",
+      "adr": "docs/architecture/adr/0018-dependency-scanning-and-inventory.md",
+      "reviewBy": "2027-01-15"
+    },
+    {
+      "advisory": "GHSA-86w9-cpqp-85rv",
+      "package": "node-forge",
+      "severity": "high",
+      "reason": "Reached only through the Expo CLI (development server certificates and code signing helpers) on developer machines. Not part of the app bundle and never used to verify signatures from untrusted input. No patched release exists (latest 1.4.0 is in range).",
+      "adr": "docs/architecture/adr/0018-dependency-scanning-and-inventory.md",
+      "reviewBy": "2027-01-15"
+    }
+  ]
+}
