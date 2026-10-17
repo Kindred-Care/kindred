@@ -1,0 +1,6 @@
+src/api/generated/
+src/design/tokens.ts
+node_modules/
+.expo/
+dist/
+coverage/
