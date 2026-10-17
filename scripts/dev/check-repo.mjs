@@ -21,6 +21,16 @@ export const REQUIRED_PATHS = [
   '.github/pull_request_template.md',
   'docs/security/review-checklist.md',
   'apps/web/README.md',
+  '.env.example',
+  'compose.yaml',
+  'docs/api/openapi.json',
+  'docs/api/README.md',
+  'docs/architecture/adr/README.md',
+  'docs/architecture/adr/decision-log.md',
+  'docs/architecture/feature-matrix.md',
+  'docs/architecture/permissions.json',
+  'docs/product/traceability.md',
+  'design/tokens/tokens.json',
 ];
 
 // Committed by mistake these would leak credentials or signing material.

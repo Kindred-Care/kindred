@@ -1,0 +1,20 @@
+{
+  "name": "kindred",
+  "private": true,
+  "description": "Repository-level commands. The app lives in apps/mobile, the API in backend/.",
+  "engines": {
+    "node": ">=22.12 <23"
+  },
+  "scripts": {
+    "setup": "node scripts/dev/setup.mjs",
+    "seed": "node scripts/seed/seed.mjs",
+    "db:reset": "node scripts/dev/db-reset.mjs",
+    "codegen": "dotnet build backend/Kindred.Api -c Release && npm --prefix scripts/codegen run all",
+    "codegen:tokens": "npm --prefix scripts/codegen run tokens",
+    "check:tokens": "node scripts/codegen/tokens.mjs --check",
+    "check:repo": "node scripts/dev/check-repo.mjs",
+    "check:traceability": "node scripts/dev/check-traceability.mjs",
+    "check:feature-matrix": "node scripts/dev/check-feature-matrix.mjs",
+    "test:scripts": "node --test \"scripts/**/*.test.mjs\""
+  }
+}

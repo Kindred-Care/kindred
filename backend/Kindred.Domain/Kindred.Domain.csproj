@@ -1,0 +1,3 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <!-- Entities and rules only. No AWS, EF Core or Npgsql references (enforced by Kindred.ArchitectureTests). -->
+</Project>

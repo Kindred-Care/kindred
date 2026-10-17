@@ -1,0 +1,5 @@
+{
+  "$comment": "Where development scripts may run (Section 3). Changes need a reviewed pull request. Milestone 1 is local only, so no AWS account is allowed; the development account is added in Phase 2 under separate authorization.",
+  "databaseHosts": ["localhost", "127.0.0.1", "::1", "db", "host.docker.internal"],
+  "awsAccounts": []
+}

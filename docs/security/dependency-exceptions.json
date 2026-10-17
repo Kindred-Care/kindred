@@ -1,0 +1,27 @@
+{
+  "$comment": "Known-vulnerable packages accepted temporarily after a documented risk assessment (Section 9: they block release unless an ADR records the reason). Each entry needs the assessment, the ADR and a review date; an expired entry fails the dependency scan. The review date is a backstop, not the assessment.",
+  "npm": [
+    {
+      "advisory": "GHSA-vfj7-8cjw-p6xm",
+      "package": "braces",
+      "severity": "high",
+      "reason": "DoS by deeply nested glob patterns. Reached only through Metro's file map and Jest (micromatch), with patterns from this repository's own configuration, never user or network input. Absent from both app bundles (enforced by scripts/dev/check-bundle-deps.mjs). No patched release exists; upstream fixes are unmerged pull requests. Residual risk very low.",
+      "adr": "docs/architecture/adr/0018-dependency-scanning-and-inventory.md",
+      "reviewBy": "2027-01-15",
+      "assessed": "2026-10-17",
+      "fixAvailable": false,
+      "reevaluateWhen": "A fixed version or an Expo release without this package is published (Dependabot alert), any design that verifies third-party signatures or accepts external glob patterns, or the review date, whichever is first."
+    },
+    {
+      "advisory": "GHSA-86w9-cpqp-85rv",
+      "package": "node-forge",
+      "severity": "high",
+      "reason": "Signature forgery against low-exponent RSA keys. Reached only through the Expo CLI (dev expo-updates signing that verifies the developer's own signature, and the iOS code-signing helper reading the developer's own certificate); no path verifies third-party signatures. Absent from both app bundles (enforced by scripts/dev/check-bundle-deps.mjs). No patched release exists; upstream fixes are unmerged pull requests. Residual risk low.",
+      "adr": "docs/architecture/adr/0018-dependency-scanning-and-inventory.md",
+      "reviewBy": "2027-01-15",
+      "assessed": "2026-10-17",
+      "fixAvailable": false,
+      "reevaluateWhen": "A fixed version or an Expo release without this package is published (Dependabot alert), any design that verifies third-party signatures or accepts external glob patterns, or the review date, whichever is first."
+    }
+  ]
+}

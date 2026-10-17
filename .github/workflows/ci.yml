@@ -23,10 +23,18 @@ concurrency:
 
 env:
   NODE_VERSION: '22'
+  DOTNET_CLI_TELEMETRY_OPTOUT: '1'
+  DOTNET_NOLOGO: '1'
+  CI: 'true'
   GITLEAKS_VERSION: '8.30.1'
   GITLEAKS_SHA256: '551f6fc83ea457d62a0d98237cbad105af8d557003051f41f3e7ca7b3f2470eb'
+  OASDIFF_VERSION: '1.33.0'
+  OASDIFF_SHA256: '43a4e328e2d13ba1552d760aa68d2485c75c5621f309f6ff64ae895188345247'
 
 jobs:
+  # ---------------------------------------------------------------------------
+  # Repository hygiene, script guards, seed, traceability and feature matrix
+  # ---------------------------------------------------------------------------
   repo-checks:
     name: repo-checks
     runs-on: ubuntu-24.04
@@ -36,10 +44,14 @@ jobs:
       - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
         with:
           node-version: ${{ env.NODE_VERSION }}
-      - name: Script tests
-        run: node --test "scripts/**/*.test.mjs"
+      - name: Script tests (guards, seed, token pipeline, audit gate)
+        run: node --test "scripts/dev/**/*.test.mjs" "scripts/seed/**/*.test.mjs" "scripts/codegen/*.test.mjs"
       - name: Repository structure and forbidden files
         run: node scripts/dev/check-repo.mjs
+      - name: Traceability (implemented requirements have tests)
+        run: node scripts/dev/check-traceability.mjs
+      - name: Feature availability matrix
+        run: node scripts/dev/check-feature-matrix.mjs
 
   secret-scan:
     name: secret-scan
@@ -60,3 +72,287 @@ jobs:
           gitleaks version
       - name: Scan repository history
         run: gitleaks git --redact --no-banner --config .gitleaks.toml --verbose .
+
+  # ---------------------------------------------------------------------------
+  # Lint, type check and build
+  # ---------------------------------------------------------------------------
+  lint:
+    name: lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - name: C# analyzers and formatting
+        run: dotnet format backend/Kindred.slnx --verify-no-changes --verbosity minimal
+      - name: ESLint and Prettier
+        working-directory: apps/mobile
+        run: |
+          npm ci
+          npm run lint
+
+  typecheck:
+    name: typecheck
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - working-directory: apps/mobile
+        run: |
+          npm ci
+          npm run typecheck
+
+  build:
+    name: build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - name: dotnet build (warnings are errors, NuGet audit on)
+        run: dotnet build backend/Kindred.slnx -c Release
+      - name: Mobile build check (Android and iOS bundles)
+        working-directory: apps/mobile
+        run: |
+          npm ci
+          npm run build:check
+      - name: Build-time-only packages never ship in the bundle (ADR 0018)
+        run: node scripts/dev/check-bundle-deps.mjs apps/mobile/dist
+
+  # ---------------------------------------------------------------------------
+  # Tests. The security-trait suite runs as its own check (security-tests).
+  # ---------------------------------------------------------------------------
+  test-unit:
+    name: test-unit
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: dotnet test --project backend/tests/Kindred.UnitTests --report-xunit-trx --results-directory TestResults
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: test-results-unit
+          path: TestResults/
+
+  test-integration:
+    name: test-integration
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - name: Integration tests against PostgreSQL 18 (Testcontainers)
+        run: dotnet test --project backend/tests/Kindred.IntegrationTests --filter-not-trait "Category=Security" --report-xunit-trx --results-directory TestResults
+      - name: Local stack smoke test (criterion 1)
+        run: |
+          set -euo pipefail
+          cp .env.example .env
+          docker compose up --build --detach
+          for i in $(seq 1 90); do curl -sf http://localhost:5080/v1/health && break; sleep 2; done
+          curl -sf http://localhost:5080/v1/health | grep -q '"database":"healthy"'
+          docker compose ps -a
+          test "$(docker compose ps -a --format '{{.Service}} {{.State}} {{.ExitCode}}' | grep '^migrate ')" = "migrate exited 0"
+      - name: Stop the local stack
+        if: always()
+        run: docker compose down --volumes || true
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: test-results-integration
+          path: |
+            TestResults/
+            artifacts/
+
+  test-architecture:
+    name: test-architecture
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - run: dotnet test --project backend/tests/Kindred.ArchitectureTests --filter-not-trait "Category=Security" --report-xunit-trx --results-directory TestResults
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: test-results-architecture
+          path: TestResults/
+
+  test-mobile:
+    name: test-mobile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: apps/mobile/package-lock.json
+      - name: Jest
+        working-directory: apps/mobile
+        run: |
+          npm ci
+          npm test
+
+  security-tests:
+    name: security-tests
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - name: Security-trait suite (default deny, unauthorized access, log redaction)
+        run: |
+          dotnet test --project backend/tests/Kindred.ArchitectureTests --filter-trait "Category=Security" --report-xunit-trx --results-directory TestResults
+          dotnet test --project backend/tests/Kindred.IntegrationTests --filter-trait "Category=Security" --report-xunit-trx --results-directory TestResults
+      - if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: test-results-security
+          path: |
+            TestResults/
+            artifacts/
+
+  # ---------------------------------------------------------------------------
+  # Contract loop and design tokens
+  # ---------------------------------------------------------------------------
+  contract:
+    name: contract
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: npm
+          cache-dependency-path: scripts/codegen/package-lock.json
+      - name: Regenerate the OpenAPI document and the client
+        run: |
+          dotnet build backend/Kindred.Api -c Release
+          npm --prefix scripts/codegen ci
+          npm --prefix scripts/codegen run api
+      - name: Fail if either differs from what is committed
+        run: |
+          if ! git diff --exit-code -- docs/api/openapi.json apps/mobile/src/api/generated/; then
+            echo "::error::The API contract changed without regenerating the committed specification or client. Run 'npm run codegen' and commit the result."
+            exit 1
+          fi
+          untracked=$(git ls-files --others --exclude-standard -- docs/api apps/mobile/src/api/generated)
+          if [ -n "$untracked" ]; then
+            echo "::error::Generated files are not committed: $untracked"
+            exit 1
+          fi
+      - name: Install oasdiff (checksum verified)
+        if: github.event_name == 'pull_request'
+        run: |
+          set -euo pipefail
+          archive="oasdiff_${OASDIFF_VERSION}_linux_amd64.tar.gz"
+          curl -sSfL -o "$archive" "https://github.com/oasdiff/oasdiff/releases/download/v${OASDIFF_VERSION}/${archive}"
+          echo "${OASDIFF_SHA256}  ${archive}" | sha256sum --check --strict
+          tar -xzf "$archive" oasdiff
+          sudo install -m 0755 oasdiff /usr/local/bin/oasdiff
+      - name: Breaking-change check against the base branch
+        if: github.event_name == 'pull_request'
+        env:
+          BASE_REF: ${{ github.base_ref }}
+          APPROVED: ${{ contains(github.event.pull_request.labels.*.name, 'contract:breaking-approved') }}
+        run: |
+          set -euo pipefail
+          if ! git cat-file -e "origin/${BASE_REF}:docs/api/openapi.json" 2>/dev/null; then
+            echo "No specification on ${BASE_REF} yet; nothing to compare."
+            exit 0
+          fi
+          git show "origin/${BASE_REF}:docs/api/openapi.json" > base-openapi.json
+          if oasdiff breaking base-openapi.json docs/api/openapi.json --fail-on ERR --format githubactions; then
+            echo "No breaking API changes."
+          elif [ "$APPROVED" = "true" ]; then
+            echo "::warning::Breaking API change approved by the contract:breaking-approved label."
+          else
+            echo "::error::Breaking API change detected. Version the endpoint, or label the pull request contract:breaking-approved with the reason in its description."
+            exit 1
+          fi
+
+  design-tokens:
+    name: design-tokens
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: Token drift, WCAG 2.2 AA contrast, placeholder warning
+        run: node scripts/codegen/tokens.mjs --check
+
+  # ---------------------------------------------------------------------------
+  # Dependency scan and inventory
+  # ---------------------------------------------------------------------------
+  dependency-scan:
+    name: dependency-scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: actions/setup-dotnet@a98b56852c35b8e3190ac28c8c2271da59106c68 # v6.0.0
+        with:
+          global-json-file: global.json
+      - uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+      - name: NuGet known-vulnerability scan (direct and transitive)
+        run: |
+          set -euo pipefail
+          dotnet restore backend/Kindred.slnx
+          dotnet list backend/Kindred.slnx package --vulnerable --include-transitive | tee nuget-vulnerable.txt
+          if grep -q -E "has the following vulnerable packages" nuget-vulnerable.txt; then
+            echo "::error::Vulnerable NuGet packages found."
+            exit 1
+          fi
+      - name: npm known-vulnerability scan (exceptions need an ADR)
+        run: node scripts/dev/check-npm-audit.mjs apps/mobile scripts/codegen
+      - name: Dependency inventory (CycloneDX SBOMs)
+        run: |
+          set -euo pipefail
+          mkdir -p inventory
+          dotnet tool restore
+          dotnet CycloneDX backend/Kindred.slnx --output inventory --filename backend.cdx.json --output-format Json
+          (cd apps/mobile && npm sbom --sbom-format cyclonedx --package-lock-only > ../../inventory/mobile.cdx.json)
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: dependency-inventory
+          path: inventory/

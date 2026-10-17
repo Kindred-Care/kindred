@@ -1,0 +1,218 @@
+{
+  "$comment": "Section 6 permission catalog and permission-by-role matrix (approved October 17, 2026). Source for the feature-matrix check now and the seeded catalog in Phase 2. Changes need an approved requirement change.",
+  "source": "Kindred Phase 0 blueprint rev355, Section 6",
+  "groups": {
+    "Identity and organization": [
+      "memberships.manage",
+      "roles.manage",
+      "designations.assign",
+      "organization.manage",
+      "audit.read",
+      "retention.holds.manage",
+      "kindu.use"
+    ],
+    "Clients and the care team": [
+      "clients.read",
+      "clients.read.all",
+      "clients.clinical.read",
+      "clients.create",
+      "clients.update",
+      "clients.archive",
+      "clients.alerts.read",
+      "clients.alerts.manage",
+      "caregivers.read",
+      "caregivers.manage",
+      "assignments.manage",
+      "assignments.grace.revoke",
+      "authorities.manage",
+      "authorities.verify"
+    ],
+    "Scheduling and time": [
+      "schedules.read",
+      "schedules.manage",
+      "shifts.start",
+      "shifts.end",
+      "shifts.read.all",
+      "shifts.adjust",
+      "timesheets.read.own",
+      "timesheets.review"
+    ],
+    "Care notes": [
+      "notes.create",
+      "notes.publish",
+      "notes.edit",
+      "notes.read",
+      "notes.read.all",
+      "notes.history.read",
+      "notes.drafts.indicator.read",
+      "notes.drafts.disposition.manage",
+      "notes.corrections.report",
+      "notes.corrections.manage",
+      "documentation.exceptions.approve"
+    ],
+    "Moments and media": [
+      "moments.read",
+      "moments.read.all",
+      "moments.create",
+      "media.download",
+      "media.disposition.manage",
+      "media.consent.review",
+      "media.originals.read"
+    ],
+    "Consent and authorization": [
+      "consents.read",
+      "consents.manage",
+      "consents.verify",
+      "consents.withdraw",
+      "consents.capture",
+      "consents.policy.manage"
+    ],
+    "Requests, evidence, reports, documents and support": [
+      "rights_requests.manage",
+      "rights_requests.fulfill",
+      "evidence.package.create",
+      "evidence.reviewers.manage",
+      "support_access.approve",
+      "reports.read",
+      "reports.export",
+      "documents.read",
+      "documents.read.all",
+      "documents.upload",
+      "documents.manage",
+      "organization.export"
+    ]
+  },
+  "reserved": [
+    "moments.share",
+    "family_access.manage"
+  ],
+  "roles": {
+    "OrganizationAdministrator": {
+      "kind": "base",
+      "holds": [
+        "memberships.manage",
+        "roles.manage",
+        "designations.assign",
+        "organization.manage",
+        "audit.read",
+        "retention.holds.manage",
+        "kindu.use",
+        "clients.read.all",
+        "clients.clinical.read",
+        "clients.create",
+        "clients.update",
+        "clients.archive",
+        "clients.alerts.read",
+        "clients.alerts.manage",
+        "caregivers.read",
+        "caregivers.manage",
+        "assignments.manage",
+        "assignments.grace.revoke",
+        "authorities.manage",
+        "authorities.verify",
+        "schedules.manage",
+        "shifts.read.all",
+        "shifts.adjust",
+        "timesheets.review",
+        "notes.read.all",
+        "notes.history.read",
+        "notes.drafts.indicator.read",
+        "notes.drafts.disposition.manage",
+        "notes.corrections.manage",
+        "documentation.exceptions.approve",
+        "moments.read.all",
+        "media.download",
+        "media.disposition.manage",
+        "consents.read",
+        "consents.manage",
+        "consents.verify",
+        "consents.withdraw",
+        "consents.policy.manage",
+        "rights_requests.manage",
+        "rights_requests.fulfill",
+        "evidence.package.create",
+        "evidence.reviewers.manage",
+        "support_access.approve",
+        "reports.read",
+        "reports.export",
+        "documents.read.all",
+        "documents.upload",
+        "documents.manage"
+      ]
+    },
+    "Caregiver": {
+      "kind": "base",
+      "holds": [
+        "kindu.use",
+        "clients.read",
+        "clients.clinical.read",
+        "clients.alerts.read",
+        "schedules.read",
+        "shifts.start",
+        "shifts.end",
+        "timesheets.read.own",
+        "notes.create",
+        "notes.publish",
+        "notes.edit",
+        "notes.read",
+        "notes.history.read",
+        "notes.corrections.report",
+        "moments.read",
+        "moments.create",
+        "consents.withdraw",
+        "consents.capture",
+        "documents.read"
+      ]
+    },
+    "MediaReviewer": {
+      "kind": "designation",
+      "holds": [
+        "media.consent.review"
+      ]
+    },
+    "RestrictedOriginalCustodian": {
+      "kind": "designation",
+      "holds": [
+        "media.originals.read"
+      ]
+    },
+    "ExportCustodian": {
+      "kind": "designation",
+      "holds": [
+        "organization.export"
+      ]
+    }
+  },
+  "narrowCapabilities": {
+    "RightsRequester": [
+      "requests.own.submit",
+      "requests.own.read",
+      "requests.own.download"
+    ],
+    "ExternalReviewer": [
+      "evidence.review",
+      "evidence.package.download"
+    ],
+    "RemoteSigner": [
+      "consent_link.sign",
+      "consent_link.renew",
+      "consent_link.withdraw"
+    ],
+    "PlatformAdministrator": [
+      "platform.organizations.provision",
+      "platform.support.request",
+      "platform.disposal.approve"
+    ],
+    "KindredSecurityApprover": [
+      "platform.security.approve"
+    ]
+  },
+  "stepUpMfa": [
+    "audit.read",
+    "retention.holds.manage",
+    "support_access.approve",
+    "organization.export",
+    "media.originals.read",
+    "designations.assign"
+  ]
+}

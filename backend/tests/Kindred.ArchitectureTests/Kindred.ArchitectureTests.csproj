@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <PackageReference Include="xunit.v3" />
+    <PackageReference Include="NetArchTest.Rules" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" />
+    <ProjectReference Include="..\..\Kindred.Domain\Kindred.Domain.csproj" />
+    <ProjectReference Include="..\..\Kindred.Application\Kindred.Application.csproj" />
+    <ProjectReference Include="..\..\Kindred.Infrastructure\Kindred.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Kindred.Api\Kindred.Api.csproj" />
+  </ItemGroup>
+</Project>

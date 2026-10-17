@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/tests/">
+    <Project Path="tests/Kindred.ArchitectureTests/Kindred.ArchitectureTests.csproj" />
+    <Project Path="tests/Kindred.IntegrationTests/Kindred.IntegrationTests.csproj" />
+    <Project Path="tests/Kindred.UnitTests/Kindred.UnitTests.csproj" />
+  </Folder>
+  <Project Path="Kindred.Api/Kindred.Api.csproj" />
+  <Project Path="Kindred.Application/Kindred.Application.csproj" />
+  <Project Path="Kindred.Domain/Kindred.Domain.csproj" />
+  <Project Path="Kindred.Infrastructure/Kindred.Infrastructure.csproj" />
+</Solution>

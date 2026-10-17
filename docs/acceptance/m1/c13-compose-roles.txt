@@ -1,0 +1,24 @@
+# Criterion 13 spot check on the docker compose database, 2026-10-17T11:33:26Z
+
+$ psql as kindred_app: SHOW server_version; installed extensions
+18.6 (Debian 18.6-1.pgdg13+2)
+btree_gist 1.8
+pg_trgm 1.6
+
+$ psql as kindred_app: CREATE TABLE kindred.probe(id int)
+ERROR:  permission denied for schema kindred
+LINE 1: CREATE TABLE kindred.probe(id int)
+                     ^
+
+$ psql as kindred_app: DROP TABLE kindred.__ef_migrations_history
+ERROR:  must be owner of table __ef_migrations_history
+
+$ role attributes
+      rolname       | rolsuper | rolcreatedb | rolcreaterole | rolbypassrls | rolcanlogin 
+--------------------+----------+-------------+---------------+--------------+-------------
+ kindred_app        | f        | f           | f             | f            | t
+ kindred_app_access | f        | f           | f             | f            | f
+ kindred_bootstrap  | t        | t           | t             | t            | t
+ kindred_migrator   | f        | f           | f             | f            | t
+(4 rows)
+

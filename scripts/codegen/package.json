@@ -1,0 +1,15 @@
+{
+  "name": "@kindred/codegen",
+  "private": true,
+  "description": "Generates the mobile API client from docs/api/openapi.json and src/design/tokens.ts from design/tokens/tokens.json. Kept separate so generator dependencies do not constrain the app.",
+  "type": "module",
+  "scripts": {
+    "api": "openapi-typescript ../../docs/api/openapi.json --output ../../apps/mobile/src/api/generated/schema.ts --root-types --alphabetize",
+    "tokens": "node tokens.mjs",
+    "all": "npm run api && npm run tokens"
+  },
+  "devDependencies": {
+    "openapi-typescript": "7.13.0",
+    "typescript": "^5.9.3"
+  }
+}

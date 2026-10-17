@@ -1,0 +1,23 @@
+# Local run of every CI check, 2026-10-17T11:33:45Z, commit ec210d7 plus uncommitted fixes from this session
+# (CI on GitHub has not run yet: it starts when the first pull request opens.)
+
+repo-checks                PASS     
+script-tests               PASS     # tests 33 # pass 33 # fail 0 
+traceability               PASS     
+feature-matrix             PASS     
+secret-scan                PASS     
+lint-dotnet                PASS     
+lint-mobile                PASS     
+typecheck                  PASS     
+build-dotnet               PASS     
+build-mobile               PASS     
+bundle-guard               PASS     
+test-unit                  PASS      total: 32  failed: 0  succeeded: 32 
+test-integration           PASS      total: 16  failed: 0  succeeded: 16 
+test-architecture          PASS      total: 4  failed: 0  succeeded: 4 
+security-arch              PASS      total: 5  failed: 0  succeeded: 5 
+security-integration       PASS      total: 9  failed: 0  succeeded: 9 
+test-mobile                PASS     Tests: 11 passed, 11 total 
+design-tokens              PASS     
+npm-audit-gate             PASS     
+nuget-vulnerable           PASS     
