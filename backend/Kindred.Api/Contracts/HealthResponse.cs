@@ -2,10 +2,8 @@ using Kindred.Application.Health;
 
 namespace Kindred.Api.Contracts;
 
-/// <summary>Result of GET /v1/health. Carries no version, host or error details.</summary>
-public sealed record HealthResponse(HealthStatus Status, HealthChecks Checks)
+/// <summary>CONTRACT TEST ONLY, NEVER TO BE MERGED: the "checks" property is removed (a breaking change).</summary>
+public sealed record HealthResponse(HealthStatus Status)
 {
-    public static HealthResponse From(HealthReport report) => new(report.Status, new HealthChecks(report.Database));
+    public static HealthResponse From(HealthReport report) => new(report.Status);
 }
-
-public sealed record HealthChecks(HealthStatus Database);

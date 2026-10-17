@@ -39,29 +39,14 @@
   },
   "components": {
     "schemas": {
-      "HealthChecks": {
-        "required": [
-          "database"
-        ],
-        "type": "object",
-        "properties": {
-          "database": {
-            "$ref": "#/components/schemas/HealthStatus"
-          }
-        }
-      },
       "HealthResponse": {
         "required": [
-          "status",
-          "checks"
+          "status"
         ],
         "type": "object",
         "properties": {
           "status": {
             "$ref": "#/components/schemas/HealthStatus"
-          },
-          "checks": {
-            "$ref": "#/components/schemas/HealthChecks"
           }
         }
       },

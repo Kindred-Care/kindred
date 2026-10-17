@@ -24,11 +24,7 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
-        HealthChecks: {
-            database: components["schemas"]["HealthStatus"];
-        };
         HealthResponse: {
-            checks: components["schemas"]["HealthChecks"];
             status: components["schemas"]["HealthStatus"];
         };
         /** @enum {unknown} */
@@ -40,7 +36,6 @@ export interface components {
     headers: never;
     pathItems: never;
 }
-export type SchemaHealthChecks = components['schemas']['HealthChecks'];
 export type SchemaHealthResponse = components['schemas']['HealthResponse'];
 export type SchemaHealthStatus = components['schemas']['HealthStatus'];
 export type $defs = Record<string, never>;
