@@ -1,0 +1,39 @@
+# Code owners for security-critical areas (Section 3, Refinement 4).
+#
+# While Kindred has one developer, required approvals are zero and the required
+# checks plus docs/security/review-checklist.md do the gatekeeping. When a second
+# developer joins, a required code-owner approval is turned on in the main ruleset
+# and these entries name the reviewers. High-risk changes still need independent
+# review before any production deployment.
+
+# Default owner
+*                                              @EyeTeaAri
+
+# Authentication, authorization and permissions
+/backend/Kindred.Api/Authorization/            @EyeTeaAri
+/backend/Kindred.Application/Authorization/    @EyeTeaAri
+/apps/mobile/src/navigation/                   @EyeTeaAri
+/apps/mobile/src/features/auth/                @EyeTeaAri
+
+# Audit and logging redaction
+/backend/Kindred.Application/Audit/            @EyeTeaAri
+/backend/Kindred.Api/Logging/                  @EyeTeaAri
+
+# Tenant isolation, persistence and migrations
+/backend/Kindred.Infrastructure/Persistence/   @EyeTeaAri
+/scripts/dev/db/                               @EyeTeaAri
+
+# File upload and scanning (from Phase 7)
+/backend/Kindred.Infrastructure/Storage/       @EyeTeaAri
+
+# CI workflows, repository protections and infrastructure
+/.github/                                      @EyeTeaAri
+/.githooks/                                    @EyeTeaAri
+/.gitleaks.toml                                @EyeTeaAri
+/compose.yaml                                  @EyeTeaAri
+/backend/Dockerfile                            @EyeTeaAri
+/infrastructure/                               @EyeTeaAri
+
+# Security documentation and decisions
+/docs/security/                                @EyeTeaAri
+/docs/architecture/adr/                        @EyeTeaAri

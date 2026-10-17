@@ -1,0 +1,25 @@
+# Normalize line endings in the repository; check out with LF everywhere so
+# generated files (openapi.json, the API client, tokens.ts) compare byte-for-byte
+# on Windows, macOS and the Linux CI runners.
+* text=auto eol=lf
+
+*.cmd text eol=crlf
+*.bat text eol=crlf
+*.ps1 text eol=crlf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.ttf binary
+*.otf binary
+*.woff binary
+*.woff2 binary
+*.pdf binary
+
+# Generated files: collapsed in pull request diffs, never edited by hand.
+docs/api/openapi.json linguist-generated=true
+apps/mobile/src/api/generated/** linguist-generated=true
+apps/mobile/src/design/tokens.ts linguist-generated=true

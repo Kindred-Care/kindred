@@ -1,0 +1,20 @@
+# gitleaks configuration (Section 3 and decision 114).
+#
+# gitleaks is a supplementary safeguard. It runs as a local pre-commit hook
+# (.githooks/pre-commit) and in CI over the full history and every pull request.
+# It does not replace branch protection.
+
+title = "Kindred gitleaks configuration"
+
+[extend]
+useDefault = true
+
+# Development-only database passwords in .env.example are obvious placeholders
+# and are allowlisted by exact value, never by path, so a real secret pasted into
+# the same file is still caught.
+[allowlist]
+description = "Documented local-development placeholders"
+regexTarget = "match"
+regexes = [
+  '''local-dev-only-[a-z-]+''',
+]
