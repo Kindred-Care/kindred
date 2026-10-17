@@ -1,0 +1,51 @@
+# Local configuration and secrets. Only .env.example is committed.
+.env
+.env.*
+!.env.example
+*.pem
+*.p12
+*.pfx
+*.key
+*.mobileprovision
+*.keystore
+!debug.keystore
+credentials.json
+google-services.json
+GoogleService-Info.plist
+
+# .NET
+bin/
+obj/
+*.user
+*.suo
+.vs/
+TestResults/
+*.trx
+coverage/
+efbundle
+efbundle.exe
+
+# Node and Expo
+node_modules/
+.expo/
+dist/
+web-build/
+expo-env.d.ts
+apps/mobile/ios/
+apps/mobile/android/
+*.tsbuildinfo
+npm-debug.log*
+
+# Tooling and OS
+.idea/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.DS_Store
+Thumbs.db
+
+# Generated seed output (synthetic, regenerated on demand)
+scripts/seed/out/
+
+# Local acceptance evidence scratch (curated copies live in docs/acceptance/)
+artifacts/
