@@ -135,6 +135,8 @@ jobs:
         run: |
           npm ci
           npm run build:check
+      - name: Build-time-only packages never ship in the bundle (ADR 0018)
+        run: node scripts/dev/check-bundle-deps.mjs apps/mobile/dist
 
   # ---------------------------------------------------------------------------
   # Tests. The security-trait suite runs as its own check (security-tests).

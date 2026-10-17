@@ -23,3 +23,20 @@ test('REQ-FM-002 an unknown permission, a missing permission and a wrong cell ar
   assert.match(problems, /audit\.read appears on no row/);
   assert.match(problems, /Bogus: Caregiver Mobile is 🔒 but the Caregiver role holds none/);
 });
+
+test('REQ-FM-002 administrators never hold what Section 6 reserves for authors and designations', () => {
+  // Founder decision 2026-10-17: follow the Section 6 matrix, not Appendix G decision 20.
+  const admin = catalog.roles.OrganizationAdministrator.holds;
+  for (const permission of [
+    'media.consent.review',
+    'media.originals.read',
+    'organization.export',
+    'notes.create',
+    'notes.publish',
+    'notes.edit',
+    'moments.create',
+  ]) {
+    assert.ok(!admin.includes(permission), `Organization Administrator must not hold ${permission}`);
+  }
+  assert.deepEqual(catalog.roles.MediaReviewer.holds, ['media.consent.review']);
+});

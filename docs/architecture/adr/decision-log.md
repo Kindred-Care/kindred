@@ -27,7 +27,7 @@ test. The summaries are short paraphrases; the blueprint text is authoritative.
 | 17 | Download only for staff with media.download and evidence packages | REQ-MED-010 |
 | 18 | Blurring defaults to the whole person; face-only selectable | REQ-MED-005 |
 | 19 | Re-rendering is unlimited | REQ-MED-006 |
-| 20 | Administrators hold media review by default | Superseded in practice by the Section 6 matrix; see ADR 0027 note |
+| 20 | Administrators hold media review by default | Superseded by the Section 6 matrix: administrators do not receive the Media Reviewer designation (founder decision 2026-10-17, ADR 0027) |
 | 21 | Nothing prompts before capture | REQ-MED-001 |
 | 22 | Expiring Soon is 30 days; reminders at 30 and 7 days | REQ-CONS-006 |
 | 23 | Verbal or phone consent gets a second review unless policy accepts it | REQ-CONS-004 |

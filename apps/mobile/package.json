@@ -38,7 +38,7 @@
     "format": "prettier --write .",
     "typecheck": "tsc --noEmit",
     "test": "jest --ci",
-    "build:check": "expo export --platform android --platform ios --output-dir dist --clear"
+    "build:check": "expo export --platform android --platform ios --output-dir dist --source-maps --clear"
   },
   "private": true,
   "jest": {
@@ -52,5 +52,10 @@
       "!src/api/generated/**",
       "!src/design/tokens.ts"
     ]
+  },
+  "overrides": {
+    "xcode": {
+      "uuid": "^11.1.1"
+    }
   }
 }

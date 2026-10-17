@@ -20,10 +20,14 @@
 - Appendix C scenario IDs are kept as requirement IDs (`REQ-ACC-N1`) so the acceptance tests trace
   directly.
 
-## Note on a blueprint discrepancy
+## Media review: resolved discrepancy
 
-Appendix G decision 20 says administrators hold the media review permission by default, but the later,
+Appendix G decision 20 says administrators hold the media review permission by default. The later,
 approved Section 6 permission-by-role matrix gives `media.consent.review` only to the Media Reviewer
-designation, and Section 6 states "No media clearance by default". The matrix is the more specific and
-later statement, so `permissions.json` follows Section 6. This is flagged for the founder's confirmation
-before Phase 7d; nothing in Milestone 1 depends on it.
+designation and states "No media clearance by default".
+
+**Founder decision (2026-10-17):** follow the Section 6 matrix. Administrators do not automatically
+receive the Media Reviewer designation or `media.consent.review`, and no permission is broadened.
+`permissions.json` and the feature matrix encode this, and `check-feature-matrix.test.mjs` fails if the
+Organization Administrator is ever given `media.consent.review`, `media.originals.read`,
+`organization.export` or any care-note or capture authoring permission.
