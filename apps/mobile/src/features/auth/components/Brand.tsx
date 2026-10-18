@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
 
-import { colors, space, type, wordmarkMaxScale } from '@/design/theme';
+import { colors, letterSpacing, space, type, wordmarkMaxScale } from '@/design/theme';
 
 export const TAGLINE = 'Care for Every Chapter.';
 
@@ -39,16 +39,18 @@ export function Brand({ color = colors.textPrimary }: Props) {
 const styles = StyleSheet.create({
   brand: {
     alignItems: 'center',
-    gap: space.brandGap,
     alignSelf: 'stretch',
   },
   wordmark: {
     ...type.wordmark,
+    letterSpacing: letterSpacing.wordmark,
     textAlign: 'center',
     alignSelf: 'stretch',
   },
+  // A margin rather than a gap: the frame's spacing is slightly negative between the two line boxes.
   tagline: {
     ...type.tagline,
+    marginTop: space.brandGap,
     textAlign: 'center',
   },
 });

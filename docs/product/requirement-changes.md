@@ -5,6 +5,23 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-18: Splash and Log In frame exports are the visual baseline
+
+**Decided by:** the founder, who supplied the Mobile – Splash and Mobile – Log In frames (402 × 874) as
+the approved references for criterion 3 and asked for the build to match them.
+
+- Layout now follows the frames: the compact centred Log In button (hugs its label, 107 × 52), fields
+  199 pt wide ending at x 371, labels at x 32 in Inter Regular 24, "Forgot your password?" in Inter
+  Regular 16 Charcoal without underline, and the frames' vertical positions (content placed from the
+  top of the screen, not centred).
+- These replace the brief's spacing and typography Defaults (24 pt margins, 48 pt brand-to-form gap,
+  Medium 16 labels, underlined link, full-width button, vertically centred content).
+- Kept as approved: `#767676` resting and 2 pt `#A94F32` focused borders, the `#A94F32` button with white
+  text, no placeholder text, the responsive and accessibility precedence rules.
+- Read from the frames and awaiting the founder's confirmation: label size and weight, link style, and a
+  0.7 pt letter spacing on the wordmark.
+- Unchanged: acceptance criteria, approved colours and the approved type sizes.
+
 ## 2026-10-18: Focused fields show a 2 pt `#A94F32` outline
 
 **Decided by:** the founder, as Kindred's original design intent.

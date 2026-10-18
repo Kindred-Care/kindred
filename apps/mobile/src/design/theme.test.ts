@@ -18,8 +18,10 @@ describe('design tokens', () => {
   it('REQ-PLAT-018 no placeholders remain, and documented defaults are listed apart from approved values', () => {
     expect(tokensArePlaceholders).toBe(false);
     expect(placeholderTokens).toEqual([]);
-    // Spacing not given by the handoff is a default until the Figma frame exports (P1) supply it.
-    expect(defaultTokens).toContain('space.brandToForm');
+    // Layout now comes from the Figma frame exports; behaviour the frame cannot show stays a default.
+    expect(defaultTokens).not.toContain('space.brandToForm');
+    expect(defaultTokens).not.toContain('size.fieldWidth');
+    expect(defaultTokens).toContain('size.minFieldWidth');
     expect(defaultTokens).not.toContain('color.action.primary');
   });
 

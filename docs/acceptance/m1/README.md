@@ -13,7 +13,7 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | --- | --- | --- | --- |
 | 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed** (Windows, recorded; Linux, CI smoke step on PR #2) | [c1-compose-run.txt](c1-compose-run.txt), [github-ci-evidence.md](github-ci-evidence.md) |
 | 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator re-run on the approved design and passed (release build: 0 error lines in 10 of 10 cold starts; no JavaScript errors or warnings in any run; one intermittent native warning in development builds only, explained below); iOS simulator **Blocked** (needs the Mac) | Android section below |
-| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Provisional, not measured**: built from approved tokens and Inter, no inline hex (lint-enforced). The ±2 pt comparison at 390 and 402 pt **cannot be made** until the Figma frame exports (P1) are provided; spacing the handoff does not give is a documented default until then | Design brief 6b and 6c; ADR 0022 |
+| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Partial**: on the Android emulator every element is within ±2 pt of the founder-approved frames at 390 and 402 pt (largest difference 2.0 pt). Open: re-check against the original 1× exports, founder confirmation of three values read from the frame, and the iOS comparison (needs the Mac) | [figma/README.md](figma/README.md) |
 | 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android re-run on the approved design and passed (approved values; all 11 contrast pairs AA); iOS Dynamic Type **Blocked** | Android section below |
 | 5 | CI on every pull request runs every required check, security suite separate, all pass | **Passed** | [github-ci-evidence.md](github-ci-evidence.md) |
 | 6 | Every project has a passing unit test; a README gets a new developer running both apps in under 30 minutes | **Partial**: tests pass for every project; the timed walkthrough needs a developer other than the author | [local-full-run.txt](local-full-run.txt) |
@@ -27,7 +27,7 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | 14 | Seed and dev scripts refuse outside local; seed data synthetic | **Passed** (`repo-checks` in CI) | [github-ci-evidence.md](github-ci-evidence.md) |
 | 15 | EAS development build on one physical iOS and one physical Android device | **Blocked**: no physical Android phone yet; Apple Developer enrollment paused; the EAS project is not yet created (needs `npx eas-cli login`) | — |
 
-**Summary:** 10 Passed (1, 5, 7 to 14), 3 Partial (2, 4, 6), 1 Provisional (3, not yet measurable), 1 Blocked (15).
+**Summary:** 10 Passed (1, 5, 7 to 14), 4 Partial (2, 3, 4, 6), 1 Blocked (15).
 The 10 Passed criteria come from earlier runs; this branch changes only the mobile screens, the design
 tokens and their generator, and CI re-runs every check on its pull request.
 Milestone 1 is not fully accepted until criterion 15 passes on both devices or the founder authorizes an
@@ -179,5 +179,5 @@ simulator run.
 
 | Criterion | Status |
 | --- | --- |
-| 3 Visual match to Figma | **Provisional, not measured.** Approved tokens are in use, but the ±2 pt side-by-side comparison at 390 and 402 pt needs the Figma frame exports (P1, design brief section 6c). No claim is made until they are compared |
+| 3 Visual match to Figma | **Partial.** Compared on Android at 390 and 402 pt, all within ±2 pt; open items in [figma/README.md](figma/README.md) |
 | 15 Physical devices | **Blocked.** No physical Android phone yet; Apple Developer enrollment paused |

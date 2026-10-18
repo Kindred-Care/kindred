@@ -23,6 +23,7 @@ export const space = tokens.space;
 export const radius = tokens.radius;
 export const size = tokens.size;
 export const touchTarget = tokens.size.touchTarget;
+export const letterSpacing = tokens.letterSpacing;
 export const wordmarkMaxScale = tokens.scale.wordmarkMax;
 export const splashDurationMs = tokens.motion.splash;
 
@@ -43,7 +44,7 @@ export const type = {
   wordmark: textStyle(fontSize.wordmark, weight.regular),
   tagline: textStyle(fontSize.tagline, weight.regular),
   body: textStyle(fontSize.body, weight.regular),
-  label: textStyle(fontSize.body, weight.medium),
+  label: textStyle(fontSize.label, weight.regular),
   button: textStyle(fontSize.button, weight.medium),
-  link: textStyle(fontSize.body, weight.regular),
+  link: textStyle(fontSize.link, weight.regular),
 } as const;

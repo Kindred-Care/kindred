@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { SafeAreaView, useSafeAreaInsets } from 'react-native-safe-area-context';
 
 import { colors, radius, space, touchTarget, type } from '@/design/theme';
 import { Brand } from '../components/Brand';
-import { LabeledTextField, shouldStackLabels } from '../components/LabeledTextField';
+import { fieldWidthFor, LabeledTextField, shouldStackLabels } from '../components/LabeledTextField';
 
 const LABELS = { username: 'Username:', password: 'Password:' } as const;
 
 /**
- * Static Log In screen (Milestone 1), laid out as the founder confirmed against the Mobile – Log In
- * frame: the wordmark and tagline, "Username:" and "Password:" beside their fields, the Log In
- * button, then "Forgot your password?" centred beneath it. There is no "Log In" heading.
+ * Static Log In screen (Milestone 1), matching the founder-approved Mobile – Log In frame: the wordmark
+ * and tagline, "Username:" and "Password:" beside their fields, the compact centred Log In button,
+ * then "Forgot your password?" centred beneath it. There is no "Log In" heading.
+ *
+ * Content is placed from the top of the screen at the frame's positions, never above the safe area,
+ * and scrolls when large text makes it taller than the screen.
  *
  * There is no sign-in yet (Cognito arrives in Phase 2): the button and link do nothing and nothing
  * typed here leaves the screen.
@@ -21,15 +24,20 @@ export function LogInScreen() {
   const [password, setPassword] = useState('');
   const [formWidth, setFormWidth] = useState(0);
   const [labelWidths, setLabelWidths] = useState({ username: 0, password: 0 });
+  const insets = useSafeAreaInsets();
 
-  // Both rows switch together, so the fields keep a shared left edge or a shared top-to-bottom flow.
+  // Both rows switch together, so the fields keep a shared right edge or a shared top-to-bottom flow.
   const labelWidth = Math.ceil(Math.max(labelWidths.username, labelWidths.password));
   const stacked = shouldStackLabels(labelWidth, formWidth);
+  const fieldWidth = fieldWidthFor(labelWidth, formWidth);
 
   return (
     <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+        <ScrollView
+          contentContainerStyle={[styles.content, { paddingTop: Math.max(0, space.brandTopLogIn - insets.top) }]}
+          keyboardShouldPersistTaps="handled"
+        >
           <Brand />
 
           <View
@@ -59,7 +67,7 @@ export function LogInScreen() {
               label={LABELS.username}
               accessibilityLabel="Username"
               stacked={stacked}
-              labelWidth={labelWidth}
+              fieldWidth={fieldWidth}
               value={username}
               onChangeText={setUsername}
               autoCapitalize="none"
@@ -73,7 +81,7 @@ export function LogInScreen() {
               label={LABELS.password}
               accessibilityLabel="Password"
               stacked={stacked}
-              labelWidth={labelWidth}
+              fieldWidth={fieldWidth}
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -120,9 +128,9 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    justifyContent: 'center',
-    paddingHorizontal: space.screenMargin,
-    paddingVertical: space.screenVertical,
+    paddingLeft: space.screenMarginStart,
+    paddingRight: space.screenMarginEnd,
+    paddingBottom: space.screenBottom,
   },
   form: {
     marginTop: space.brandToForm,
@@ -134,7 +142,9 @@ const styles = StyleSheet.create({
     top: 0,
     opacity: 0,
   },
+  // Hugs its label (24 + text + 24), centred, as in the frame.
   button: {
+    alignSelf: 'center',
     marginTop: space.beforeButton,
     minHeight: touchTarget,
     borderRadius: radius.control,
@@ -163,7 +173,6 @@ const styles = StyleSheet.create({
   link: {
     ...type.link,
     color: colors.textLink,
-    textDecorationLine: 'underline',
     textAlign: 'center',
   },
 });

@@ -38,14 +38,18 @@ export const tokens = {
     "controlPaddingX": 24,
     "controlPaddingY": 14,
     "controlGap": 10,
-    "screenMargin": 24,
-    "brandGap": 8,
-    "brandToForm": 48,
-    "row": 16,
-    "label": 12,
-    "beforeButton": 24,
-    "beforeLink": 16,
-    "screenVertical": 32
+    "screenMarginStart": 30,
+    "screenMarginEnd": 31,
+    "brandTopLogIn": 101,
+    "brandTopSplash": 308,
+    "brandGap": -2,
+    "brandToForm": 125,
+    "row": 7,
+    "label": 8,
+    "labelRaise": 4,
+    "beforeButton": 40,
+    "beforeLink": 3,
+    "screenBottom": 32
   },
   "radius": {
     "control": 12
@@ -53,6 +57,7 @@ export const tokens = {
   "size": {
     "touchTarget": 48,
     "border": 1,
+    "fieldWidth": 199,
     "borderFocus": 2,
     "minFieldWidth": 160
   },
@@ -69,7 +74,9 @@ export const tokens = {
       "caption": 14,
       "wordmark": 64,
       "tagline": 24,
-      "button": 20
+      "button": 20,
+      "label": 24,
+      "link": 16
     },
     "weight": {
       "regular": 400,
@@ -81,6 +88,9 @@ export const tokens = {
       "heading": 1.2,
       "body": 1.5
     }
+  },
+  "letterSpacing": {
+    "wordmark": 0.7
   },
   "scale": {
     "wordmarkMax": 1.5
@@ -98,18 +108,11 @@ export const tokensArePlaceholders = false;
 /** Implementation defaults from the design brief: documented values, not founder-approved designs. */
 export const defaultTokens: readonly string[] = [
   "color.action.primaryPressed",
-  "color.text.link",
   "font.lineHeight.body",
   "font.lineHeight.heading",
   "motion.splash",
   "scale.wordmarkMax",
   "size.minFieldWidth",
-  "space.beforeButton",
-  "space.beforeLink",
-  "space.brandGap",
-  "space.brandToForm",
   "space.label",
-  "space.row",
-  "space.screenMargin",
-  "space.screenVertical"
+  "space.screenBottom"
 ];
