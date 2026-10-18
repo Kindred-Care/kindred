@@ -37,3 +37,15 @@ test('REQ-PLAT-021 unknown IDs, duplicates and bad statuses fail', () => {
   assert.match(problems, /unknown status "Done"/);
   assert.ok(problems.includes(`${'REQ-' + 'NOPE-009'} is used in a.cs but is not in traceability.md`));
 });
+
+test('REQ-PLAT-021 a Verified requirement must name its recorded evidence', () => {
+  const rows = parseRequirements(
+    [
+      '| REQ-PLAT-010 | Protected main | §3 | 1 | ruleset | Verified | docs/architecture/adr/evidence/0016-enforcement.md |',
+      '| REQ-PLAT-001 | Compose | §10 | 1 | compose | Verified | it worked on my machine |',
+    ].join('\n'),
+  );
+  assert.deepEqual(check(rows, new Map()), [
+    'REQ-PLAT-001 is Verified but names no evidence under docs/acceptance or docs/architecture',
+  ]);
+});

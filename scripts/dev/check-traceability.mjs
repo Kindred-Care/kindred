@@ -9,7 +9,9 @@ import { readdirSync, readFileSync, statSync } from 'node:fs';
 import { join } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
-export const STATUSES = new Set(['Implemented', 'Partial', 'Provisional', 'Blocked', 'Planned', 'Process']);
+export const STATUSES = new Set(['Implemented', 'Verified', 'Partial', 'Provisional', 'Blocked', 'Planned', 'Process']);
+// Verified rows are proven by recorded evidence (for example the branch-protection rejections) rather than
+// by a code test, so they must name that evidence in the Tests column.
 const ID = /REQ[-_][A-Z]+[-_][A-Z]*\d+/g;
 
 export function parseRequirements(markdown) {
@@ -18,7 +20,7 @@ export function parseRequirements(markdown) {
     const match = /^\| (REQ-[A-Z]+-[A-Z]*\d+) \|/.exec(line);
     if (!match) continue;
     const cells = line.split('|').slice(1, -1).map((c) => c.trim());
-    rows.push({ id: match[1], status: cells[5] });
+    rows.push({ id: match[1], status: cells[5], evidence: cells[6] });
   }
   return rows;
 }
@@ -42,11 +44,14 @@ export function findTestIds(files) {
 export function check(requirements, testIds) {
   const problems = [];
   const seen = new Set();
-  for (const { id, status } of requirements) {
+  for (const { id, status, evidence } of requirements) {
     if (seen.has(id)) problems.push(`${id} is listed more than once`);
     seen.add(id);
     if (!STATUSES.has(status)) problems.push(`${id} has unknown status "${status}"`);
     if (status === 'Implemented' && !testIds.has(id)) problems.push(`${id} is Implemented but no test carries its ID`);
+    if (status === 'Verified' && !/docs\/(acceptance|architecture)/.test(evidence ?? '')) {
+      problems.push(`${id} is Verified but names no evidence under docs/acceptance or docs/architecture`);
+    }
   }
   for (const [id, files] of testIds) {
     if (!seen.has(id)) problems.push(`${id} is used in ${[...files].join(', ')} but is not in traceability.md`);

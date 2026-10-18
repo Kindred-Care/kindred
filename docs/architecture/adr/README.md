@@ -28,7 +28,7 @@ still open), **Superseded by NNNN**.
 | [0013](0013-expo-router-and-eas-development-builds.md) | Expo Router, TypeScript and EAS development builds | Accepted |
 | [0014](0014-api-client-generator.md) | openapi-typescript with openapi-fetch for the generated client | Accepted |
 | [0015](0015-api-versioning-and-breaking-change-check.md) | URL versioning and oasdiff breaking-change check | Accepted |
-| [0016](0016-repository-protections.md) | GitHub Team ruleset protecting main, and its enforcement proof | Accepted, verification pending |
+| [0016](0016-repository-protections.md) | GitHub Team ruleset protecting main, and its enforcement proof | Accepted |
 | [0017](0017-secret-scanning.md) | gitleaks in CI and as a pre-commit hook | Accepted |
 | [0018](0018-dependency-scanning-and-inventory.md) | Dependency scanning, exceptions and inventory | Accepted |
 | [0019](0019-postgresql-version-extensions-and-roles.md) | PostgreSQL 18, extensions, migration and application roles | Accepted |
