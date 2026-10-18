@@ -5,6 +5,24 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Milestone 1 visual design baseline approved (decided)
+
+**Decided by:** the founder, after reviewing the designs directly in Figma. **Scope:** Milestone 1 splash
+and Log In screens (criteria 2, 3 and 4). Implementation waits for the founder's authorization.
+
+- Brand identity, colours and typography approved: Kindred, "Care for Every Chapter.", Inter, and the
+  seven colours and six type styles in [the design brief](../design/m1-figma-brief.md).
+- Splash: Warm White with a Charcoal wordmark and tagline. **Supersedes** the earlier apricot background
+  with white text. Decorative apricot botanical leaves are chosen but **deferred** beyond Milestone 1.
+- Log In: the existing Figma layout and labels (Username, Password, Forgot your password?, Log In), with
+  the approved button and field styles.
+- Milestone 1's acceptance criteria are unchanged.
+
+**Flagged in the brief for decision (not silently changed):** the approved Log In label colour fails WCAG
+2.2 AA (B1, 3.72:1); the approved field border fails non-text contrast (B2, 1.20:1); criterion 3's 390 pt
+width and tolerance need agreeing against the 402 pt frame (B3); label placement and any heading on the
+Log In screen (Q1, Q2); and "Username" versus email sign-in (decision 1), to revisit in Phase 2.
+
 ## 2026-10-17: Bounded biometric policy validity, and review of ADR 0028 decisions (decided)
 
 **Decided by:** the founder. **Phase:** Phase 2 (B2). **Not** part of Milestone 1; nothing is implemented.
