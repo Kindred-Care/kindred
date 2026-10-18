@@ -13,7 +13,7 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | --- | --- | --- | --- |
 | 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed** (Windows, recorded; Linux, CI smoke step on PR #2) | [c1-compose-run.txt](c1-compose-run.txt), [github-ci-evidence.md](github-ci-evidence.md) |
 | 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator re-run on the approved design and passed (release build: 0 error lines in 10 of 10 cold starts; no JavaScript errors or warnings in any run; one intermittent native warning in development builds only, explained below); iOS simulator **Blocked** (needs the Mac) | Android section below |
-| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Partial**: on the Android emulator every element is within ±2 pt of the founder-approved frames at 390 and 402 pt (largest difference 2.0 pt). Open: re-check against the original 1× exports, founder confirmation of three values read from the frame, and the iOS comparison (needs the Mac) | [figma/README.md](figma/README.md) |
+| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Partial**: positions and dimensions within ±2 pt of the founder-supplied exports at 390 and 402 pt (largest 2.0 pt), colours exact, no inline hex. Open: two typography properties (label font, wordmark letter spacing) cannot be verified from a PNG; acceptance of the 390 pt mapping. iOS is not part of this criterion (criteria 2 and 15) | [figma/README.md](figma/README.md) |
 | 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android re-run on the approved design and passed (approved values; all 11 contrast pairs AA); iOS Dynamic Type **Blocked** | Android section below |
 | 5 | CI on every pull request runs every required check, security suite separate, all pass | **Passed** | [github-ci-evidence.md](github-ci-evidence.md) |
 | 6 | Every project has a passing unit test; a README gets a new developer running both apps in under 30 minutes | **Partial**: tests pass for every project; the timed walkthrough needs a developer other than the author | [local-full-run.txt](local-full-run.txt) |
@@ -179,5 +179,5 @@ simulator run.
 
 | Criterion | Status |
 | --- | --- |
-| 3 Visual match to Figma | **Partial.** Compared on Android at 390 and 402 pt, all within ±2 pt; open items in [figma/README.md](figma/README.md) |
+| 3 Visual match to Figma | **Partial.** Within ±2 pt at 390 and 402 pt; two typography properties and the 390 pt mapping open ([figma/README.md](figma/README.md)) |
 | 15 Physical devices | **Blocked.** No physical Android phone yet; Apple Developer enrollment paused |

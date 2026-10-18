@@ -1,24 +1,39 @@
 # Criterion 3: visual comparison with the Figma frames
 
-Section 10 criterion 3: the splash and Log In screens match the Figma at 390 pt, within the agreed
-tolerance, using tokens with no inline hex. Tolerance (design brief 6b, approved 2026-10-17): component
+## The criterion
+
+Section 10, criterion 3, as worded in the Phase 0 plan (the 2026-10-15 draft; the approved revision
+`Kindred_Phase0_Final_Closed_rev355` is not stored in this repository, and the design brief quotes the
+same words from it):
+
+> "Splash and Log In match the Figma at 390pt width within an agreed tolerance, using tokens with no
+> inline hex values."
+
+It names no platform. The iOS simulator is required by criterion 2 and physical devices by criterion 15;
+neither is part of criterion 3. The "agreed tolerance" is design brief 6b (approved 2026-10-17):
 positions and dimensions within **±2 pt** at **390 pt and 402 pt**; brand colours exact; typography
-family, size and weight exact; accessibility requirements hold. Responsive behaviour, safe areas and
+family, size and weight exact; accessibility requirements hold; responsive behaviour, safe areas and
 accessibility text scaling take precedence over pixel matching.
 
-**Status: Partial.** On the Android emulator every measured element is within ±2 pt at both widths
-(details below). It is not yet Passed because of the open items at the end of this page.
+**Status: Partial.** Positions and dimensions are within ±2 pt at both widths, colours are exact and
+there is no inline hex. Two typography properties cannot be verified from PNG exports, and the 390 pt
+mapping needs acceptance (see the end of this page).
 
 ## References
 
-| File | What it is |
-| --- | --- |
-| [mobile-splash-1x.png](mobile-splash-1x.png) | Mobile – Splash frame, 402 × 874, founder-approved reference (2026-10-18) |
-| [mobile-log-in-1x.png](mobile-log-in-1x.png) | Mobile – Log In frame, 402 × 874, founder-approved reference (2026-10-18) |
+| File in this folder | Source | Byte check |
+| --- | --- | --- |
+| [mobile-splash-1x.png](mobile-splash-1x.png) | Founder-supplied Mobile – Splash export, attached in the working session 2026-10-18 | SHA-256 `97a29d99…1dadf`, identical to the attachment |
+| [mobile-log-in-1x.png](mobile-log-in-1x.png) | Founder-supplied Mobile – Log In export, attached in the working session 2026-10-18 | SHA-256 `6b291d9e…0d856c`, identical to the attachment |
 
-These were taken from the images the founder pasted into the working session. The founder will also
-supply the original 1× exports (2× if needed). When they arrive, they replace these two files and the
-measurements are repeated with the same scripts.
+Both are 402 × 874 RGBA PNGs carrying Figma's own `Software: Figma` stamp and the chunk layout of a
+direct Figma export (one image-data chunk, sRGB, gamma, 72 dpi), and they were copied without change.
+They are the founder-supplied originals; nothing else is needed for the comparison. The design brief's
+P1 also lists 2× exports; the ±2 pt measurement does not need them (1× gives 1 px per pt).
+
+Not used: `Downloads/kindred-splash-402.png.png` on the development machine (also a Figma export) is an
+earlier Log In draft despite its name, with the original Terracotta button, no Username field and
+"Inputs" placeholder text, all superseded by the approved corrections.
 
 ## Method
 
@@ -71,8 +86,9 @@ Side by side: [402 pt](c3-splash-402-compare.png), [390 pt](c3-splash-390-compar
   border and `#A94F32` button fill read exactly in the frame and the capture. The 2 pt `#A94F32` focus
   outline appears when a field has focus
   ([keyboard focus at 390 pt](c4-build-log-in-390-keyboard-focus.png)).
-- Typography: wordmark Inter Regular 64, tagline Inter Regular 24, button Inter Medium 20 (approved);
-  labels Inter Regular 24 and link Inter Regular 16, as read from the frame (see open items).
+- Typography: wordmark Inter Regular 64, tagline Inter Regular 24 and button Inter Medium 20 are approved
+  and match. The link is Inter Regular 16 Charcoal (design brief default, consistent with the export) and
+  not underlined, as the approved reference shows. Labels and wordmark letter spacing: see below.
 
 ## Genuine mismatches versus accessibility or responsive adaptations
 
@@ -87,10 +103,23 @@ Side by side: [402 pt](c3-splash-402-compare.png), [390 pt](c3-splash-390-compar
 
 ## Open before criterion 3 can be marked Passed
 
-1. **Original exports.** Repeat the comparison against the original 1× exports when the founder provides
-   them (the files here came through the working session).
-2. **Values read from the frame that the founder has not stated.** Please confirm, ideally from Figma
-   Dev Mode: field labels Inter **Regular 24**; the link Inter **Regular 16**, Charcoal, **not
-   underlined**; wordmark letter spacing of about **0.7 pt** (without it, Inter 64 draws "Kindred" 5 pt
-   narrower than the frame's 226 pt).
-3. **iOS.** The same comparison on the iOS simulator at 390 and 402 pt (needs the Mac).
+Typography must match "exactly as approved" (6b), and a PNG cannot prove a font property:
+
+1. **Field labels** ("Username:", "Password:"). The design brief's default was Inter Medium 16, "unless
+   the frame specifies otherwise". The export is consistent with **Inter Regular 24** (cap height 18 pt,
+   glyph positions, stem width), which the build uses, but that is a measurement, not the Figma text
+   property. Token `font.size.label` is flagged `placeholder`.
+2. **Wordmark letter spacing.** Inter Regular 64 with no tracking draws "Kindred" 221 pt wide; the
+   exports show 226 pt. The build uses **0.7 pt**, inferred from the image, to stay within ±2 pt. Token
+   `letterSpacing.wordmark` is flagged `placeholder`. If Figma's value is 0, the wordmark is a genuine
+   mismatch of about 2.5 pt per side and the cause must be found.
+
+   To read both in Figma: open the file, select the **Mobile – Log In** frame, and in the Layers panel
+   click the **Username:** text layer. The right sidebar's **Typography** (Text) section shows font,
+   style (weight), size, line height and letter spacing; in Dev Mode (**Shift+D**) the **Inspect** panel
+   shows the same under Typography. Repeat for **Password:** and for the **Kindred** wordmark layer in
+   both frames.
+3. **The 390 pt reference.** There is no 390 pt frame, so the 390 pt comparison maps the 402 pt frame by
+   each element's anchor (centred, left or right edge; see Method). The tolerance requires comparison at
+   390 pt but does not say how a 402 pt frame applies there, so this mapping needs the founder's
+   acceptance, or a 390 pt export of the same frames.

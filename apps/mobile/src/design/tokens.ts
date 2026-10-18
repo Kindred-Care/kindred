@@ -101,15 +101,19 @@ export const tokens = {
 } as const;
 
 /** Tokens still awaiting approved values from Figma. Visual acceptance is Provisional while non-empty. */
-export const placeholderTokens: readonly string[] = [];
+export const placeholderTokens: readonly string[] = [
+  "font.size.label",
+  "letterSpacing.wordmark"
+];
 
-export const tokensArePlaceholders = false;
+export const tokensArePlaceholders = true;
 
 /** Implementation defaults from the design brief: documented values, not founder-approved designs. */
 export const defaultTokens: readonly string[] = [
   "color.action.primaryPressed",
   "font.lineHeight.body",
   "font.lineHeight.heading",
+  "font.size.link",
   "motion.splash",
   "scale.wordmarkMax",
   "size.minFieldWidth",
