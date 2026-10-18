@@ -5,6 +5,22 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-18: Focused fields show a 2 pt `#A94F32` outline
+
+**Decided by:** the founder, as Kindred's original design intent.
+
+- Both Log In fields: resting border 1 px solid `#767676`; focused or selected border **2 px solid
+  `#A94F32`**; White `#FFFFFF` fill; 12 px corner radius; empty by default with no placeholder text.
+- This replaces the Terracotta `#C96A4A` focus colour approved on 2026-10-17. `#A94F32` is the same
+  accessible variant already approved for the Log In button (B1), so the token
+  `color.border.focus` now points to `color.brand.terracottaButton`.
+- The orange focus outline is intentional design, not an accessibility defect.
+- Accessibility: contrast rises from 3.60:1 to **5.27:1** against Warm White and from 3.72:1 to
+  **5.45:1** against White (WCAG 1.4.11 needs 3:1). Focus is still shown by the 1 pt to 2 pt change in
+  thickness as well as colour (WCAG 2.4.7), and keyboard focus triggers it the same way as a tap.
+- Unchanged: acceptance criteria, the layout, the brand colour Terracotta `#C96A4A`, and every other
+  approved value.
+
 ## 2026-10-17: Log In layout confirmed against Figma (Q1 and Q2 resolved)
 
 **Confirmed by:** the founder, directly against the Mobile – Log In frame in Figma. Nothing is

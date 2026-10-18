@@ -31,7 +31,7 @@ export const tokens = {
     },
     "border": {
       "input": "#767676",
-      "focus": "#C96A4A"
+      "focus": "#A94F32"
     }
   },
   "space": {

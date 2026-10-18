@@ -145,22 +145,30 @@ describe('LogInScreen', () => {
     expect(field.backgroundColor).toBe(colors.input);
   });
 
-  it('REQ-MOB-002 a focused field shows a 2 pt Terracotta border without changing its height', async () => {
-    await render(<LogInScreen />);
-    const resting = style(screen.getByLabelText('Username'));
+  it.each(['Username', 'Password'])(
+    'REQ-MOB-002 the %s field shows a 2 pt #A94F32 border when focused, without changing its height',
+    async (field) => {
+      await render(<LogInScreen />);
+      const resting = style(screen.getByLabelText(field));
+      expect(resting.borderWidth).toBe(size.border);
+      expect(resting.borderColor).toBe(colors.borderInput);
 
-    await fireEvent(screen.getByLabelText('Username'), 'focus');
-    const focused = style(screen.getByLabelText('Username'));
+      await fireEvent(screen.getByLabelText(field), 'focus');
+      const focused = style(screen.getByLabelText(field));
 
-    expect(focused.borderWidth).toBe(size.borderFocus);
-    expect(focused.borderColor).toBe(colors.borderFocus);
-    expect(Number(focused.borderWidth) + Number(focused.paddingVertical)).toBe(
-      Number(resting.borderWidth) + Number(resting.paddingVertical),
-    );
+      expect(focused.borderWidth).toBe(size.borderFocus);
+      expect(focused.borderColor).toBe(colors.borderFocus);
+      expect(focused.backgroundColor).toBe(colors.input);
+      expect(focused.borderRadius).toBe(resting.borderRadius);
+      expect(Number(focused.borderWidth) + Number(focused.paddingVertical)).toBe(
+        Number(resting.borderWidth) + Number(resting.paddingVertical),
+      );
 
-    await fireEvent(screen.getByLabelText('Username'), 'blur');
-    expect(style(screen.getByLabelText('Username')).borderWidth).toBe(size.border);
-  });
+      await fireEvent(screen.getByLabelText(field), 'blur');
+      expect(style(screen.getByLabelText(field)).borderWidth).toBe(size.border);
+      expect(style(screen.getByLabelText(field)).borderColor).toBe(colors.borderInput);
+    },
+  );
 
   it('REQ-MOB-001 the password field is masked and typing stays on the screen', async () => {
     await render(<LogInScreen />);
