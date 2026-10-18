@@ -5,6 +5,38 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Organization policy for biometric unlock (decided)
+
+**Decided by:** the founder, answering the open point in ADR 0028. **Phase:** Phase 2 (B2). **Not** part
+of Milestone 1, and nothing is implemented now.
+
+### Rules
+
+1. Biometric unlock is optional for individual users and is never required to access Kindred.
+2. Organization administrators may disable biometric unlock for their organization.
+3. An organization-level prohibition overrides an individual user's preference.
+4. When biometric unlock is disabled or unavailable, users keep a secure, supported non-biometric
+   authentication method.
+5. Device-native biometric authentication only; Kindred never collects or stores biometric templates.
+6. Disabling biometrics invalidates the biometric unlock capability without unnecessarily ending
+   otherwise valid sessions.
+
+### Traceability
+
+REQ-AUTH-020, REQ-AUTH-021 and REQ-AUTH-025 reworded; REQ-AUTH-026 to REQ-AUTH-030 added. All Planned for
+Phase 2 (B2). Feature matrix: a row for the organization setting (`organization.manage`). Design: ADR 0028,
+"Founder decision".
+
+### How it fits the approved architecture
+
+- **No new permission.** The setting sits in organization settings under the existing
+  `organization.manage`, which the Organization Administrator already holds (Section 6). No role gains a
+  permission.
+- **Applied engineering decisions, flagged in ADR 0028 for confirmation:** for a user in several
+  organizations the most restrictive setting applies (A); the server delivers the policy and the app
+  enforces it, backed by device-integrity attestation, because a local biometric check cannot be
+  observed by the server (B); a prohibition takes effect on the device's next access-context refresh (C).
+
 ## 2026-10-17: Optional biometric authentication for returning users (added)
 
 **Requested by:** the founder. **Type:** new V1 requirement (authentication).
@@ -26,7 +58,7 @@ and what it does not change.
 
 ### Traceability
 
-REQ-AUTH-017 to REQ-AUTH-025, all Planned for Phase 2 (B2). Design: ADR 0028.
+REQ-AUTH-017 to REQ-AUTH-025, all Planned for Phase 2 (B2); extended to REQ-AUTH-030 by the decision above. Design: ADR 0028.
 
 ### What it does not change
 
@@ -38,8 +70,8 @@ REQ-AUTH-017 to REQ-AUTH-025, all Planned for Phase 2 (B2). Design: ADR 0028.
   2. Biometric unlock does not satisfy step-up MFA.
   3. Biometric unlock continues a session that began with MFA, and never starts one.
   4. No biometric enrollment on a device that fails integrity attestation.
-  5. **Decision needed:** whether agencies may disable biometric unlock for their organization, because
-     device biometrics accept anyone enrolled on a shared device.
+  5. Whether agencies may disable biometric unlock for their organization: **decided** (see the entry
+     above).
   6. Passkeys are evaluated in Phase 2 as a server-verified alternative.
   7. The offline-draft lease stays separate from biometric session unlock.
   8. Biometrics may lift the 5-minute app lock.

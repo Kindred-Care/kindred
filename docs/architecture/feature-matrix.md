@@ -29,7 +29,8 @@ V1. A row with no permission needs only an active membership.
 | Feature | Caregiver Mobile | Employer Mobile | Future Caregiver Web | Future Employer Web | Section 6 permission |
 | --- | --- | --- | --- | --- | --- |
 | Sign-in, MFA, workspace switch | ✅ | ✅ | ⏳ | ⏳ | None |
-| Optional biometric unlock for returning users (added 2026-10-17; ADR 0028) | ✅ | ✅ | ⏳ | ⏳ | None |
+| Optional biometric unlock for returning users, never required; unavailable where the organization disables it (added 2026-10-17; ADR 0028) | ✅ | ✅ | ⏳ | ⏳ | None |
+| Organization setting to disable biometric unlock (added 2026-10-17; ADR 0028) | ➖ | 🔒 | ⏳ | ⏳ | `organization.manage` |
 | Own profile, notifications, registered devices | ✅ | ✅ | ⏳ | ⏳ | None |
 | Client directory and profile | 🔒 (assigned) | 🔒 (all) | ⏳ | ⏳ | `clients.read`, `clients.read.all` |
 | Clinical details and care alerts (read) | 🔒 | 🔒 | ⏳ | ⏳ | `clients.clinical.read`, `clients.alerts.read` |
