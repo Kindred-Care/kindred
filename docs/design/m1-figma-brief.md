@@ -1,7 +1,8 @@
 # Milestone 1 design brief: splash and Log In
 
-- Status: **Baseline approved by the founder (2026-10-17)**, reviewed directly in Figma. Two
-  accessibility conflicts and two layout questions are open (see "Blockers and open questions").
+- Status: **Baseline approved by the founder (2026-10-17)**, reviewed directly in Figma. Corrections for
+  the two accessibility conflicts are **proposed and awaiting the founder's final approval** (section 6a);
+  B3 and two layout questions remain open.
 - Scope: the visual baseline for Milestone 1 only (Section 10, criteria 2, 3 and 4).
 - Implementation: **not started.** It begins only on the founder's explicit authorization.
 
@@ -80,7 +81,7 @@ labels: **Username**, **Password**, **Forgot your password?** and **Log In**.
 | Auto-layout gap | 10 |
 
 Resulting height: 14 + 24 (line height of 20 pt text, default 1.2×) + 14 = 52 pt, above the 48 pt
-touch target. **See blocker B1: the label fails contrast as specified.**
+touch target. **See blocker B1: the label fails contrast as specified; a correction is proposed in section 6a.**
 
 ### Input fields (Approved)
 
@@ -92,7 +93,7 @@ touch target. **See blocker B1: the label fails contrast as specified.**
 | Padding | 24 horizontal, 14 vertical |
 | Auto-layout gap | 10 |
 
-**See blocker B2: the field boundary fails non-text contrast as specified.**
+**See blocker B2: the field boundary fails non-text contrast as specified; a correction is proposed in section 6a.**
 
 ### Details not specified in Figma (Defaults)
 
@@ -103,7 +104,7 @@ touch target. **See blocker B1: the label fails contrast as specified.**
 | Placeholder text inside fields | None; the visible label identifies the field | Avoids low-contrast hint text |
 | Password field | Masked; no show-password control in Milestone 1 | Static shell |
 | "Forgot your password?" | Inter Regular 16, Charcoal, underlined, 48 pt touch target | Terracotta text would be 3.60:1 and fail |
-| Focus indicator on fields | 2 pt Terracotta border (3.60:1 on Warm White, passes 3:1) | WCAG 2.4.7 and 1.4.11 |
+| Focus indicator on fields | Border thickens from 1 pt to 2 pt and turns Terracotta (3.60:1 on Warm White). The change in thickness, not the colour alone, is what makes focus visible against a grey resting border (see section 6a) | WCAG 2.4.7 and 1.4.11 |
 | Pressed button | Fill darkened about 10% | Feedback |
 | Side margins | 24 pt each side, so content is 354 pt wide in a 402 frame | Matches the 24 pt padding rhythm |
 | Vertical spacing | 8 pt label to field; 16 pt between fields; 24 pt before the button; 16 pt before the link | 8 pt grid |
@@ -143,18 +144,64 @@ silently changed.
 
 | # | Issue | Evidence | Options | Recommendation |
 | --- | --- | --- | --- | --- |
-| **B1** | White "Log In" label on Terracotta fails WCAG 2.2 AA | 3.72:1. Inter Medium 20 is not "large text" (that needs 24 pt, or about 18.7 pt Bold), so 4.5:1 is required | (a) Make the label Inter **Bold** 20: it then counts as large text and needs 3:1, which 3.72:1 passes; (b) a darker Terracotta for the button, e.g. `#B25A3C` (4.75:1) or `#AD573A` (5.00:1); (c) both | (a): a one-attribute change that keeps the brand colour |
-| **B2** | Field boundary fails WCAG 1.4.11 (non-text contrast) | Border `#E5E7EB` is 1.20:1 on Warm White and 1.24:1 on White; the white field against Warm White is 1.03:1 | (a) A darker border, e.g. `#8A8F98` (3.14:1) or `#767B85` (4.11:1); (b) keep the light border and add another visible boundary, e.g. a tinted field fill, that reaches 3:1 | (a) `#8A8F98`, the lightest value that passes |
+| **B1** (correction proposed, 6a) | White "Log In" label on Terracotta fails WCAG 2.2 AA | 3.72:1. Inter Medium 20 is not "large text" (that needs 24 pt, or about 18.7 pt Bold), so 4.5:1 is required | (a) Make the label Inter **Bold** 20: it then counts as large text and needs 3:1, which 3.72:1 passes; (b) a darker Terracotta for the button, e.g. `#B25A3C` (4.75:1) or `#AD573A` (5.00:1); (c) both | (a): a one-attribute change that keeps the brand colour |
+| **B2** (correction proposed, 6a) | Field boundary fails WCAG 1.4.11 (non-text contrast) | Border `#E5E7EB` is 1.20:1 on Warm White and 1.24:1 on White; the white field against Warm White is 1.03:1 | (a) A darker border, e.g. `#8A8F98` (3.14:1) or `#767B85` (4.11:1); (b) keep the light border and add another visible boundary, e.g. a tinted field fill, that reaches 3:1 | (a) `#8A8F98`, the lightest value that passes |
 | **B3** | Criterion 3 says "at 390 pt width within an agreed tolerance", but the Figma frame is 402 pt, and no tolerance has been agreed | Section 10 criterion 3 | Capture at both 390 and 402 widths; tolerance proposal: colours exact; type family, size and weight exact; positions and sizes within ±2 pt at the same width | Agree the tolerance; capture at both widths |
 | **Q1** | Label placement: are "Username" and "Password" **above** their fields in the current Figma, or beside them? | Section 1 observation 2 (labels beside fields break at large text) is still open in the blueprint | If beside: they will be stacked above at large text sizes to avoid clipping (criterion 4) | Labels above at every size |
 | **Q2** | Does the Log In screen show a heading, the wordmark or the tagline above the fields? | Not in the handoff | The current build shows a "Log In" heading | Follow the Figma exactly once answered |
 | **Note** | "Username" label versus email sign-in | Appendix G decision 1: sign in with an email address, stored as the Cognito username | Keep "Username" for Milestone 1 as approved; revisit the wording when Cognito sign-in is built in Phase 2 | Not blocking Milestone 1 |
 
+## 6a. Proposed accessibility corrections (awaiting the founder's final approval)
+
+The founder asked to keep the approved design as close as possible, and proposed these two values on
+2026-10-17. They were measured with the repository's WCAG code (`scripts/codegen/tokens-lib.mjs`). Both
+pass. **They are proposals: nothing is implemented until the founder approves them and authorizes
+implementation.**
+
+### B1: button-specific darker Terracotta
+
+| Pair | Measured | Required | Result |
+| --- | --- | --- | --- |
+| White `#FFFFFF` label on `#A94F32` | **5.45:1** | 4.5:1 (normal text: 20 pt Medium) | Pass |
+| `#A94F32` button against the Warm White `#FCFBF8` page | 5.27:1 | 3:1 (non-text) | Pass |
+
+- **Brand Terracotta `#C96A4A` stays the primary brand colour.** `#A94F32` is an accessibility variant
+  used only as the fill of primary buttons that carry white text.
+- Proposed tokens: `color.brand.terracotta` stays `#C96A4A`; new `color.brand.terracottaButton`
+  `#A94F32`; `color.action.primary` points to `color.brand.terracottaButton`.
+- The two shades differ by 1.47:1. Where both appear together they read as one family; it is a visual
+  consistency point, not an accessibility one.
+
+### B2: darker field border
+
+| Pair | Measured | Required | Result |
+| --- | --- | --- | --- |
+| Border `#767676` against the White `#FFFFFF` field | **4.54:1** | 3:1 (non-text, WCAG 1.4.11) | Pass |
+| Border `#767676` against the Warm White `#FCFBF8` page | **4.39:1** | 3:1 | Pass |
+
+- Proposed token: `color.border.input` `#767676`. The approved Figma value `#E5E7EB` stays recorded as
+  the original design value.
+
+### Other accessibility effects checked
+
+| Concern | Finding | Proposed handling |
+| --- | --- | --- |
+| **Focus indicator on fields** | Against a `#767676` resting border, a Terracotta focus border differs by only 1.22:1 (`#C96A4A`) or 1.20:1 (`#A94F32`), so a colour change alone would hardly show focus | Show focus by **thickening the border from 1 pt to 2 pt** and turning it Terracotta. The thickness change satisfies WCAG 2.4.7 (Focus Visible) at AA. The stricter AAA focus-appearance criterion is not required for V1 |
+| Pressed button state | Darkening `#A94F32` further only raises the white text contrast | No concern |
+| Disabled button | Not used in Milestone 1 (the button is always enabled) | When added later, it must stay distinguishable without relying on colour alone |
+| Colour-vision differences | The button and border rely on lightness contrast, not hue, so they hold for common colour-vision deficiencies | No concern |
+| Future error states | A red error border next to a grey border would rely on colour alone | Out of Milestone 1 scope; add an icon or text message with any error border in later phases |
+| Text contrast elsewhere | Unchanged: Charcoal on Warm White 12.94:1; Charcoal typed text on White 13.39:1 | No concern |
+
+No other accessibility concern was found for these two screens.
+
 ## 7. What remains to be implemented (after authorization)
 
 1. Replace the placeholder tokens in `design/tokens/tokens.json` with the approved values (marked
-   `approved`), add the Defaults with a distinct status so they are not mistaken for approved values, and
-   update the contrast pairs to the real foreground and background pairs.
+   `approved`), add the approved corrections from section 6a (`#A94F32` button fill, `#767676` field
+   border) once the founder approves them, add the Defaults with a distinct status so they are not
+   mistaken for approved values, and update the contrast pairs to the real foreground and background
+   pairs.
 2. Bundle Inter (400, 500, 600, 700) and apply the type tokens.
 3. Splash: Warm White background, wordmark and tagline, native launch screen to Warm White.
 4. Log In: the approved button and field styles, the "Username", "Password", "Forgot your password?" and

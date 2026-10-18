@@ -5,6 +5,20 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Proposed contrast corrections for the Log In screen (awaiting final approval)
+
+**Proposed by:** the founder, to keep the approved design as close as possible. **Status:** measured and
+documented; **awaiting final approval**. Nothing is implemented.
+
+- **B1:** a button-specific darker Terracotta `#A94F32` for the Log In fill. White text on it is
+  5.45:1 (needs 4.5:1). Brand Terracotta `#C96A4A` remains the primary brand colour.
+- **B2:** field border `#767676`: 4.54:1 against the White field and 4.39:1 against the Warm White page
+  (needs 3:1).
+- One related effect: against the grey border, a Terracotta focus border differs by only about 1.2:1, so
+  focus is shown by thickening the border from 1 pt to 2 pt, not by colour alone.
+
+Details: [the design brief, section 6a](../design/m1-figma-brief.md).
+
 ## 2026-10-17: Milestone 1 visual design baseline approved (decided)
 
 **Decided by:** the founder, after reviewing the designs directly in Figma. **Scope:** Milestone 1 splash
