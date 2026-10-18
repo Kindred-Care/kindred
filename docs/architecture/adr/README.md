@@ -9,7 +9,7 @@ the source of every decision below. Appendix G of the blueprint logs 119 enginee
 [decision log](decision-log.md) maps each one to the ADR that records it or explains why it needs none.
 
 Status values: **Accepted** (in force), **Accepted, verification pending** (in force, with a check
-still open), **Superseded by NNNN**.
+still open), **Proposed** (requirement approved, design still to be decided), **Superseded by NNNN**.
 
 | ADR | Decision | Status |
 | --- | --- | --- |
@@ -40,3 +40,4 @@ still open), **Superseded by NNNN**.
 | [0025](0025-test-structure.md) | Three .NET test projects, Testcontainers, security trait | Accepted |
 | [0026](0026-milestone-1-local-only.md) | Milestone 1 is local only | Accepted |
 | [0027](0027-requirements-traceability-and-feature-matrix.md) | Requirements traceability and the feature matrix as checked documents | Accepted |
+| [0028](0028-optional-biometric-unlock.md) | Optional biometric authentication for returning users (requirement added 2026-10-17) | Proposed |

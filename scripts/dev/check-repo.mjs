@@ -30,6 +30,7 @@ export const REQUIRED_PATHS = [
   'docs/architecture/feature-matrix.md',
   'docs/architecture/permissions.json',
   'docs/product/traceability.md',
+  'docs/product/requirement-changes.md',
   'design/tokens/tokens.json',
 ];
 
