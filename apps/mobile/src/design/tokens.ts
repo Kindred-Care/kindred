@@ -89,9 +89,6 @@ export const tokens = {
       "body": 1.5
     }
   },
-  "letterSpacing": {
-    "wordmark": 0.7
-  },
   "scale": {
     "wordmarkMax": 1.5
   },
@@ -101,12 +98,9 @@ export const tokens = {
 } as const;
 
 /** Tokens still awaiting approved values from Figma. Visual acceptance is Provisional while non-empty. */
-export const placeholderTokens: readonly string[] = [
-  "font.size.label",
-  "letterSpacing.wordmark"
-];
+export const placeholderTokens: readonly string[] = [];
 
-export const tokensArePlaceholders = true;
+export const tokensArePlaceholders = false;
 
 /** Implementation defaults from the design brief: documented values, not founder-approved designs. */
 export const defaultTokens: readonly string[] = [

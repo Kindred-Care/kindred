@@ -128,13 +128,13 @@ where the handoff gives none. The frame exports in section 6c let the build read
 
 The frame exports arrived on 2026-10-18 (`docs/acceptance/m1/figma/`). Rows marked **From the frame**
 now carry values measured from them; the comparison is in `docs/acceptance/m1/figma/README.md`. The
-label font and the wordmark letter spacing cannot be read from a PNG and stay unverified until taken
-from the Figma text properties. The link is not underlined, as confirmed by the founder.
+label and wordmark text properties were read from Figma by the founder on 2026-10-18. The link is
+not underlined, as confirmed by the founder.
 
 | Item | Default | Why |
 | --- | --- | --- |
-| Field labels | "Username:" and "Password:", Charcoal, glyphs at x 32 (from the frame). Font **unverified**: the export is consistent with Inter Regular 24, which the build uses, pending the Figma text property. *Superseded default: Inter Medium 16* | Frame export |
-| Wordmark and tagline on Log In | **From the frame:** 64 and 24 as on the splash; wordmark glyphs at y 114 on Log In and y 321 on the splash; tagline glyphs 18 pt below the wordmark baseline; the frame's wordmark is 226 pt wide; the build's 0.7 pt letter spacing reproduces it but is **unverified** (inferred from the image) | Frame export |
+| Field labels | **Approved (Figma text property, founder 2026-10-18):** "Username:" Inter Regular 24, letter spacing 0%, `#2F2F2F`; "Password:" in the same style. Glyphs at x 32. *Superseded default: Inter Medium 16* | Figma |
+| Wordmark and tagline on Log In | **From the frame:** 64 and 24 as on the splash; wordmark glyphs at y 114 on Log In and y 321 on the splash; tagline glyphs 18 pt below the wordmark baseline; wordmark Inter Regular 64 with letter spacing 0% (Figma text property, founder 2026-10-18) | Frame export |
 | When labels stack above their fields | Stack when the label, an 8 pt gap and a field of at least 160 pt no longer fit on one line within the margins, which covers both enlarged text and narrow screens. Below the frame's 199 pt, both fields shrink together first | Prevents clipping (criterion 4) without changing the reference layout |
 | Typed text | Inter Regular 16 (Body), Charcoal (13.39:1 on White); field height 14 + 24 + 14 ≈ 52 pt (at least 48 pt) | Body style |
 | Placeholder text inside fields | None; the visible label identifies the field | Avoids low-contrast hint text |

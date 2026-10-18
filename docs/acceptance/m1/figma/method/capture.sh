@@ -17,7 +17,7 @@ sleep 2
 # Splash: rapid captures from launch; keep the last frame that shows the wordmark but no button.
 mkdir -p "$OUT/frames"; rm -f "$OUT/frames"/*.png
 for i in $(seq -w 1 60); do "$ADB" exec-out screencap -p > "$OUT/frames/f$i.png"; done
-python "$(dirname "$0")/pick_splash.py" "$OUT/frames" "$OUT/splash-${W}.png"
+python "$(cygpath -m "$(dirname "$0")")/pick_splash.py" "$OUT/frames" "$OUT/splash-${W}.png"
 sleep 4
 # Tap empty space low on the screen: leaves keyboard-navigation mode, so no field starts focused.
 "$ADB" shell input tap $((W * 3 / 2)) $((H * 3 - 300))

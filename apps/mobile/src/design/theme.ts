@@ -23,7 +23,6 @@ export const space = tokens.space;
 export const radius = tokens.radius;
 export const size = tokens.size;
 export const touchTarget = tokens.size.touchTarget;
-export const letterSpacing = tokens.letterSpacing;
 export const wordmarkMaxScale = tokens.scale.wordmarkMax;
 export const splashDurationMs = tokens.motion.splash;
 

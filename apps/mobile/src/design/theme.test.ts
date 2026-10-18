@@ -15,10 +15,9 @@ describe('design tokens', () => {
     for (const value of Object.values(colors)) expect(tokenColors).toContain(value);
   });
 
-  it('REQ-PLAT-018 only the unverified Figma text properties are placeholders, and defaults are listed apart', () => {
-    // Read from the PNG exports, not from Figma's text properties: flagged until the founder confirms them.
-    expect(tokensArePlaceholders).toBe(true);
-    expect(placeholderTokens).toEqual(['font.size.label', 'letterSpacing.wordmark']);
+  it('REQ-PLAT-018 no placeholders remain, and documented defaults are listed apart from approved values', () => {
+    expect(tokensArePlaceholders).toBe(false);
+    expect(placeholderTokens).toEqual([]);
     // Layout now comes from the Figma frame exports; behaviour the frame cannot show stays a default.
     expect(defaultTokens).not.toContain('space.brandToForm');
     expect(defaultTokens).not.toContain('size.fieldWidth');

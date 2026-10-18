@@ -19,9 +19,9 @@ the approved references for criterion 3 and asked for the build to match them.
 - Kept as approved: `#767676` resting and 2 pt `#A94F32` focused borders, the `#A94F32` button with white
   text, no placeholder text, the responsive and accessibility precedence rules.
 - Not underlined: "Forgot your password?" (founder, 2026-10-18), with its 48 pt touch target kept.
-- Unverified, because a PNG cannot show font properties: the labels' font (built as Inter Regular 24) and
-  the wordmark's letter spacing (built as 0.7 pt, inferred from the image). Both tokens are flagged
-  `placeholder` until read from Figma.
+- Confirmed by the founder from the Figma text properties: Username: label Inter Regular 24, letter
+  spacing 0%, `#2F2F2F`; Kindred wordmark Inter Regular 64, letter spacing 0%, `#2F2F2F`. The estimated
+  0.7 pt wordmark letter spacing is not used.
 - Unchanged: acceptance criteria, approved colours and the approved type sizes.
 
 ## 2026-10-18: Focused fields show a 2 pt `#A94F32` outline
