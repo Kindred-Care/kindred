@@ -1,6 +1,6 @@
 # 0016. GitHub Team ruleset protecting main, and its enforcement proof
 
-- Status: Accepted, verification pending (the enforcement results below are filled in when the tests run)
+- Status: Accepted (enforcement proven 2026-10-17)
 - Date: 2026-10-17
 - Source: Section 3 Refinement 4 and follow-up decisions, Section 9 secure development, Section 10
   criteria 8 and 9; decisions 109 and 114
@@ -29,7 +29,7 @@ A repository **ruleset** named `main-protection` targeting the default branch, w
 | Required checks | `repo-checks`, `secret-scan`, `lint`, `typecheck`, `build`, `test-unit`, `test-integration`, `test-architecture`, `test-mobile`, `security-tests`, `contract`, `design-tokens`, `dependency-scan` (added as each job first exists) |
 
 Supporting settings: Dependabot alerts on; merge commits and squash allowed; branches deleted after
-merge. CODEOWNERS lists security-critical paths; a required code-owner approval is switched on when a
+merge (both applied 2026-10-17). CODEOWNERS lists security-critical paths; a required code-owner approval is switched on when a
 second developer joins. High-risk changes need independent review before any production deployment.
 
 GitHub secret scanning and push protection on private repositories need the paid Secret Protection
@@ -46,7 +46,18 @@ Each of these must be rejected by GitHub. The commands and GitHub's responses ar
 3. Deletion of `main`.
 4. Merging a pull request whose required check fails, including with `gh pr merge --admin`.
 
-## Enforcement results
+## Enforcement results (2026-10-17)
 
-Recorded in the evidence file once the tests have run. Until every attempt is shown rejected,
-criteria 8 and 9 are reported as Blocked.
+Every attempt was rejected by the ruleset, for the administrator account as well, and GitHub reports
+`current_user_can_bypass: "never"`. Details, the final ruleset as returned by the API, and full transcripts
+are in [evidence/0016-enforcement.md](evidence/0016-enforcement.md).
+
+| Attempt | Result |
+| --- | --- |
+| Direct push to `main` | Rejected (GH013) |
+| Force push to `main` | Rejected (GH013) |
+| Deletion of a branch the ruleset targets (git and REST) | Rejected (GH013); `main` itself is also protected by GitHub's default-branch rule |
+| Merge with a failing required check: normal, `--admin` and REST | Rejected in all three |
+
+The required checks were raised from the initial two to all 13 once the full workflow first ran. Branches
+are deleted after merge, and Dependabot alerts are on. Criteria 8 and 9 are met.

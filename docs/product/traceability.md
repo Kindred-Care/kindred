@@ -13,6 +13,7 @@ names an ID that is not listed here. Test names carry the ID: `REQ_SEC_001_...` 
 | Status | Meaning |
 | --- | --- |
 | Implemented | Built and covered by passing tests that carry the ID |
+| Verified | Proven by recorded evidence rather than a code test (for example the branch-protection rejections); the Tests column names the evidence |
 | Partial | Built and tested in part; the rest needs evidence not yet produced (named in the Tests column) |
 | Provisional | Built against placeholders; final acceptance needs approved inputs |
 | Blocked | Cannot be completed until a named prerequisite is met |
@@ -52,7 +53,7 @@ Section 8.
 
 | ID | Requirement | Source | Phase / epic | Implementation | Status | Tests |
 | --- | --- | --- | --- | --- | --- | --- |
-| REQ-PLAT-001 | `docker compose up` plus one documented command starts PostgreSQL and the API | §10 C1 | 1 / B1 | `compose.yaml`, `backend/Dockerfile`, `.dockerignore`, `npm run setup` | Partial | Local recorded run passed 2026-10-17 (docs/acceptance/m1/c1-compose-run.txt); CI smoke step pending first run |
+| REQ-PLAT-001 | `docker compose up` plus one documented command starts PostgreSQL and the API | §10 C1 | 1 / B1 | `compose.yaml`, `backend/Dockerfile`, `.dockerignore`, `npm run setup` | Verified | docs/acceptance/m1/c1-compose-run.txt; CI smoke step on PR #2 (docs/acceptance/m1/github-ci-evidence.md) |
 | REQ-PLAT-002 | `GET /v1/health` returns 200 with a database check, 503 when the database is unreachable, and no internal details | §10 C1, §10 scope | 1 / B1 | `HealthController`, `HealthService`, `DatabaseHealthProbe` | Implemented | HealthServiceTests<br>HealthEndpointTests<br>client.test.ts |
 | REQ-PLAT-003 | Every route is versioned under `/v1` | §3 R2.5 | 1 / B1 | `[Route("v1/...")]`; ADR 0015 | Implemented | EndpointDeclarationTests |
 | REQ-PLAT-004 | Standard error responses: problem details with a fixed title, status and correlation ID only | §10 scope | 1 / B1 | `ProblemResponses`; ADR 0021 | Implemented | ApiUnitTests<br>DefaultDenyTests |
@@ -61,11 +62,11 @@ Section 8.
 | REQ-PLAT-007 | The Section 3 repository structure and hygiene files exist (apps/web reserved, editor settings, PR template, CODEOWNERS, review checklist) | §3, §10 scope | 1 / B1 | `scripts/dev/check-repo.mjs` | Implemented | check-repo.test.mjs |
 | REQ-PLAT-008 | No secrets in the repository; `.env.example` documents every variable; gitleaks in CI and as a pre-commit hook | §3, §9, §10 C7 | 1 / B1 | `.gitleaks.toml`, `.githooks/pre-commit`, CI `secret-scan`; ADR 0017 | Implemented | check-repo.test.mjs; CI secret-scan |
 | REQ-PLAT-009 | Synthetic data only: no real client data or Figma photographs in code, fixtures or seed; images only in placeholder folders | §3 follow-up, §10 | 1 / B1 | `check-repo.mjs` image rule | Implemented | check-repo.test.mjs |
-| REQ-PLAT-010 | Protected main: pull requests, required up-to-date checks, no direct or force pushes, no deletion, applied to administrators; enforcement proven | §3 R4, §10 C8 C9 | 1 / B1 | Ruleset `main-protection`; ADR 0016 | Blocked | Enforcement evidence (ADR 0016) |
+| REQ-PLAT-010 | Protected main: pull requests, required up-to-date checks, no direct or force pushes, no deletion, applied to administrators; enforcement proven | §3 R4, §10 C8 C9 | 1 / B1 | Ruleset `main-protection`; ADR 0016 | Verified | docs/architecture/adr/evidence/0016-enforcement.md (all four attempts rejected, admin included) |
 | REQ-PLAT-011 | Domain references no persistence or cloud code; Application does not reference Infrastructure or Api; Infrastructure does not reference Api | §2, §3 R3 | 1 / B1 | Project references; ADR 0002 | Implemented | LayeringTests |
 | REQ-PLAT-012 | Controllers do not use the database context directly | §3 R3 | 1 / B1 | ADR 0002 | Implemented | LayeringTests |
 | REQ-PLAT-013 | The OpenAPI document is committed and the TypeScript client is generated from it; CI fails on drift | §3 R2, §10 C12 | 1 / B1 | `docs/api/openapi.json`, `scripts/codegen`, CI `contract`; ADR 0014 | Implemented | client.test.ts; CI contract |
-| REQ-PLAT-014 | A breaking specification change is flagged | §3 R2.5, §10 C12 | 1 / B1 | oasdiff in CI `contract`; ADR 0015 | Partial | CI contract (evidence run) |
+| REQ-PLAT-014 | A breaking specification change is flagged | §3 R2.5, §10 C12 | 1 / B1 | oasdiff in CI `contract`; ADR 0015 | Verified | oasdiff flagged the breaking change on probe PR #5 (docs/acceptance/m1/github-ci-evidence.md) |
 | REQ-PLAT-015 | Development scripts refuse to run outside Local, off the database allowlist or with unlisted AWS credentials; destructive scripts need typed confirmation | §3 R4, §10 C14 | 1 / B1 | `scripts/dev/lib/local-guard.mjs`; ADR 0024 | Implemented | local-guard.test.mjs |
 | REQ-PLAT-016 | The seed generates synthetic data only and refuses anything that looks real | §3 R4, §10 C14 | 1 / B1 | `scripts/seed`; ADR 0024 | Implemented | synthetic.test.mjs |
 | REQ-PLAT-017 | `design/tokens/tokens.json` is the source; `tokens.ts` is generated and CI fails on drift; no inline hex values | §3 R4, §10 C3 | 1 / B6 | `scripts/codegen/tokens.mjs`, ESLint rule; ADR 0022 | Provisional | tokens-lib.test.mjs<br>theme.test.ts |
@@ -463,7 +464,7 @@ Section 8.
 | REQ-SPIKE-005 | S5 library import behaviour on iOS and Android | §8 | 3 |  | Planned |  |
 | REQ-SPIKE-006 | S6 Rekognition limits and throttling | §8 | 2 |  | Planned |  |
 | REQ-SPIKE-008 | S8 Cognito multi-Region behaviour with authenticator-app MFA | §8 | 2 |  | Planned |  |
-| REQ-SPIKE-007 | S7 RDS extensions and PostgreSQL version, and proof that branch protection is enforced | §8, §10 | 1 / B1 | ADRs 0016, 0019 | Blocked | See REQ-DATA-007 and REQ-PLAT-010 |
+| REQ-SPIKE-007 | S7 RDS extensions and PostgreSQL version, and proof that branch protection is enforced | §8, §10 | 1 / B1 | ADRs 0016, 0019 | Verified | docs/architecture/adr/evidence/0016-enforcement.md; docs/acceptance/m1/c13-postgres.json |
 
 ## Acceptance scenarios (Appendix C)
 
@@ -681,7 +682,7 @@ Appendix C numbering.
 | REQ-ACC-T10 | An external reviewer outside grant, after expiry, or for pending files or originals: denied | App. C T10 | 2-9 |  | Planned |  |
 | REQ-ACC-T11 | Designation assignment without permission, step-up or to oneself: denied as specified | App. C T11 | 2-9 |  | Planned |  |
 | REQ-ACC-T12 | Self-approval of hours, exceptions or a support grant: denied | App. C T12 | 2-9 |  | Planned |  |
-| REQ-ACC-T13 | The generated matrix runs every permission as every role; an undeclared endpoint fails the build | App. C T13 | 1 (deny part), 2 (matrix) | Default deny; ADR 0020 | Partial | EndpointDeclarationTests; DefaultDenyTests |
+| REQ-ACC-T13 | The generated matrix runs every permission as every role; an undeclared endpoint fails the build | App. C T13 | 1 (deny part), 2 (matrix) | Default deny; ADR 0020 | Partial | EndpointDeclarationTests; DefaultDenyTests; CI probe PR #3 (docs/acceptance/m1/github-ci-evidence.md). Generated matrix arrives in Phase 2 |
 | REQ-ACC-T14 | A caregiver removed during an open shift: next request denied; ExceptionRaised; resolved with shifts.adjust | App. C T14 | 2-9 |  | Planned |  |
 | REQ-ACC-T15 | A remote signer or requester calls any other route or reuses an expired link: denied | App. C T15 | 2-9 |  | Planned |  |
 | REQ-ACC-T16 | Removing the last administrator or granting a permission one lacks: refused | App. C T16 | 2-9 |  | Planned |  |

@@ -4,28 +4,32 @@ Evidence for the Section 10 acceptance criteria, collected as each check runs. O
 here. Results are reported exactly as observed: a check that could not run is listed as Blocked or Not
 yet run, never as Passed.
 
-## Status of all 15 criteria (2026-10-17)
+## Status of all 15 criteria (updated 2026-10-17, after GitHub CI and the enforcement tests)
 
-"Local evidence" means verified on the founder's Windows machine. GitHub CI has not run yet, because it
-starts with the first pull request and needs GitHub CLI sign-in to set up the protections first.
+Status values: **Passed** (verified with the evidence shown), **Partial** (part verified, the rest named),
+**Provisional** (built against placeholders), **Blocked** (cannot complete until a named prerequisite is met).
 
 | # | Criterion | Status | Evidence |
 | --- | --- | --- | --- |
-| 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed (local)**; CI smoke step added | [c1-compose-run.txt](c1-compose-run.txt) |
-| 2 | Splash then Log In, no console errors, iOS simulator and Android emulator | **Android passed; iOS Blocked** (needs the Mac) | Android section below |
-| 3 | Splash and Log In match Figma at 390 pt using tokens | **Provisional** (placeholder tokens, no approved mockups) | ADR 0022 |
-| 4 | Log In screen reader labels, 200% dynamic type, contrast | **Android passed, against placeholder tokens; iOS Blocked** | Android section below |
-| 5 | CI on every pull request runs every check, all pass | **Not yet run on GitHub**; all 20 checks pass locally | [local-full-run.txt](local-full-run.txt) |
-| 6 | Every project has a passing unit test; README gets a new developer running in under 30 minutes | **Partial**: tests pass; the timed walkthrough by a new developer has not been done | [local-full-run.txt](local-full-run.txt) |
-| 7 | No secrets; `.env.example` documents every variable; gitleaks | **Passed (local)**; CI run pending | gitleaks clean in [local-full-run.txt](local-full-run.txt) |
-| 8 | Protected main with required checks, ADRs, traceability, script guards in CI | **Blocked** (protections not yet applied: GitHub CLI sign-in) | ADR 0016 |
-| 9 | Direct push, force push, deletion and failing-check merge each rejected | **Blocked** (same) | ADR 0016 |
-| 10 | Undeclared endpoint denied and fails the build; health the only public endpoint | **Passed (local)**; CI run pending | `security-arch`, `security-integration` in [local-full-run.txt](local-full-run.txt) |
-| 11 | Fake token and fake client name never reach the logs | **Passed (local)** after two fixes; CI run pending | [c11-captured-logs.txt](c11-captured-logs.txt), ADR 0021 |
-| 12 | API change without client regeneration fails CI; breaking change flagged | **Not yet run on GitHub** (the check runs only in CI) | ADR 0014, 0015 |
-| 13 | EF baseline applies to an empty database; app role cannot change schema; version and extensions recorded | **Passed (local)**; CI run pending | [c13-postgres.json](c13-postgres.json), [c13-compose-roles.txt](c13-compose-roles.txt) |
-| 14 | Seed and dev scripts refuse outside local; seed synthetic | **Passed (local)**; CI run pending | `script-tests` in [local-full-run.txt](local-full-run.txt) |
-| 15 | EAS development build on one physical iOS and one physical Android device | **Blocked** (no Android phone yet; Apple Developer enrollment paused; EAS project not yet created) | — |
+| 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed** (Windows, recorded; Linux, CI smoke step on PR #2) | [c1-compose-run.txt](c1-compose-run.txt), [github-ci-evidence.md](github-ci-evidence.md) |
+| 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator passed; iOS simulator **Blocked** (needs the Mac) | Android section below |
+| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Provisional**: tokens used and no inline hex (lint-enforced), but all tokens are placeholders and there are no approved mockups | ADR 0022 |
+| 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android passed against flagged placeholder tokens (contrast AA on all 9 pairs); iOS Dynamic Type **Blocked** | Android section below |
+| 5 | CI on every pull request runs every required check, security suite separate, all pass | **Passed** | [github-ci-evidence.md](github-ci-evidence.md) |
+| 6 | Every project has a passing unit test; a README gets a new developer running both apps in under 30 minutes | **Partial**: tests pass for every project; the timed walkthrough needs a developer other than the author | [local-full-run.txt](local-full-run.txt) |
+| 7 | No secrets in the repository; `.env.example` documents every variable; gitleaks | **Passed** (`secret-scan` on full history in CI; pre-commit hook) | [github-ci-evidence.md](github-ci-evidence.md) |
+| 8 | Protected `main` with required checks, initial ADRs, traceability, script guards exercised by CI | **Passed** | [ADR 0016 evidence](../../architecture/adr/evidence/0016-enforcement.md), ADR index, traceability |
+| 9 | Direct push, force push, deletion and failing-check merge each rejected, recorded in an ADR | **Passed** | [ADR 0016 evidence](../../architecture/adr/evidence/0016-enforcement.md) |
+| 10 | Undeclared endpoint denied and fails the build; health the only public endpoint | **Passed** (probe PR #3 failed `security-tests`) | [github-ci-evidence.md](github-ci-evidence.md) |
+| 11 | Fake token and fake client name never reach the logs | **Passed** (after two leak fixes; CI `security-tests` on PR #2) | [c11-captured-logs.txt](c11-captured-logs.txt), ADR 0021 |
+| 12 | API change without regenerating the client fails CI; breaking change flagged | **Passed** (probe PRs #4 and #5) | [github-ci-evidence.md](github-ci-evidence.md) |
+| 13 | EF baseline applies to an empty database; app role cannot change schema; version and extensions recorded | **Passed** | [c13-postgres.json](c13-postgres.json), [c13-compose-roles.txt](c13-compose-roles.txt) |
+| 14 | Seed and dev scripts refuse outside local; seed data synthetic | **Passed** (`repo-checks` in CI) | [github-ci-evidence.md](github-ci-evidence.md) |
+| 15 | EAS development build on one physical iOS and one physical Android device | **Blocked**: no physical Android phone yet; Apple Developer enrollment paused; the EAS project is not yet created (needs `npx eas-cli login`) | — |
+
+**Summary:** 10 Passed (1, 5, 7 to 14), 3 Partial (2, 4, 6), 1 Provisional (3), 1 Blocked (15).
+Milestone 1 is not fully accepted until criterion 15 passes on both devices or the founder authorizes an
+exception (Section 10).
 
 ## Docker stack and integration tests (criteria 1, 10, 11, 13) — 2026-10-17
 
