@@ -3,41 +3,77 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { colors, radius, space, touchTarget, type } from '@/design/theme';
-import { LabeledTextField } from '../components/LabeledTextField';
+import { Brand } from '../components/Brand';
+import { LabeledTextField, shouldStackLabels } from '../components/LabeledTextField';
+
+const LABELS = { username: 'Username:', password: 'Password:' } as const;
 
 /**
- * Static Log In screen (Milestone 1). There is no sign-in yet: Cognito arrives in Phase 2, so the
- * button and link do nothing and nothing typed here leaves the screen. Wording follows the Brand
- * Foundation ("Log In", "Forgot your password?") and decision 1 (sign in with an email address).
+ * Static Log In screen (Milestone 1), laid out as the founder confirmed against the Mobile – Log In
+ * frame: the wordmark and tagline, "Username:" and "Password:" beside their fields, the Log In
+ * button, then "Forgot your password?" centred beneath it. There is no "Log In" heading.
+ *
+ * There is no sign-in yet (Cognito arrives in Phase 2): the button and link do nothing and nothing
+ * typed here leaves the screen.
  */
 export function LogInScreen() {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [formWidth, setFormWidth] = useState(0);
+  const [labelWidths, setLabelWidths] = useState({ username: 0, password: 0 });
+
+  // Both rows switch together, so the fields keep a shared left edge or a shared top-to-bottom flow.
+  const labelWidth = Math.ceil(Math.max(labelWidths.username, labelWidths.password));
+  const stacked = shouldStackLabels(labelWidth, formWidth);
 
   return (
-    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'bottom', 'left', 'right']}>
       <KeyboardAvoidingView style={styles.flex} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-          <Text accessibilityRole="header" style={styles.title}>
-            Log In
-          </Text>
+          <Brand />
 
-          <View style={styles.form}>
+          <View
+            style={styles.form}
+            onLayout={(event) => setFormWidth(event.nativeEvent.layout.width)}
+            testID="login-form"
+          >
+            {/* Natural label widths at the current text size, measured off-screen to choose the layout. */}
+            {(Object.keys(LABELS) as (keyof typeof LABELS)[]).map((key) => (
+              <Text
+                key={key}
+                style={[styles.measure, type.label]}
+                onLayout={(event) => {
+                  const width = event.nativeEvent.layout.width;
+                  setLabelWidths((current) => (current[key] === width ? current : { ...current, [key]: width }));
+                }}
+                accessibilityElementsHidden
+                importantForAccessibility="no-hide-descendants"
+                pointerEvents="none"
+                testID={`login-measure-${key}`}
+              >
+                {LABELS[key]}
+              </Text>
+            ))}
+
             <LabeledTextField
-              label="Email address"
-              value={email}
-              onChangeText={setEmail}
+              label={LABELS.username}
+              accessibilityLabel="Username"
+              stacked={stacked}
+              labelWidth={labelWidth}
+              value={username}
+              onChangeText={setUsername}
               autoCapitalize="none"
-              autoComplete="email"
+              autoComplete="username"
               autoCorrect={false}
-              inputMode="email"
-              keyboardType="email-address"
               textContentType="username"
               returnKeyType="next"
-              testID="login-email"
+              testID="login-username"
             />
             <LabeledTextField
-              label="Password"
+              label={LABELS.password}
+              accessibilityLabel="Password"
+              stacked={stacked}
+              labelWidth={labelWidth}
               value={password}
               onChangeText={setPassword}
               secureTextEntry
@@ -63,7 +99,6 @@ export function LogInScreen() {
             accessibilityRole="link"
             accessibilityLabel="Forgot your password?"
             onPress={() => undefined}
-            hitSlop={space.sm}
             style={styles.linkTarget}
             testID="login-forgot-password"
           >
@@ -86,25 +121,29 @@ const styles = StyleSheet.create({
   content: {
     flexGrow: 1,
     justifyContent: 'center',
-    gap: space.lg,
-    paddingHorizontal: space.lg,
-    paddingVertical: space.xl,
-  },
-  title: {
-    ...type.title,
-    color: colors.textPrimary,
+    paddingHorizontal: space.screenMargin,
+    paddingVertical: space.screenVertical,
   },
   form: {
-    gap: space.md,
+    marginTop: space.brandToForm,
+    gap: space.row,
+  },
+  measure: {
+    position: 'absolute',
+    left: 0,
+    top: 0,
+    opacity: 0,
   },
   button: {
+    marginTop: space.beforeButton,
     minHeight: touchTarget,
     borderRadius: radius.control,
     backgroundColor: colors.actionPrimary,
     alignItems: 'center',
     justifyContent: 'center',
-    paddingHorizontal: space.lg,
-    paddingVertical: space.sm,
+    gap: space.controlGap,
+    paddingHorizontal: space.controlPaddingX,
+    paddingVertical: space.controlPaddingY,
   },
   buttonPressed: {
     backgroundColor: colors.actionPrimaryPressed,
@@ -115,12 +154,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
   linkTarget: {
+    marginTop: space.beforeLink,
     alignSelf: 'center',
     minHeight: touchTarget,
+    minWidth: touchTarget,
     justifyContent: 'center',
   },
   link: {
-    ...type.body,
+    ...type.link,
     color: colors.textLink,
     textDecorationLine: 'underline',
     textAlign: 'center',

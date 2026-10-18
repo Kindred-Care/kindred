@@ -21,7 +21,13 @@ export function flatten(tree) {
   return tokens;
 }
 
-/** Resolves aliases. A token is a placeholder if it, or anything it points to, is not approved. */
+// Token statuses, weakest first. "approved" is a founder-approved value; "default" is an implementation
+// default documented in the design brief (not a founder-approved design); anything else is a placeholder.
+const STATUS_RANK = { placeholder: 0, default: 1, approved: 2 };
+const normalizeStatus = (status) => (Object.hasOwn(STATUS_RANK, status) ? status : 'placeholder');
+const weakest = (a, b) => (STATUS_RANK[a] <= STATUS_RANK[b] ? a : b);
+
+/** Resolves aliases. A token's status is the weakest of its own and everything it points to. */
 export function resolve(tokens) {
   const resolved = {};
   const visit = (name, seen = []) => {
@@ -32,10 +38,10 @@ export function resolve(tokens) {
     const alias = typeof token.value === 'string' ? ALIAS.exec(token.value) : null;
     if (alias) {
       const target = visit(alias[1], [...seen, name]);
-      const status = token.status === 'approved' && target.status === 'approved' ? 'approved' : 'placeholder';
+      const status = weakest(normalizeStatus(token.status), target.status);
       return (resolved[name] = { ...target, status, aliasOf: alias[1] });
     }
-    return (resolved[name] = { value: token.value, type: token.type, status: token.status === 'approved' ? 'approved' : 'placeholder' });
+    return (resolved[name] = { value: token.value, type: token.type, status: normalizeStatus(token.status) });
   };
   for (const name of Object.keys(tokens)) visit(name);
   return resolved;
@@ -64,7 +70,8 @@ export function checkContrast(tree, resolved) {
     const bg = resolved[pair.background];
     if (!fg || !bg) return { ...pair, ratio: 0, passes: false, error: 'unknown token' };
     const ratio = contrast(fg.value, bg.value);
-    return { ...pair, ratio, passes: ratio >= pair.minimum, placeholder: fg.status !== 'approved' || bg.status !== 'approved' };
+    const status = weakest(fg.status, bg.status);
+    return { ...pair, ratio, passes: ratio >= pair.minimum, status, placeholder: status === 'placeholder' };
   });
 }
 
@@ -85,7 +92,9 @@ function toRuntimeValue(token) {
 export function renderTypeScript(resolved) {
   const values = {};
   for (const [name, token] of Object.entries(resolved)) setPath(values, name.split('.'), toRuntimeValue(token));
-  const placeholders = Object.entries(resolved).filter(([, t]) => t.status !== 'approved').map(([n]) => n).sort();
+  const withStatus = (status) => Object.entries(resolved).filter(([, t]) => t.status === status).map(([n]) => n).sort();
+  const placeholders = withStatus('placeholder');
+  const defaults = withStatus('default');
   return [
     '// GENERATED FILE. Do not edit by hand.',
     '// Source: design/tokens/tokens.json. Regenerate with `npm run codegen`.',
@@ -97,6 +106,9 @@ export function renderTypeScript(resolved) {
     `export const placeholderTokens: readonly string[] = ${JSON.stringify(placeholders, null, 2)};`,
     '',
     `export const tokensArePlaceholders = ${placeholders.length > 0};`,
+    '',
+    '/** Implementation defaults from the design brief: documented values, not founder-approved designs. */',
+    `export const defaultTokens: readonly string[] = ${JSON.stringify(defaults, null, 2)};`,
     '',
   ].join('\n');
 }
