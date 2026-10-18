@@ -5,7 +5,9 @@
   **approved or confirmed by the founder on 2026-10-17**. No design questions remain open. One input is
   needed before criterion 3 can be measured: the Figma frame exports (prerequisite P1, section 6c).
 - Scope: the visual baseline for Milestone 1 only (Section 10, criteria 2, 3 and 4).
-- Implementation: **not started.** It begins only on the founder's explicit authorization.
+- Implementation: **authorized by the founder and built (2026-10-17)** on branch `feat/m1-figma-screens`.
+  Spacing the handoff does not give uses the Defaults below (token status `default`) until the frame
+  exports (P1) supply the Figma values. Criterion 3 has **not** been measured.
 
 This brief is the single reference for building the Milestone 1 splash and Log In screens. Values marked
 **Approved** come from the founder's Figma review. Values marked **Default** were not specified; they are
@@ -265,4 +267,5 @@ other implementation steps.
 6. Re-run the Android emulator evidence (criteria 2 and 4) and add side-by-side captures against the
    Figma at 390 and 402 pt for criterion 3, judged by the approved tolerance (section 6b).
 
-Nothing in this list starts until the founder authorizes implementation.
+Items 1 to 5 are built. Item 6: the Android emulator evidence is re-run; the Figma comparison waits for
+P1. When P1 arrives, the `default` spacing tokens are replaced with the frame's values before measuring.

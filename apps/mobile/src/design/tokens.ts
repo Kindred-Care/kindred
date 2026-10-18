@@ -5,110 +5,111 @@
 export const tokens = {
   "color": {
     "brand": {
-      "terracotta": "#9A4A2C",
-      "terracottaDeep": "#7E3A21",
-      "apricot": "#F6C7A1",
-      "cream": "#FBF5EE",
-      "cocoa": "#2B1D16",
-      "cocoaSoft": "#5A463B",
-      "stone": "#8A776B",
-      "white": "#FFFFFF"
+      "terracotta": "#C96A4A",
+      "terracottaButton": "#A94F32",
+      "apricot": "#F4B183",
+      "warmWhite": "#FCFBF8",
+      "white": "#FFFFFF",
+      "charcoal": "#2F2F2F",
+      "sage": "#A8CFA0",
+      "inputBorder": "#E5E7EB"
     },
     "surface": {
-      "background": "#FBF5EE",
-      "splash": "#F6C7A1",
+      "background": "#FCFBF8",
+      "splash": "#FCFBF8",
       "input": "#FFFFFF"
     },
     "text": {
-      "primary": "#2B1D16",
-      "secondary": "#5A463B",
-      "placeholder": "#6B5649",
-      "link": "#7E3A21",
+      "primary": "#2F2F2F",
+      "onSplash": "#2F2F2F",
       "onPrimary": "#FFFFFF",
-      "onSplash": "#2B1D16"
+      "link": "#2F2F2F"
     },
     "action": {
-      "primary": "#9A4A2C",
-      "primaryPressed": "#7E3A21"
+      "primary": "#A94F32",
+      "primaryPressed": "#98472D"
     },
     "border": {
-      "input": "#8A776B",
-      "focus": "#7E3A21"
+      "input": "#767676",
+      "focus": "#C96A4A"
     }
   },
   "space": {
-    "xs": 4,
-    "sm": 8,
-    "md": 16,
-    "lg": 24,
-    "xl": 32,
-    "xxl": 48
+    "controlPaddingX": 24,
+    "controlPaddingY": 14,
+    "controlGap": 10,
+    "screenMargin": 24,
+    "brandGap": 8,
+    "brandToForm": 48,
+    "row": 16,
+    "label": 12,
+    "beforeButton": 24,
+    "beforeLink": 16,
+    "screenVertical": 32
   },
   "radius": {
     "control": 12
   },
   "size": {
-    "touchTarget": 48
+    "touchTarget": 48,
+    "border": 1,
+    "borderFocus": 2,
+    "minFieldWidth": 160
   },
   "font": {
     "family": {
-      "base": "System"
+      "base": "Inter"
     },
     "size": {
-      "body": 17,
-      "label": 16,
-      "caption": 15,
-      "title": 28,
-      "wordmark": 44
+      "display": 56,
+      "h1": 40,
+      "h2": 32,
+      "h3": 24,
+      "body": 16,
+      "caption": 14,
+      "wordmark": 64,
+      "tagline": 24,
+      "button": 20
     },
     "weight": {
       "regular": 400,
+      "medium": 500,
       "semibold": 600,
       "bold": 700
+    },
+    "lineHeight": {
+      "heading": 1.2,
+      "body": 1.5
     }
+  },
+  "scale": {
+    "wordmarkMax": 1.5
+  },
+  "motion": {
+    "splash": 1500
   }
 } as const;
 
 /** Tokens still awaiting approved values from Figma. Visual acceptance is Provisional while non-empty. */
-export const placeholderTokens: readonly string[] = [
-  "color.action.primary",
-  "color.action.primaryPressed",
-  "color.border.focus",
-  "color.border.input",
-  "color.brand.apricot",
-  "color.brand.cocoa",
-  "color.brand.cocoaSoft",
-  "color.brand.cream",
-  "color.brand.stone",
-  "color.brand.terracotta",
-  "color.brand.terracottaDeep",
-  "color.brand.white",
-  "color.surface.background",
-  "color.surface.input",
-  "color.surface.splash",
-  "color.text.link",
-  "color.text.onPrimary",
-  "color.text.onSplash",
-  "color.text.placeholder",
-  "color.text.primary",
-  "color.text.secondary",
-  "font.family.base",
-  "font.size.body",
-  "font.size.caption",
-  "font.size.label",
-  "font.size.title",
-  "font.size.wordmark",
-  "font.weight.bold",
-  "font.weight.regular",
-  "font.weight.semibold",
-  "radius.control",
-  "size.touchTarget",
-  "space.lg",
-  "space.md",
-  "space.sm",
-  "space.xl",
-  "space.xs",
-  "space.xxl"
-];
+export const placeholderTokens: readonly string[] = [];
 
-export const tokensArePlaceholders = true;
+export const tokensArePlaceholders = false;
+
+/** Implementation defaults from the design brief: documented values, not founder-approved designs. */
+export const defaultTokens: readonly string[] = [
+  "color.action.primaryPressed",
+  "color.text.link",
+  "font.lineHeight.body",
+  "font.lineHeight.heading",
+  "motion.splash",
+  "scale.wordmarkMax",
+  "size.minFieldWidth",
+  "space.beforeButton",
+  "space.beforeLink",
+  "space.brandGap",
+  "space.brandToForm",
+  "space.label",
+  "space.row",
+  "space.screenMargin",
+  "space.screenVertical"
+];

@@ -47,6 +47,30 @@ test('REQ-PLAT-017 generated TypeScript is deterministic and lists placeholders'
   assert.match(output, /GENERATED FILE/);
 });
 
+test('REQ-PLAT-017 documented defaults are kept apart from approved values and placeholders', () => {
+  const withDefaults = {
+    color: {
+      $type: 'color',
+      ink: { $value: '#111111', $extensions: { kindred: { status: 'approved' } } },
+      link: { $value: '{color.ink}', $extensions: { kindred: { status: 'default' } } },
+      pressed: { $value: '#222222', $extensions: { kindred: { status: 'default' } } },
+      alias: { $value: '{color.pressed}', $extensions: { kindred: { status: 'approved' } } },
+      typo: { $value: '#333333', $extensions: { kindred: { status: 'aproved' } } },
+    },
+  };
+  const resolved = resolve(flatten(withDefaults));
+  assert.equal(resolved['color.ink'].status, 'approved');
+  assert.equal(resolved['color.link'].status, 'default');
+  // An approved alias of a default is only as strong as its target.
+  assert.equal(resolved['color.alias'].status, 'default');
+  // An unrecognized status never counts as approved.
+  assert.equal(resolved['color.typo'].status, 'placeholder');
+
+  const output = renderTypeScript(resolved);
+  assert.match(output, /tokensArePlaceholders = true/);
+  assert.match(output, /defaultTokens: readonly string\[\] = \[\n {2}"color.alias",\n {2}"color.link",\n {2}"color.pressed"\n\]/);
+});
+
 test('REQ-PLAT-017 unknown and circular references fail', () => {
   assert.throws(() => resolve(flatten({ a: { $value: '{b}' } })), /Unknown token reference/);
   assert.throws(() => resolve(flatten({ a: { $value: '{b}' }, b: { $value: '{a}' } })), /Circular/);

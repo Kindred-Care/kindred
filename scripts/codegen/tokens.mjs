@@ -3,6 +3,7 @@
 //   node tokens.mjs           write the file
 //   node tokens.mjs --check   fail on drift or a contrast failure (CI job "design-tokens")
 // Placeholders produce a warning (a GitHub annotation in CI) until approved values replace them.
+// Documented implementation defaults (status "default") are counted but do not warn.
 
 import { mkdirSync, readFileSync, writeFileSync, existsSync } from 'node:fs';
 import { dirname, resolve as resolvePath } from 'node:path';
@@ -26,11 +27,15 @@ for (const result of checkContrast(tree, resolved)) {
     failed = true;
     console.error(inCi ? `::error file=design/tokens/tokens.json::Contrast failure: ${line}` : `contrast FAIL ${line}`);
   } else {
-    console.log(`contrast ok   ${line}${result.placeholder ? ' [placeholder]' : ''}`);
+    console.log(`contrast ok   ${line}${result.status === 'approved' ? '' : ` [${result.status}]`}`);
   }
 }
 
-const placeholders = Object.values(resolved).filter((t) => t.status !== 'approved').length;
+const placeholders = Object.values(resolved).filter((t) => t.status === 'placeholder').length;
+const defaults = Object.values(resolved).filter((t) => t.status === 'default').length;
+if (defaults > 0) {
+  console.log(`${defaults} of ${Object.keys(resolved).length} design tokens are documented implementation defaults (design brief), not founder-approved values.`);
+}
 if (placeholders > 0) {
   const message = `${placeholders} of ${Object.keys(resolved).length} design tokens are placeholders awaiting approved Figma values. Visual acceptance (criterion 3) is Provisional.`;
   console.warn(inCi ? `::warning file=design/tokens/tokens.json::${message}` : `WARNING: ${message}`);

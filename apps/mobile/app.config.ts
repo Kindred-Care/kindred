@@ -2,9 +2,9 @@ import type { ExpoConfig } from 'expo/config';
 
 import designTokens from '../../design/tokens/tokens.json';
 
-// The native splash uses the same token as the in-app splash, so there is no second copy of the
-// colour to drift.
-const splashBackground = designTokens.color.brand.apricot.$value;
+// The native launch screen uses the brand colour behind the in-app splash's token (Warm White, no
+// artwork), so it hands over to the splash without a colour flash and there is no second copy to drift.
+const splashBackground = designTokens.color.brand.warmWhite.$value;
 
 // Placeholder identifiers. Confirm them before the first store submission: they cannot change
 // afterwards (ADR 0013).
@@ -28,7 +28,12 @@ const config: ExpoConfig = {
     package: bundleIdentifier,
     predictiveBackGestureEnabled: false,
   },
-  plugins: ['expo-router', 'expo-dev-client', ['expo-splash-screen', { backgroundColor: splashBackground }]],
+  plugins: [
+    'expo-router',
+    'expo-dev-client',
+    'expo-font',
+    ['expo-splash-screen', { backgroundColor: splashBackground }],
+  ],
   experiments: {
     typedRoutes: true,
     reactCompiler: true,

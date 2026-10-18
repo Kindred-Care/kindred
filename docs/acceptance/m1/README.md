@@ -4,17 +4,17 @@ Evidence for the Section 10 acceptance criteria, collected as each check runs. O
 here. Results are reported exactly as observed: a check that could not run is listed as Blocked or Not
 yet run, never as Passed.
 
-## Status of all 15 criteria (updated 2026-10-17, after GitHub CI and the enforcement tests)
+## Status of all 15 criteria (updated 2026-10-17, after the approved splash and Log In were built)
 
 Status values: **Passed** (verified with the evidence shown), **Partial** (part verified, the rest named),
-**Provisional** (built against placeholders), **Blocked** (cannot complete until a named prerequisite is met).
+**Provisional** (built, but acceptance needs a named input: placeholders, or a comparison not yet possible), **Blocked** (cannot complete until a named prerequisite is met).
 
 | # | Criterion | Status | Evidence |
 | --- | --- | --- | --- |
 | 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed** (Windows, recorded; Linux, CI smoke step on PR #2) | [c1-compose-run.txt](c1-compose-run.txt), [github-ci-evidence.md](github-ci-evidence.md) |
-| 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator passed; iOS simulator **Blocked** (needs the Mac) | Android section below |
-| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Provisional**: tokens used and no inline hex (lint-enforced), but all tokens are placeholders and there are no approved mockups | ADR 0022 |
-| 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android passed against flagged placeholder tokens (contrast AA on all 9 pairs); iOS Dynamic Type **Blocked** | Android section below |
+| 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator re-run on the approved design and passed (release build: 0 error lines in 10 of 10 cold starts; no JavaScript errors or warnings in any run; one intermittent native warning in development builds only, explained below); iOS simulator **Blocked** (needs the Mac) | Android section below |
+| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Provisional, not measured**: built from approved tokens and Inter, no inline hex (lint-enforced). The ±2 pt comparison at 390 and 402 pt **cannot be made** until the Figma frame exports (P1) are provided; spacing the handoff does not give is a documented default until then | Design brief 6b and 6c; ADR 0022 |
+| 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android re-run on the approved design and passed (approved values; all 11 contrast pairs AA); iOS Dynamic Type **Blocked** | Android section below |
 | 5 | CI on every pull request runs every required check, security suite separate, all pass | **Passed** | [github-ci-evidence.md](github-ci-evidence.md) |
 | 6 | Every project has a passing unit test; a README gets a new developer running both apps in under 30 minutes | **Partial**: tests pass for every project; the timed walkthrough needs a developer other than the author | [local-full-run.txt](local-full-run.txt) |
 | 7 | No secrets in the repository; `.env.example` documents every variable; gitleaks | **Passed** (`secret-scan` on full history in CI; pre-commit hook) | [github-ci-evidence.md](github-ci-evidence.md) |
@@ -27,7 +27,9 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | 14 | Seed and dev scripts refuse outside local; seed data synthetic | **Passed** (`repo-checks` in CI) | [github-ci-evidence.md](github-ci-evidence.md) |
 | 15 | EAS development build on one physical iOS and one physical Android device | **Blocked**: no physical Android phone yet; Apple Developer enrollment paused; the EAS project is not yet created (needs `npx eas-cli login`) | — |
 
-**Summary:** 10 Passed (1, 5, 7 to 14), 3 Partial (2, 4, 6), 1 Provisional (3), 1 Blocked (15).
+**Summary:** 10 Passed (1, 5, 7 to 14), 3 Partial (2, 4, 6), 1 Provisional (3, not yet measurable), 1 Blocked (15).
+The 10 Passed criteria come from earlier runs; this branch changes only the mobile screens, the design
+tokens and their generator, and CI re-runs every check on its pull request.
 Milestone 1 is not fully accepted until criterion 15 passes on both devices or the founder authorizes an
 exception (Section 10).
 
@@ -74,98 +76,108 @@ integration, 4 architecture, 14 security-trait, 11 mobile and 33 script tests; l
 builds, the bundle guard, design tokens, traceability (465 requirements), feature matrix (65
 permissions), gitleaks, and the NuGet and npm vulnerability gates.
 
-## Android emulator run (criteria 2 and 4, Android half) — 2026-10-17
+## Android emulator run on the approved design (criteria 2 and 4, Android half) — 2026-10-17
+
+Re-run after the founder-approved splash and Log In were built (branch `feat/m1-figma-screens`). The
+earlier run on placeholder tokens is superseded; its files were replaced, and git history keeps them,
+including the CMake 4 compatibility notes.
 
 ### Environment
 
 | Item | Value |
 | --- | --- |
-| Host | Windows 11 Pro 10.0.26200, `LongPathsEnabled = 1` |
-| Emulator | Android Studio "Medium Phone API 37.0" (`sdk_gphone64_x86_64`, `emulator-5554`), 1080 × 2400 |
-| Build | Expo development build (`expo-dev-client`), `npx expo run:android`, debug, x86_64 |
-| JDK | Android Studio bundled OpenJDK 25.0.3 |
-| Gradle / CMake | Gradle 9.4.1; CMake **4.1.2** with ninja 1.12.1, selected with `cmake.dir` in `android/local.properties` |
-| JavaScript | Metro, 1,279 modules bundled, connected through `adb reverse tcp:8081` |
-| Source | Branch `feat/m1-backend-scaffold` at commit `22a644a` |
-
-**CMake compatibility.** CMake 4 dropped support for projects that declare `cmake_minimum_required`
-below 3.5. Every native module in the app declares 3.9 or higher (96 at 3.13, 3 at 3.16, 1 at 3.22,
-1 at 3.13...3.26, 2 at 3.9.0), and none pins a CMake version, so the Android Gradle Plugin uses whatever
-`cmake.dir` names. The build log and native build tree reference `cmake/4.1.2` 782 times and 3.22.1 not
-at all. CMake 3.22.1 remains installed but was not used: its ninja 1.10.2 cannot handle Windows long
-paths, which is what failed the earlier builds.
+| Host | Windows 11 Pro, `LongPathsEnabled = 1` |
+| Emulator | Android Studio "Medium Phone API 37.0" (`sdk_gphone64_x86_64`), 1080 × 2400 at 420 dpi (411 × 914 dp) |
+| Builds | Expo development build (`npx expo run:android`, debug, Metro) and a local release build (`--variant release`: JavaScript bundled, debug-signed, nothing uploaded) |
+| JDK / Gradle / CMake | Android Studio bundled OpenJDK; Gradle 9.4.1; CMake 4.1.2 selected with `cmake.dir` |
 
 ### Splash, then Log In (criterion 2, Android emulator)
 
-A cold start was screen-recorded ([c2-android-run.mp4](c2-android-run.mp4)) while 30 screenshots were
-taken back to back. Sampled centre colours show the sequence:
+A cold start from the launcher was screen-recorded ([c2-android-run.mp4](c2-android-run.mp4)) while 40
+screenshots were taken back to back. Sampled background colours:
 
 | Frames | Screen | Colour |
 | --- | --- | --- |
-| 1 to 7 | Native launch splash ([c2-android-0-native-splash.png](c2-android-0-native-splash.png)) | `#F6C7A1` (token `color.brand.apricot`) |
-| 8 to 24 | Development client loading screen (development builds only; not Kindred UI) | `#FAFAFA` |
-| 25 to 28 | Kindred splash with the wordmark ([c2-android-1-splash.png](c2-android-1-splash.png)) | `#F6C7A1` |
-| 29 to 30 | Log In ([c2-android-2-login.png](c2-android-2-login.png)) | `#FBF5EE` (token `color.brand.cream`) |
+| 1 | Launcher | — |
+| 2 to 8 | Native launch screen, Warm White with no artwork ([c2-android-0-native-splash.png](c2-android-0-native-splash.png)) | `#FCFBF8` |
+| 9 to 18 | Development client loading screen (development builds only; not Kindred UI) | `#FAFAFA` |
+| 19 onwards | Kindred splash, wordmark and tagline in Inter, then Log In ([c2-android-1-splash.png](c2-android-1-splash.png), [c2-android-2-login.png](c2-android-2-login.png)) | `#FCFBF8` |
 
-The blue "Tools" button in the screenshots is the development client's menu. It exists only in
-development builds.
+The native launch screen and the splash share Warm White, so there is no colour flash. The blue "Tools"
+button is the development client's menu and exists only in development builds.
 
-**Console errors.** [c2-android-app-logcat.txt](c2-android-app-logcat.txt) is every log line from the
-app process during the run (206 lines). It contains **0 error or fatal lines**, and the only
-`ReactNativeJS` line is the informational `Running "main"`: no JavaScript errors or warnings. Metro
-reported no errors. There are 81 native warning lines, all from the platform, React Native, Expo or the
-emulator rather than Kindred code:
+**Console errors.**
 
-| Count | Tag | What it is |
-| --- | --- | --- |
-| 46 | `ViewManagerPropertyUpdater` | React Native's development-time lookup for generated view setters |
-| 17 | `BridgelessReact` | React Native's new-architecture lifecycle trace, logged at warning level |
-| 4 | `WindowOnBackDispatcher` | Android notice that the predictive back gesture is off (`predictiveBackGestureEnabled: false`) |
-| 4 | `SoLoader` | Native library loader start-up trace |
-| 3 | runtime (`dredcare.mobile`) | Emulator CPU variant notice and an Expo module class-verification timing |
-| 3 | `HWUI` | Emulator graphics configuration fallbacks |
-| 2 | `libc` | Emulator GPU property lookup (`vendor.mesa.virtgpu.kumquat`) |
-| 1 | `ReactNative` | Packager connection already open |
-| 1 | `BridgelessReactContext` | A dependency touched a legacy API in new-architecture mode; to watch, not an error |
+| Build | Cold starts | Error or fatal lines | JavaScript errors or warnings |
+| --- | --- | --- | --- |
+| Release (no development menu) | 10, from the launcher | **0 in 10 of 10** ([c2-android-release-logcat.txt](c2-android-release-logcat.txt) is the first) | 0 |
+| Development | 5, from the launcher | 0 in 4 of 5; one run logged the native warning below | 0 |
+| Development | 3, while screen-recording or opened by the dev-client link | each logged the same native warning ([c2-android-app-logcat.txt](c2-android-app-logcat.txt)) | 0 |
 
-The log contains no email address, password or token.
+The one error-level entry is a single `ReactNoCrashSoftException`, printed by React Native's `ReactHost`
+as a 42-line stack trace: "Tried to access onWindowFocusChange while context is not ready". It is raised
+through `expo.modules.devmenu.detectors.InterceptingWindowCallback` (the development menu) when the
+window gains focus before React Native has started, before any Kindred JavaScript runs. It is
+non-fatal and timing-dependent, and it is **absent from the release build**, which has no development
+menu. It is not Kindred code. The only `ReactNativeJS` line in every run is the informational
+`Running "main"`. The logs contain no email address, password or token.
 
-**Result (Android emulator half): passed.** The iOS simulator half is **Blocked**: it needs macOS. The
-founder has a Mac for this later.
+**Result (Android emulator half): passed** for what a user runs (the release build: 0 errors in 10
+cold starts). The development-menu warning is recorded here, not hidden. The iOS simulator half is
+**Blocked**: it needs macOS.
 
-### Screen reader labels and 200% text (criterion 4, Android emulator)
+### Screen reader labels, 200% text and layout (criterion 4, Android emulator)
 
-The accessibility tree TalkBack reads was dumped at 100% and at Android's maximum 200% font size
+Accessibility trees were dumped at 100%, at Android's maximum 200% font size, and at 200% on a narrow
+screen (density raised so the screen is 309 dp wide)
 ([c4-android-a11y-tree-100.xml](c4-android-a11y-tree-100.xml),
-[c4-android-a11y-tree-200.xml](c4-android-a11y-tree-200.xml)).
+[c4-android-a11y-tree-200.xml](c4-android-a11y-tree-200.xml),
+[c4-android-a11y-tree-200-narrow.xml](c4-android-a11y-tree-200-narrow.xml)).
 
-| Element | Announced as | Height at 100% / 200% |
-| --- | --- | --- |
-| Heading | "Log In" | 100 / 131 px |
-| Email field | "Email address" (visible label above it) | 126 / 151 px (48 dp minimum) |
-| Password field | "Password" (visible label above it; input masked) | 126 / 151 px |
-| Button | "Log In" | 126 / 145 px |
-| Link | "Forgot your password?" | 126 / 126 px touch target |
+| Element | Announced as | 100%, 411 dp wide | 200%, 411 dp wide | 200%, 309 dp wide |
+| --- | --- | --- | --- | --- |
+| Wordmark | "Kindred" (heading) | 77 dp tall | 80 dp (capped at 1.5×) | 80 dp |
+| Tagline | "Care for Every Chapter." | one line | wraps to two lines | wraps |
+| Username field | "Username" (the visible "Username:" is hidden from screen readers so it is not read twice) | 52 dp, label **beside** | 62 dp, label beside | 62 dp, label **above** |
+| Password field | "Password", masked | 52 dp, label beside | 63 dp, label beside | 62 dp, label above |
+| Button | "Log In" (button) | 52 dp | 64 dp | 64 dp |
+| Link | "Forgot your password?" (link) | 48 dp touch target | 48 dp | 55 dp, wraps |
 
-At 200% ([c4-android-login-font-200.png](c4-android-login-font-200.png)) every Kindred label, field,
-button and link is fully visible, nothing overlaps, and the content sits in a scroll view. Typed text
-([c4-android-login-font-200-typed.png](c4-android-login-font-200-typed.png), synthetic address) renders at
-full height and scrolls horizontally inside the field, as standard single-line inputs do. The only
-truncated text on screen is the development client's own "Tools" label.
+There is no "Log In" heading; "Log In" appears only on the button. At 100% the side margins are 24 dp
+and both fields share a left edge. At 200% on the 411 dp screen the labels stay beside their fields, as
+the design brief's rule requires (148 dp label + 12 dp gap + 160 dp minimum field = 320 dp, within the
+363 dp content width; [c4-android-login-font-200.png](c4-android-login-font-200.png)). On the 309 dp
+screen they no longer fit and stack above their fields
+([c4-android-login-font-200-narrow.png](c4-android-login-font-200-narrow.png)). There the content is
+taller than the screen and scrolls; scrolled to the end, the wrapped link is fully visible
+([c4-android-login-font-200-narrow-scrolled.png](c4-android-login-font-200-narrow-scrolled.png)). No
+Kindred text is truncated or overlapped in any capture. The development client's floating menu button
+sits over the wordmark on the narrow screen; it exists only in development builds.
 
-Android 14 and later scale large text non-linearly, so at the 200% setting our 16 to 17 px labels grew
-about 1.7 times rather than exactly 2 times. That is the platform's maximum, so this is the strongest
-test Android allows.
+Android 14 and later scale large text non-linearly, so at the 200% setting the 16 pt labels grew about
+1.5 times and the 24 pt tagline less. That is the platform's maximum.
 
-Contrast: all nine declared text and background pairs pass WCAG 2.2 AA (`npm run check:tokens`); every
-token is a flagged placeholder.
+Contrast: all 11 declared pairs pass WCAG 2.2 AA using approved values (`npm run check:tokens`):
+Charcoal on Warm White 12.94:1, typed text on White 13.39:1, white on the `#A94F32` button 5.45:1, the
+field border 4.39:1 and 4.54:1, the focus border 3.60:1 and 3.72:1, the button against the page 5.27:1.
 
-**Result (Android emulator half): passed, against placeholder tokens.** The iOS Dynamic Type check is
-**Blocked** until the iOS simulator run.
+Not captured on the emulator: typing into a focused field. The emulator's keyboard opened its
+handwriting tutorial over the app, so those two captures were discarded. Focus (2 pt Terracotta border
+at an unchanged height), masking and typing are covered by `LogInScreen.test.tsx`.
+
+**Result (Android emulator half): passed.** The iOS Dynamic Type check is **Blocked** until the iOS
+simulator run.
+
+### Found and fixed during this run
+
+| Finding | Fix |
+| --- | --- |
+| Fields drew 48 dp tall on Android, not the specified 14 + 24 + 14 = 52 pt. Android's text input does not size itself from line height, so the 48 dp touch-target minimum set the height. That is outside the ±2 pt tolerance | The fields' minimum height is now 52 pt (`FIELD_MIN_HEIGHT`, tested) and was re-measured on the emulator at 52 dp |
+| Metro had been started with `CI=1`, which turns off file watching, so the app briefly ran stale code after that fix | Metro restarted with watching and a cleared cache before the captures above |
 
 ## Criteria not covered by this run
 
 | Criterion | Status |
 | --- | --- |
-| 3 Visual match to Figma | **Provisional.** Placeholder tokens; no approved tokens or mockups yet |
+| 3 Visual match to Figma | **Provisional, not measured.** Approved tokens are in use, but the ±2 pt side-by-side comparison at 390 and 402 pt needs the Figma frame exports (P1, design brief section 6c). No claim is made until they are compared |
 | 15 Physical devices | **Blocked.** No physical Android phone yet; Apple Developer enrollment paused |

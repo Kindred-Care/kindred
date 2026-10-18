@@ -1,16 +1,16 @@
 import { useRouter } from 'expo-router';
 import { useEffect } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { colors, space, type } from '@/design/theme';
+import { colors, space, splashDurationMs } from '@/design/theme';
+import { Brand } from '../components/Brand';
 
-export const SPLASH_DURATION_MS = 1500;
+export const SPLASH_DURATION_MS = splashDurationMs;
 
 /**
- * Brand splash, then Log In. A text wordmark stands in for the logo until the approved artwork is
- * exported from Figma (no mockup images are copied into the repository). Dark text on apricot is
- * used because white on apricot fails contrast (mockup observation 1). Splash copy beyond the name
- * waits for the approved mockup.
+ * Brand splash, then Log In (design brief section 2): Warm White, the "Kindred" wordmark and the
+ * tagline centred. The decorative botanical leaves are deferred and no artwork stands in for them.
  */
 export function SplashScreen() {
   const router = useRouter();
@@ -21,11 +21,9 @@ export function SplashScreen() {
   }, [router]);
 
   return (
-    <View style={styles.container} testID="splash">
-      <Text accessibilityRole="header" style={styles.wordmark}>
-        Kindred
-      </Text>
-    </View>
+    <SafeAreaView style={styles.container} edges={['top', 'bottom', 'left', 'right']} testID="splash">
+      <Brand color={colors.textOnSplash} />
+    </SafeAreaView>
   );
 }
 
@@ -34,13 +32,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    gap: space.sm,
-    padding: space.lg,
+    paddingHorizontal: space.screenMargin,
     backgroundColor: colors.splash,
-  },
-  wordmark: {
-    ...type.wordmark,
-    color: colors.textOnSplash,
-    textAlign: 'center',
   },
 });

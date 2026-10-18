@@ -4,7 +4,8 @@ Caregiver and agency management platform: an Expo mobile app, an ASP.NET Core AP
 
 > **Status: Milestone 1 (Walking Skeleton).** Local only: no cloud resources, no sign-in, no features,
 > synthetic data only. The app shows a splash screen and a static Log In screen; the API has one
-> endpoint, `GET /v1/health`. Design tokens are flagged placeholders until approved Figma values arrive.
+> endpoint, `GET /v1/health`. Design tokens carry the founder-approved brand values; spacing the Figma
+> handoff does not give is a documented default until the frame exports arrive.
 
 ## Start here (about 20 minutes on a prepared machine)
 

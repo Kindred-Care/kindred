@@ -1,3 +1,4 @@
+import { fontFamilyFor, type FontWeight } from './fonts';
 import { tokens } from './tokens';
 
 /**
@@ -9,8 +10,6 @@ export const colors = {
   splash: tokens.color.surface.splash,
   input: tokens.color.surface.input,
   textPrimary: tokens.color.text.primary,
-  textSecondary: tokens.color.text.secondary,
-  textPlaceholder: tokens.color.text.placeholder,
   textLink: tokens.color.text.link,
   textOnPrimary: tokens.color.text.onPrimary,
   textOnSplash: tokens.color.text.onSplash,
@@ -22,19 +21,29 @@ export const colors = {
 
 export const space = tokens.space;
 export const radius = tokens.radius;
+export const size = tokens.size;
 export const touchTarget = tokens.size.touchTarget;
+export const wordmarkMaxScale = tokens.scale.wordmarkMax;
+export const splashDurationMs = tokens.motion.splash;
 
-/** "System" means the platform font: React Native uses it when no family is set. */
-const family = tokens.font.family.base === 'System' ? undefined : tokens.font.family.base;
+const { weight, size: fontSize, lineHeight } = tokens.font;
 
-type Weight = '400' | '600' | '700';
-const weight = (value: number) => String(value) as Weight;
+/**
+ * Line height: 1.2x for 20 pt and larger, 1.5x for 16 pt and smaller (design brief defaults). Android's
+ * extra font padding is off so a line box is the same height on both platforms, as in Figma.
+ */
+const textStyle = (sizePt: number, fontWeight: FontWeight) => ({
+  fontFamily: fontFamilyFor(fontWeight),
+  fontSize: sizePt,
+  lineHeight: Math.round(sizePt * (sizePt >= 20 ? lineHeight.heading : lineHeight.body)),
+  includeFontPadding: false,
+});
 
 export const type = {
-  wordmark: { fontFamily: family, fontSize: tokens.font.size.wordmark, fontWeight: weight(tokens.font.weight.bold) },
-  title: { fontFamily: family, fontSize: tokens.font.size.title, fontWeight: weight(tokens.font.weight.bold) },
-  body: { fontFamily: family, fontSize: tokens.font.size.body, fontWeight: weight(tokens.font.weight.regular) },
-  label: { fontFamily: family, fontSize: tokens.font.size.label, fontWeight: weight(tokens.font.weight.semibold) },
-  caption: { fontFamily: family, fontSize: tokens.font.size.caption, fontWeight: weight(tokens.font.weight.regular) },
-  button: { fontFamily: family, fontSize: tokens.font.size.body, fontWeight: weight(tokens.font.weight.semibold) },
+  wordmark: textStyle(fontSize.wordmark, weight.regular),
+  tagline: textStyle(fontSize.tagline, weight.regular),
+  body: textStyle(fontSize.body, weight.regular),
+  label: textStyle(fontSize.body, weight.medium),
+  button: textStyle(fontSize.button, weight.medium),
+  link: textStyle(fontSize.body, weight.regular),
 } as const;
