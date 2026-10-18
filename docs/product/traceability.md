@@ -231,7 +231,10 @@ Section 8.
 | REQ-AUTH-027 | Organization administrators can disable biometric unlock for their organization, as an organization setting gated by the existing organization.manage permission; the change is audited | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-028 | An organization prohibition overrides the user's preference; for a user in several organizations the most restrictive setting applies (ADR 0028, point A) | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-029 | Disabling biometric unlock (by the user or the organization) removes the biometric gate and its credential copy without ending otherwise valid sessions | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
-| REQ-AUTH-030 | The organization policy reaches devices through the server-side access context and is applied on the next refresh | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-030 | The organization policy reaches devices through the server-side access context as a per-user, per-device snapshot refreshed on launch, foreground, token refresh, 403 and sign-in | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-031 | Biometric unlock never relies indefinitely on a stale policy: each policy snapshot has a bounded, server-set validity period (proposed 24 hours; design requires founder review before development) | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-032 | Biometric unlock fails closed when the policy snapshot is expired, missing, for another user or device, or cannot be verified, including when the device clock is set back | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-033 | Failing closed withholds only biometric unlock: the session continues, the biometric credential copy is kept without re-enrolment, and a supported non-biometric path remains, online and offline | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 
 ## Permissions (Section 6)
 
