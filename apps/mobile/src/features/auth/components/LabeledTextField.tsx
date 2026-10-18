@@ -75,6 +75,10 @@ const inset = (border: number) => ({
   paddingVertical: space.controlPaddingY - border,
 });
 
+// Android's TextInput does not size itself from lineHeight, so the field's 14 + 24 + 14 pt height
+// (design brief) is set as a minimum; it still grows with larger text.
+export const FIELD_MIN_HEIGHT = Math.max(touchTarget, 2 * space.controlPaddingY + type.body.lineHeight);
+
 const styles = StyleSheet.create({
   row: {
     flexDirection: 'row',
@@ -96,7 +100,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.input,
     borderColor: colors.borderInput,
     borderRadius: radius.control,
-    minHeight: touchTarget,
+    minHeight: FIELD_MIN_HEIGHT,
     textAlignVertical: 'center',
   },
   inputBeside: {

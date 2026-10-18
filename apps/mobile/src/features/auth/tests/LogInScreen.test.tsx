@@ -2,7 +2,7 @@ import { fireEvent, render, screen } from '@testing-library/react-native';
 import { StyleSheet } from 'react-native';
 
 import { colors, size, space, touchTarget, wordmarkMaxScale } from '@/design/theme';
-import { shouldStackLabels } from '../components/LabeledTextField';
+import { FIELD_MIN_HEIGHT, shouldStackLabels } from '../components/LabeledTextField';
 import { LogInScreen } from '../screens/LogInScreen';
 
 const style = (node: { props: { style?: unknown } }) =>
@@ -125,6 +125,14 @@ describe('LogInScreen', () => {
     ]) {
       expect(style(control).minHeight).toBeGreaterThanOrEqual(touchTarget);
     }
+  });
+
+  it('REQ-MOB-003 fields are 52 pt tall at the default size, like the button (14 + 24 + 14)', async () => {
+    await render(<LogInScreen />);
+
+    expect(FIELD_MIN_HEIGHT).toBe(52);
+    expect(style(screen.getByLabelText('Username')).minHeight).toBe(FIELD_MIN_HEIGHT);
+    expect(style(screen.getByLabelText('Password')).minHeight).toBe(FIELD_MIN_HEIGHT);
   });
 
   it('REQ-MOB-003 controls use the approved colours, including the B1 and B2 corrections', async () => {
