@@ -20,8 +20,10 @@ accessibility text scaling take precedence over pixel matching.
 | Portion | Status |
 | --- | --- |
 | Android, 402 pt | **Passed**: every element within ±2 pt (largest 1.7 pt); colours exact; typography as confirmed in Figma; no inline hex |
-| Android, 390 pt | Within ±2 pt (largest 2.0 pt) using the anchor mapping in Method; **Passed once the founder accepts that mapping** |
-| iOS | **Not run.** The criterion's wording names no platform, but the founder's plan completes cross-platform acceptance on the Mac (2026-10-19); criterion 3 as a whole stays open until then |
+| Android, 390 pt | **Passed**: every element within ±2 pt of the mapped 402 pt frame (largest 2.0 pt, at the limit: the fields, see "Responsive adjustments"); same colours and typography |
+| **Android portion** | **Passed (2026-10-18)** |
+| iOS, 390 and 402 pt | **Not run.** To be done on the Mac (2026-10-19, [ios-handoff.md](../ios-handoff.md)) |
+| **Criterion 3 overall** | **Pending** until the iOS verification is complete |
 
 ## References
 
@@ -48,14 +50,38 @@ earlier Log In draft despite its name, with the original Terracotta button, no U
    (text glyphs, field borders, button fill) in the frame and in the capture, both in points.
    [method/capture.sh](method/capture.sh) takes the captures; [method/compose.py](method/compose.py)
    draws the side-by-side images (frame | build | 50% overlay).
-3. The frames are 402 pt wide only. At 390 pt each element is compared with the frame by its anchor:
-   centred elements (wordmark, tagline, button, link) 6 pt to the left, the right-anchored fields 12 pt to
-   the left, left-anchored labels unchanged. Vertical positions are measured from the top of the screen,
-   as in the frames.
+3. There is no 390 pt frame. The 390 pt comparison uses the 402 pt frames as the reference through the
+   mapping below, approved by the founder on 2026-10-18 for the reference mapping only (not a waiver
+   of the tolerance or of any other requirement).
 4. Measured glyph boxes (not text line boxes), so the comparison is independent of line-height settings.
 
 The status bar, the home indicator and the round menu button at the top right in the captures belong to
 the device and to the development build, not to Kindred.
+
+## 402 pt to 390 pt reference mapping (approved 2026-10-18)
+
+Every value is in points. The frame is 402 pt wide; the 390 pt screen is 12 pt narrower, Δ = 402 − 390
+= 12. Each element keeps the horizontal anchor it has in the build, which is how it responds to width:
+
+| Anchor | Elements | Reference x at 390 pt | Reference y at 390 pt |
+| --- | --- | --- | --- |
+| Left edge (30 pt margin) | "Username:" and "Password:" labels | x₃₉₀ = x₄₀₂ | y₃₉₀ = y₄₀₂ |
+| Right edge (31 pt margin) | Username and Password fields | x₃₉₀ = x₄₀₂ − 12 | y₃₉₀ = y₄₀₂ |
+| Centre | Wordmark, tagline, Log In button, "Forgot your password?" | x₃₉₀ = x₄₀₂ − 6 (Δ ÷ 2) | y₃₉₀ = y₄₀₂ |
+
+- Vertical positions are unchanged: content is placed from the top of the screen at the frame's
+  positions on both widths (874 pt and 844 pt tall), and nothing is anchored to the bottom.
+- Sizes are unchanged: the reference width and height of every element at 390 pt are its 402 pt values
+  (for example the fields stay 199 × 52 pt and the button 107 × 52 pt).
+- Worked example: the Username field is x 172–371 at 402 pt, so its reference at 390 pt is x 160–359;
+  the wordmark is x 87–313, so its reference is x 81–307.
+
+**Responsive adjustments at 390 pt.** One, in the build, from the approved responsive and accessibility
+precedence rules: a label keeps at least 8 pt (a design-brief default) between itself and its field, and
+the fields give way rather than crowd it. At 390 pt the content is 329 pt wide (390 − 30 − 31). "Username:"
+lays out 124 pt wide (its measured width, rounded up), so 124 + 8 + 199 = 331 pt is 2 pt more than the
+room available, and both fields narrow together to 197 pt, keeping their shared right edge at x 359. Against the mapped reference that is 2.0 pt on the left edge
+and 2.0 pt in width: within ±2 pt, at the limit. No other element changes with width.
 
 ## Results: Log In
 
@@ -118,12 +144,9 @@ Side by side: [402 pt](c3-splash-402-compare.png), [390 pt](c3-splash-390-compar
 
 ## Open before criterion 3 can be marked Passed
 
-1. **Founder acceptance of the 390 pt mapping** (Android 390 pt portion). There is no 390 pt frame, so
-   the 390 pt comparison maps the 402 pt frame by each element's anchor: centred elements 6 pt left,
-   right-anchored fields 12 pt left, left-anchored labels unchanged, vertical positions unchanged. The
-   approved tolerance requires comparison at 390 pt but does not say how a 402 pt frame applies there.
-2. **iOS** (2026-10-19, on the Mac): the same captures and measurements on the iOS simulator at 390 and
-   402 pt; see the handoff checklist in the pull request.
+1. **iOS** (2026-10-19, on the Mac): the same captures and measurements on the iOS simulator at 390 and
+   402 pt, using the same reference mapping; see [ios-handoff.md](../ios-handoff.md).
 
 Resolved on 2026-10-18: the reference files are the founder-supplied originals; the label and wordmark
-text properties were read from Figma by the founder; the link stays not underlined.
+text properties were read from Figma by the founder; the link stays not underlined; the founder approved
+the 402 pt frames as the reference for the 390 pt comparison through the mapping above.

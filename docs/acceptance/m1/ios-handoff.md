@@ -8,8 +8,8 @@ observed.
 
 - [ ] Merge order on GitHub: PR 16 (focus outline), then PR 17 (Figma match), each only with all required
       checks green.
-- [ ] Decide whether you accept the **390 pt anchor mapping** used for criterion 3 (see
-      [figma/README.md](figma/README.md), "Open"). The same mapping is used for the iOS 390 pt comparison.
+- [x] The **402 → 390 pt reference mapping** was approved on 2026-10-18 (see
+      [figma/README.md](figma/README.md)). Use the same mapping for the iOS 390 pt comparison.
 
 ## 1. Set up (about 20 minutes on a prepared Mac)
 
@@ -38,7 +38,8 @@ observed.
 - [ ] Every element within ±2 pt of the frames ([mobile-splash-1x.png](figma/mobile-splash-1x.png),
       [mobile-log-in-1x.png](figma/mobile-log-in-1x.png)), at both widths. Check the wordmark especially:
       on iOS shrink-to-fit is also off at the default text size.
-- [ ] Add the iOS rows to [figma/README.md](figma/README.md). Only then can criterion 3 be marked Passed.
+- [ ] Add the iOS rows to [figma/README.md](figma/README.md). The Android portion is already Passed;
+      criterion 3 as a whole is marked Passed only when the iOS portion meets the same tolerance.
 
 ## 4. Criterion 4: screen reader and Dynamic Type (iOS half)
 
