@@ -5,6 +5,21 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Visual-match tolerance for criterion 3 (approved); layout questions kept open
+
+**Decided by:** the founder. Nothing is implemented.
+
+- **B3 approved:** component positions and dimensions must match the Figma within **±2 pt** at both the
+  390 pt and 402 pt reference widths. Brand colours, typography and accessibility requirements stay
+  exactly as approved. Responsive behaviour, safe areas and accessibility text scaling take precedence
+  over rigid pixel matching.
+- **Q1 and Q2 stay open** until the founder confirms the actual Figma layout. No label position is
+  assumed, and no branding element is added that is not in the mockup.
+- Milestone 1's acceptance criteria are unchanged; this supplies the "agreed tolerance" that criterion 3
+  refers to.
+
+Details: [the design brief, sections 6 and 6b](../design/m1-figma-brief.md).
+
 ## 2026-10-17: Contrast corrections for the Log In screen (approved)
 
 **Proposed and approved by:** the founder, to keep the approved design as close as possible.
