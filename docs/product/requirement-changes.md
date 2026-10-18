@@ -5,6 +5,24 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Log In layout confirmed against Figma (Q1 and Q2 resolved)
+
+**Confirmed by:** the founder, directly against the Mobile – Log In frame in Figma. Nothing is
+implemented.
+
+- **Q1:** "Username:" and "Password:" are to the **left** of their fields. Keep this side-by-side
+  arrangement where it fits without clipping; at larger accessibility text sizes or constrained widths
+  the labels stack above their fields.
+- **Q2:** above the fields is the centred "Kindred" wordmark with "Care for Every Chapter." directly
+  beneath. There is **no** separate "Log In" heading; "Log In" appears only on the primary button.
+- **Layout:** Username above Password; the Log In button below both fields; "Forgot your password?"
+  centred beneath the button; the existing Figma spacing and composition preserved.
+- **Accessibility:** the approved corrections (`#A94F32` button fill, `#767676` field borders, a thicker
+  2 pt focused-field border) supersede the original Figma colours where they apply.
+
+No design question remains open. To measure criterion 3 within the approved ±2 pt tolerance, the build
+needs PNG exports of the Splash and Log In frames (prerequisite P1 in [the design brief](../design/m1-figma-brief.md)).
+
 ## 2026-10-17: Visual-match tolerance for criterion 3 (approved); layout questions kept open
 
 **Decided by:** the founder. Nothing is implemented.

@@ -1,16 +1,16 @@
 # Milestone 1 design brief: splash and Log In
 
 - Status: **Baseline approved by the founder (2026-10-17)**, reviewed directly in Figma. The
-  accessibility corrections (B1, B2) and the visual-match tolerance (B3) were **approved by the founder on
-  2026-10-17**. Two layout questions (Q1, Q2) stay **open until the founder confirms the actual Figma
-  layout**.
+  accessibility corrections (B1, B2), the visual-match tolerance (B3) and the Log In layout (Q1, Q2) were
+  **approved or confirmed by the founder on 2026-10-17**. No design questions remain open. One input is
+  needed before criterion 3 can be measured: the Figma frame exports (prerequisite P1, section 6c).
 - Scope: the visual baseline for Milestone 1 only (Section 10, criteria 2, 3 and 4).
 - Implementation: **not started.** It begins only on the founder's explicit authorization.
 
 This brief is the single reference for building the Milestone 1 splash and Log In screens. Values marked
 **Approved** come from the founder's Figma review. Values marked **Default** were not specified; they are
 implementation defaults chosen here and are not founder-approved designs. No further Figma exports are
-requested, except for the two layout answers in the open questions.
+requested, except the two frame exports in section 6c, which criterion 3's side-by-side comparison needs.
 
 ## 1. Brand identity (Approved)
 
@@ -70,39 +70,65 @@ The earlier apricot background with white text is superseded (it was 1.83:1 and 
 
 ## 3. Log In screen
 
-Reference frame 402 × 874, background Warm White `#FCFBF8`. Preserve the existing Figma layout and its
-labels: **Username**, **Password**, **Forgot your password?** and **Log In**.
+Reference frame 402 × 874, background Warm White `#FCFBF8`. Preserve the existing Figma layout,
+spacing and overall composition, and its labels: **Username:**, **Password:**, **Forgot your password?**
+and **Log In**.
+
+### Layout (founder-confirmed against the Mobile – Log In frame, 2026-10-17)
+
+| Order, top to bottom | Element | Notes |
+| --- | --- | --- |
+| 1 | "Kindred" wordmark, centred | The same branding as the splash; there is **no** separate "Log In" heading |
+| 2 | "Care for Every Chapter." tagline, centred, directly beneath the wordmark | |
+| 3 | Username row: label **"Username:"** to the **left** of its field | Side-by-side (Q1) |
+| 4 | Password row: label **"Password:"** to the **left** of its field | Below Username |
+| 5 | "Log In" primary button | Below both fields; the only place the words "Log In" appear |
+| 6 | "Forgot your password?" | Centred beneath the button |
+
+**Label behaviour (Q1, confirmed):** keep the labels beside their fields at the reference sizes, where
+they fit without clipping. When the text is enlarged for accessibility, or the width is constrained,
+the labels **stack above** their fields so nothing is clipped (criterion 4). The point at which the
+layout switches is an implementation default (see Defaults below). Screen readers announce each field by
+its label ("Username", "Password"), whichever arrangement is showing.
+
+**Approved accessibility corrections apply here** and supersede the original Figma colours: the button
+fill is `#A94F32`, field borders are `#767676`, and a focused field shows a 2 pt border (section 6a).
 
 ### Log In button (Approved)
 
 | Property | Value |
 | --- | --- |
-| Fill | Terracotta `#C96A4A` |
-| Label | "Log In", White `#FFFFFF`, Inter Medium (500) 20 |
+| Fill | **`#A94F32`** (approved accessible button variant; the original Figma value was Terracotta `#C96A4A`) |
+| Label | "Log In", White `#FFFFFF`, Inter Medium (500) 20 (5.45:1 on `#A94F32`) |
 | Corner radius | 12 |
 | Padding | 24 horizontal, 14 vertical |
 | Auto-layout gap | 10 |
 
 Resulting height: 14 + 24 (line height of 20 pt text, default 1.2×) + 14 = 52 pt, above the 48 pt
-touch target. **See blocker B1: the label fails contrast as specified; the approved correction is in section 6a.**
+touch target. B1 is resolved by the approved fill (section 6a).
 
 ### Input fields (Approved)
 
 | Property | Value |
 | --- | --- |
 | Fill | White `#FFFFFF` |
-| Border | `#E5E7EB`, 1 px, inside stroke |
+| Border | **`#767676`**, 1 px, inside stroke (approved correction; the original Figma value was `#E5E7EB`). Focused: 2 pt |
 | Corner radius | 12 |
 | Padding | 24 horizontal, 14 vertical |
 | Auto-layout gap | 10 |
 
-**See blocker B2: the field boundary fails non-text contrast as specified; the approved correction is in section 6a.**
+B2 is resolved by the approved border (section 6a).
 
-### Details not specified in Figma (Defaults)
+### Details not specified in the handoff (Defaults)
+
+Where the Figma frame defines a position, size or gap, the Figma value wins; these defaults apply only
+where the handoff gives none. The frame exports in section 6c let the build read those Figma values.
 
 | Item | Default | Why |
 | --- | --- | --- |
-| Field labels | Inter Medium 16, Charcoal (12.94:1 on Warm White) | Readable, distinct from typed text |
+| Field labels | "Username:" and "Password:" as in Figma, Inter Medium 16, Charcoal (12.94:1 on Warm White), unless the frame specifies otherwise | Readable, distinct from typed text |
+| Wordmark and tagline on Log In | Sizes and gaps read from the Figma frame (P1); until then the splash values (64 and 24) | Same branding as the splash |
+| When labels stack above their fields | Stack when the label and a field of at least 160 pt no longer fit on one line within the margins, which covers both enlarged text and narrow screens | Prevents clipping (criterion 4) without changing the reference layout |
 | Typed text | Inter Regular 16 (Body), Charcoal (13.39:1 on White); field height 14 + 24 + 14 ≈ 52 pt (at least 48 pt) | Body style |
 | Placeholder text inside fields | None; the visible label identifies the field | Avoids low-contrast hint text |
 | Password field | Masked; no show-password control in Milestone 1 | Static shell |
@@ -110,7 +136,7 @@ touch target. **See blocker B1: the label fails contrast as specified; the appro
 | Focus indicator on fields | **Approved:** border thickens from 1 pt to 2 pt and turns Terracotta (3.60:1 on Warm White). The change in thickness, not the colour alone, makes focus visible against the grey resting border (section 6a) | Founder approval 2026-10-17; WCAG 2.4.7 and 1.4.11 |
 | Pressed button | Fill darkened about 10% | Feedback |
 | Side margins | 24 pt each side, so content is 354 pt wide in a 402 frame | Matches the 24 pt padding rhythm |
-| Vertical spacing | 16 pt between fields; 24 pt before the button; 16 pt before the link; label-to-field spacing follows the Figma layout once Q1 is confirmed | 8 pt grid; no label placement assumed (Q1 open) |
+| Spacing and composition | Taken from the Figma frame (founder: preserve the existing spacing). Fallback only if a gap cannot be read from the frame: 16 pt between rows, 24 pt before the button, 16 pt before the link, 12 pt between a label and its field | 8 pt grid |
 | Vertical placement | Content centred in the safe area and scrollable when it does not fit | Large text and small phones |
 | Line heights | 1.2× for 20 pt and larger; 1.5× for 16 pt and smaller | Common readable defaults |
 
@@ -135,23 +161,22 @@ touch target. **See blocker B1: the label fails contrast as specified; the appro
 | Criterion | What this brief affects | Effect on status |
 | --- | --- | --- |
 | 2. Splash, then Log In, no console errors (iOS simulator and Android emulator) | Splash colours and tagline; native launch screen colour | Android must be re-run after implementation; iOS stays **Blocked** until the Mac is available |
-| 3. Splash and Log In match the Figma at 390 pt, using tokens, no inline hex | Replaces the placeholder tokens with approved values; the approved tolerance (section 6b) | Stays **Provisional** until Q1 and Q2 are answered, the screens are built, and captures at 390 and 402 pt meet the approved tolerance |
-| 4. Screen reader labels, 200% dynamic type, required contrast | Button and field contrast (resolved by the approved corrections); label placement (Q1) | The approved values now pass every contrast check; label placement depends on Q1 |
+| 3. Splash and Log In match the Figma at 390 pt, using tokens, no inline hex | Replaces the placeholder tokens with approved values; the approved tolerance (section 6b) | Stays **Provisional** until the screens are built and captures at 390 and 402 pt meet the approved tolerance against the Figma frame exports (P1) |
+| 4. Screen reader labels, 200% dynamic type, required contrast | Button and field contrast (resolved); side-by-side labels that stack above their fields at large text (Q1) | The approved values pass every contrast check; the stacking rule keeps 200% text unclipped |
 | 5. CI passes | Token contrast pairs are enforced by CI | The approved values pass the `design-tokens` contrast check |
 | 6, 7, 1, 8 to 15 | Not affected | No change |
 
 ## 6. Blockers and open questions
 
-B1, B2 and B3 are resolved by founder decisions. Q1 and Q2 stay open until the founder confirms the
-actual Figma layout; nothing about them is assumed.
+All are resolved by founder decisions or confirmations (2026-10-17). No design question remains open.
 
 | # | Issue | Evidence | Options | Recommendation |
 | --- | --- | --- | --- | --- |
 | **B1** (resolved: correction approved, 6a) | White "Log In" label on Terracotta fails WCAG 2.2 AA | 3.72:1. Inter Medium 20 is not "large text" (that needs 24 pt, or about 18.7 pt Bold), so 4.5:1 is required | (a) Make the label Inter **Bold** 20: it then counts as large text and needs 3:1, which 3.72:1 passes; (b) a darker Terracotta for the button, e.g. `#B25A3C` (4.75:1) or `#AD573A` (5.00:1); (c) both | (a): a one-attribute change that keeps the brand colour |
 | **B2** (resolved: correction approved, 6a) | Field boundary fails WCAG 1.4.11 (non-text contrast) | Border `#E5E7EB` is 1.20:1 on Warm White and 1.24:1 on White; the white field against Warm White is 1.03:1 | (a) A darker border, e.g. `#8A8F98` (3.14:1) or `#767B85` (4.11:1); (b) keep the light border and add another visible boundary, e.g. a tinted field fill, that reaches 3:1 | (a) `#8A8F98`, the lightest value that passes |
 | **B3** (resolved: tolerance approved, 6b) | Criterion 3 says "at 390 pt width within an agreed tolerance", but the Figma frame is 402 pt, and no tolerance had been agreed | Section 10 criterion 3 | — | Approved 2026-10-17: ±2 pt at both 390 and 402 pt (section 6b) |
-| **Q1** (open) | Label placement: are "Username" and "Password" **above** their fields in the current Figma, or beside them? | Section 1 observation 2 (labels beside fields break at large text) is still open in the blueprint | Awaiting the founder's confirmation of the Figma layout. No placement is assumed. If the labels are beside the fields, the founder decides how they behave at large text sizes, because criterion 4 requires no clipping at 200% | Open |
-| **Q2** (open) | Does the Log In screen show a heading, the wordmark or the tagline above the fields? | Not in the handoff | Awaiting the founder's confirmation of the Figma layout. No branding element is added that is not in the mockup. The current build's "Log In" heading is not part of the approved baseline and is kept or removed to match Figma | Open |
+| **Q1** (resolved: founder-confirmed) | Label placement: are "Username" and "Password" **above** their fields in the current Figma, or beside them? | Section 1 observation 2 (labels beside fields break at large text) is still open in the blueprint | — | **Confirmed:** "Username:" and "Password:" sit to the left of their fields; they stack above at large text sizes or constrained widths (section 3) |
+| **Q2** (resolved: founder-confirmed) | Does the Log In screen show a heading, the wordmark or the tagline above the fields? | Not in the handoff | — | **Confirmed:** the centred "Kindred" wordmark with "Care for Every Chapter." beneath it; **no** "Log In" heading (the current build's heading is removed); "Log In" appears only on the button (section 3) |
 | **Note** | "Username" label versus email sign-in | Appendix G decision 1: sign in with an email address, stored as the Cognito username | Keep "Username" for Milestone 1 as approved; revisit the wording when Cognito sign-in is built in Phase 2 | Not blocking Milestone 1 |
 
 ## 6a. Accessibility corrections (approved by the founder, 2026-10-17)
@@ -213,6 +238,15 @@ reference widths.
 | Accessibility | Every approved requirement holds (contrast, labels and roles, touch targets, text scaling) |
 | Precedence | **Responsive behaviour, safe areas and accessibility text scaling take precedence over rigid pixel matching.** Captures are taken at the default text size; differences caused by safe areas or larger text settings are expected and are not failures |
 
+## 6c. Prerequisite for measuring criterion 3
+
+| # | Prerequisite | Why it is needed | What to provide |
+| --- | --- | --- | --- |
+| **P1** | Exports of the **Mobile – Splash** and **Mobile – Log In** frames | Criterion 3 compares the build against the Figma within ±2 pt, and its evidence is side-by-side captures. The handoff gives styles, but not every position and gap (for example the wordmark size and spacing on Log In, or the gaps between rows). Without the frames, the build would use documented defaults that may fall outside the tolerance, and there would be nothing to compare against | PNG exports of both frames at **1×** (402 × 874) and **2×**, with no photographs in them. They are stored in `docs/acceptance/m1/figma/` as comparison evidence. If Figma Dev Mode is available, the measurements for the Log In frame are a useful extra but are not required |
+
+P1 is needed to **measure** criterion 3 and to read the exact spacing. It does not block starting the
+other implementation steps.
+
 ## 7. What remains to be implemented (after authorization)
 
 1. Replace the placeholder tokens in `design/tokens/tokens.json` with the approved values (marked
@@ -222,10 +256,12 @@ reference widths.
    pairs.
 2. Bundle Inter (400, 500, 600, 700) and apply the type tokens.
 3. Splash: Warm White background, wordmark and tagline, native launch screen to Warm White.
-4. Log In: the approved button and field styles and corrections, the "Username", "Password", "Forgot
-   your password?" and "Log In" labels, the layout exactly as confirmed for Q1 and Q2, safe areas and
-   scrolling.
-5. Update the Jest tests (labels, roles, no font-scaling opt-out, no fixed heights) for the new labels.
+4. Log In: the confirmed layout (wordmark and tagline, "Username:" and "Password:" beside their fields
+   with the stacking rule, button, centred link, no "Log In" heading), the approved styles and
+   corrections, spacing from the Figma frame, safe areas and scrolling.
+5. Update the Jest tests for the confirmed design. The current test that asserts no "Username:" text and
+   labels above the fields (written for the placeholder screen) is replaced by tests for side-by-side
+   labels at default size, stacking at 200%, the screen-reader names, roles and touch targets.
 6. Re-run the Android emulator evidence (criteria 2 and 4) and add side-by-side captures against the
    Figma at 390 and 402 pt for criterion 3, judged by the approved tolerance (section 6b).
 
