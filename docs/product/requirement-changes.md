@@ -5,6 +5,38 @@ Requirements the founder adds or changes afterwards are logged here, newest firs
 [traceability.md](traceability.md). Each entry says what changed, why, which approved rules it touches,
 and what it does not change.
 
+## 2026-10-17: Bounded biometric policy validity, and review of ADR 0028 decisions (decided)
+
+**Decided by:** the founder. **Phase:** Phase 2 (B2). **Not** part of Milestone 1; nothing is implemented.
+
+### Decisions
+
+- **Approved:** most restrictive wins for users in several organizations (ADR 0028, A).
+- **Approved:** device-native biometrics, including the documented limitation that the server cannot
+  observe a local biometric check (ADR 0028, B).
+- **Replaced:** the earlier "apply on next refresh" timing (ADR 0028, C) by a new security requirement.
+
+### New security requirement
+
+Biometric unlock must not rely indefinitely on stale organization permissions. Each device holds the
+policy for a bounded validity period, and biometric unlock fails closed when the policy is expired or
+cannot be verified. A supported non-biometric authentication path remains, and valid sessions are not
+ended unnecessarily.
+
+### Traceability
+
+REQ-AUTH-031 to REQ-AUTH-033 added; REQ-AUTH-030 reworded. All Planned for Phase 2 (B2).
+
+### Implementation decision requiring review
+
+ADR 0028, "Policy validity and fail-closed behaviour", proposes the precise refresh and offline behaviour:
+a per-user, per-device policy snapshot with a server-set 24-hour validity, refreshed on launch,
+foreground, token refresh, 403 and sign-in; expiry measured by both the device clock and elapsed
+monotonic time so the clock cannot be set back to extend it; and fail-closed behaviour that keeps the
+session and the biometric enrolment. **It must be reviewed and approved before Phase 2 development
+starts.** Open questions for that review: the validity period, whether agencies may shorten it, and the
+non-biometric method for lifting the app lock (device passcode or a Kindred PIN).
+
 ## 2026-10-17: Organization policy for biometric unlock (decided)
 
 **Decided by:** the founder, answering the open point in ADR 0028. **Phase:** Phase 2 (B2). **Not** part
