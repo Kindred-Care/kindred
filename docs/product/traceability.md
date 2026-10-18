@@ -218,6 +218,15 @@ Section 8.
 | REQ-AUTH-014 | The authorization test matrix is generated from the catalog and role matrix; a permission without a test fails the build | §6a, decision 65 | 2 / B4 |  | Planned |  |
 | REQ-AUTH-015 | Access lifecycle tests: removal, disablement, role change, old sessions, removal during a shift, assignment, consent, offline, reviewer, originals, cross-organization | §6a | 2+ |  | Planned |  |
 | REQ-AUTH-016 | Only sign-in and consent-link routes are reachable without a signed-in user | §6a | 2, 7c |  | Planned |  |
+| REQ-AUTH-017 | Optional biometric authentication for returning users: Face ID and Touch ID on iOS, strong (Class 3) biometrics on Android | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-018 | Biometric enrollment is offered only after a successful standard sign-in | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-019 | Biometrics unlock an eligible authenticated session or release a protected reauthentication credential, then the normal Cognito refresh applies | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-020 | An accessible alternative sign-in is always available | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-021 | No raw biometric data, no stored passwords for replay, and no unprotected tokens | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-022 | Biometric use respects Cognito, MFA, session expiry (including the 30-day full sign-in), server-side authorization, revocation and device security; it never satisfies step-up MFA | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-023 | Users can disable biometric access | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-024 | Reauthentication is required when device biometric enrollment changes or the protected credential is invalidated | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-025 | Biometric enrollment is unavailable on devices that fail integrity attestation; agency policy control pending founder decision (ADR 0028) | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 
 ## Permissions (Section 6)
 
