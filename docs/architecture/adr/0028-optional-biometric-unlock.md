@@ -1,10 +1,11 @@
 # 0028. Optional biometric authentication for returning users
 
-- Status: Proposed. The requirement is approved by the founder (2026-10-17); the design is decided in
-  Phase 2 (backlog B2) and recorded as an update to this ADR.
+- Status: Proposed. The requirement and the organization-policy rules are decided by the founder
+  (2026-10-17); the remaining technical design is decided in Phase 2 (backlog B2) and recorded as an
+  update to this ADR.
 - Date: 2026-10-17
 - Source: founder requirement, 2026-10-17
-  ([requirement-changes.md](../../product/requirement-changes.md), REQ-AUTH-017 to REQ-AUTH-025)
+  ([requirement-changes.md](../../product/requirement-changes.md), REQ-AUTH-017 to REQ-AUTH-030)
 
 ## Context
 
@@ -46,13 +47,49 @@ rule in each case; the founder may decide otherwise.
 | 2 | Step-up MFA for `audit.read`, legal holds, support approval, export, originals and designations (Section 6) | A local biometric check is verified only by the device, not by Cognito | Biometric unlock does **not** satisfy step-up MFA. Those actions still need a fresh server-verified MFA. Only passkeys (see 6) could count, and only if a later ADR verifies them. |
 | 3 | MFA for every staff sign-in (Section 6a) | Biometric unlock skips the MFA prompt | Allowed only within an existing session that began with a full MFA sign-in, never to start one. |
 | 4 | Device integrity attestation (decisions 99 and 104) | A compromised device could expose the protected credential | Biometric enrollment is unavailable, and existing enrollment disabled, on a device marked Restricted, and on rooted or jailbroken devices where attestation confirms it. |
-| 5 | Shared or agency-owned devices | Device biometrics accept **any** face or finger enrolled on the device, not specifically the Kindred user | **Founder decision needed:** whether agencies can turn biometric unlock off for their organization (an organization setting). Proposed default: allowed, with an agency policy switch to disable it. |
+| 5 | Shared or agency-owned devices | Device biometrics accept **any** face or finger enrolled on the device, not specifically the Kindred user | **Decided 2026-10-17:** agencies have an organization setting to disable biometric unlock. See "Founder decision" below. |
 | 6 | Passkeys preferred for MFA (Section 6a) | Passkeys also use Face ID or Touch ID, but are verified by the server | Design option for Phase 2: compare local biometric unlock (this ADR) with Cognito passkeys. A passkey is server-verified and phishing-resistant, so it could also serve as an MFA factor. Decided by ADR in Phase 2. |
 | 7 | Offline drafts key: hardware-backed and protected by "device passcode or biometrics", plus a server lease (Section 4) | Two biometric-protected keys could become confused | Kept separate. Unlocking the session never extends or replaces the offline lease. |
 | 8 | 5-minute app lock (decision 4) | The approved rule does not say how the lock is lifted | Biometrics, where enrolled, lift the app lock; otherwise the device passcode or a full sign-in, per the Phase 2 design. |
 
 No conflict was found with the requirement that the API never sees passwords, with server-side
 authorization, or with tokens carrying identity only.
+
+## Founder decision: organization biometric policy (2026-10-17)
+
+1. **Optional, never required.** Biometric unlock is an individual choice. No screen, workflow or policy
+   may require it to access Kindred.
+2. **Organization administrators may disable it** for their organization. The setting is part of
+   organization settings, gated by the existing `organization.manage` permission (held by the
+   Organization Administrator). No new permission is added, and no role gains one.
+3. **An organization prohibition overrides the individual's preference.** A user's own opt-in has no
+   effect while their organization disables biometric unlock.
+4. **A secure non-biometric method always remains.** When biometric unlock is disabled or unavailable,
+   the user continues with the supported non-biometric method: the standard Cognito sign-in with MFA,
+   and the non-biometric way of lifting the app lock defined in the Phase 2 design.
+5. **Device-native biometrics only.** Kindred uses the platform's Face ID, Touch ID or Android Class 3
+   biometrics and never collects, receives or stores biometric templates or data.
+6. **Disabling removes the capability, not the session.** When a user turns it off, or their
+   organization does, the app removes the biometric gate: it deletes the biometric-bound copy of the
+   reauthentication credential and keeps the session only through the ordinary hardware-protected
+   secure storage (never an unprotected token). Otherwise valid sessions continue until their normal
+   expiry. The next app-lock unlock or reauthentication uses the non-biometric method.
+7. Recorded in this ADR, the requirement change log, the traceability file (REQ-AUTH-017 to
+   REQ-AUTH-030) and the feature matrix.
+
+### How the policy reaches the device
+
+The organization setting travels in the user's server-side access context, which the app already
+refreshes on foreground, after any 403 and on token refresh (Section 3). Changing the setting is audited
+as an organization-settings change. The app applies a prohibition on its next access-context refresh.
+
+### Points flagged for confirmation (engineering decisions applied, not silently)
+
+| # | Point | Applied | Why |
+| --- | --- | --- | --- |
+| A | **A user who belongs to several organizations.** Biometric unlock opens the app session, which spans every organization the user can switch to, so it cannot be allowed for one organization and blocked for another. | **Most restrictive wins:** if any organization in which the user has an active membership disables biometric unlock, it is disabled for that user. | Follows rule 3: no organization's prohibition can be bypassed by a user's membership elsewhere. |
+| B | **Enforcement limits.** A local biometric check happens only on the device, so the server cannot observe it. | The server delivers the policy and the app enforces it. A modified app that ignored the policy is covered by device-integrity attestation (decisions 99 and 104), which restricts modified apps. A later Cognito passkey design (point 6 above) would make the check server-verifiable. | Stated so the control is not overstated. |
+| C | **Timing.** A prohibition applies on the device's next access-context refresh, not instantly on a phone that is offline. | Accepted, as for other client-side settings; server authorization is unaffected and still checked on every request. | Rule 6 asks to keep valid sessions; this avoids forcing sign-outs. |
 
 ## Verification before the design is frozen (Phase 2)
 
@@ -67,6 +104,7 @@ authorization, or with tokens carrying identity only.
 
 ## Consequences
 
-- REQ-AUTH-017 to REQ-AUTH-025 are Planned for Phase 2 (B2), with tests named in that phase.
-- The Section 7 feature matrix gains a row for optional biometric unlock (no permission; self-service).
+- REQ-AUTH-017 to REQ-AUTH-030 are Planned for Phase 2 (B2), with tests named in that phase.
+- The Section 7 feature matrix gains a row for optional biometric unlock (self-service, subject to the
+  organization policy) and the organization policy setting (`organization.manage`).
 - Milestone 1 is unchanged.

@@ -218,15 +218,20 @@ Section 8.
 | REQ-AUTH-014 | The authorization test matrix is generated from the catalog and role matrix; a permission without a test fails the build | §6a, decision 65 | 2 / B4 |  | Planned |  |
 | REQ-AUTH-015 | Access lifecycle tests: removal, disablement, role change, old sessions, removal during a shift, assignment, consent, offline, reviewer, originals, cross-organization | §6a | 2+ |  | Planned |  |
 | REQ-AUTH-016 | Only sign-in and consent-link routes are reachable without a signed-in user | §6a | 2, 7c |  | Planned |  |
-| REQ-AUTH-017 | Optional biometric authentication for returning users: Face ID and Touch ID on iOS, strong (Class 3) biometrics on Android | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-017 | Optional biometric authentication for returning users: device-native Face ID and Touch ID on iOS, strong (Class 3) biometrics on Android | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-018 | Biometric enrollment is offered only after a successful standard sign-in | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-019 | Biometrics unlock an eligible authenticated session or release a protected reauthentication credential, then the normal Cognito refresh applies | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
-| REQ-AUTH-020 | An accessible alternative sign-in is always available | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
-| REQ-AUTH-021 | No raw biometric data, no stored passwords for replay, and no unprotected tokens | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-020 | A secure, supported, accessible non-biometric sign-in and unlock method always remains available, including whenever biometric unlock is disabled or unavailable | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-021 | Device-native biometrics only: Kindred never collects or stores biometric templates or data, passwords for replay, or unprotected tokens | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-022 | Biometric use respects Cognito, MFA, session expiry (including the 30-day full sign-in), server-side authorization, revocation and device security; it never satisfies step-up MFA | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-023 | Users can disable biometric access | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 | REQ-AUTH-024 | Reauthentication is required when device biometric enrollment changes or the protected credential is invalidated | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
-| REQ-AUTH-025 | Biometric enrollment is unavailable on devices that fail integrity attestation; agency policy control pending founder decision (ADR 0028) | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-025 | Biometric enrollment is unavailable on devices that fail integrity attestation | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-026 | Biometric unlock is optional for each user and is never required to access Kindred | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-027 | Organization administrators can disable biometric unlock for their organization, as an organization setting gated by the existing organization.manage permission; the change is audited | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-028 | An organization prohibition overrides the user's preference; for a user in several organizations the most restrictive setting applies (ADR 0028, point A) | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-029 | Disabling biometric unlock (by the user or the organization) removes the biometric gate and its credential copy without ending otherwise valid sessions | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
+| REQ-AUTH-030 | The organization policy reaches devices through the server-side access context and is applied on the next refresh | Founder 2026-10-17 (requirement-changes.md) | 2 / B2 | ADR 0028 | Planned |  |
 
 ## Permissions (Section 6)
 
