@@ -43,7 +43,7 @@ export const type = {
   wordmark: textStyle(fontSize.wordmark, weight.regular),
   tagline: textStyle(fontSize.tagline, weight.regular),
   body: textStyle(fontSize.body, weight.regular),
-  label: textStyle(fontSize.body, weight.medium),
+  label: textStyle(fontSize.label, weight.regular),
   button: textStyle(fontSize.button, weight.medium),
-  link: textStyle(fontSize.body, weight.regular),
+  link: textStyle(fontSize.link, weight.regular),
 } as const;

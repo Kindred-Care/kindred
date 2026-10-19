@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, useWindowDimensions, View } from 'react-native';
 
 import { colors, space, type, wordmarkMaxScale } from '@/design/theme';
 
@@ -17,6 +17,11 @@ type Props = {
  * the tagline scales fully, wraps and is never truncated.
  */
 export function Brand({ color = colors.textPrimary }: Props) {
+  // Android's shrink-to-fit draws the 64 pt wordmark about 2% small even when it fits, which puts it
+  // outside the Figma tolerance. At the default text size the 226 pt wordmark always fits a phone's
+  // width, so shrinking is only switched on when the system text size is enlarged.
+  const { fontScale } = useWindowDimensions();
+
   return (
     <View style={styles.brand}>
       <Text
@@ -24,7 +29,7 @@ export function Brand({ color = colors.textPrimary }: Props) {
         style={[styles.wordmark, { color }]}
         maxFontSizeMultiplier={wordmarkMaxScale}
         numberOfLines={1}
-        adjustsFontSizeToFit
+        adjustsFontSizeToFit={fontScale > 1}
         testID="brand-wordmark"
       >
         Kindred
@@ -39,7 +44,6 @@ export function Brand({ color = colors.textPrimary }: Props) {
 const styles = StyleSheet.create({
   brand: {
     alignItems: 'center',
-    gap: space.brandGap,
     alignSelf: 'stretch',
   },
   wordmark: {
@@ -47,8 +51,10 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     alignSelf: 'stretch',
   },
+  // A margin rather than a gap: the frame's spacing is slightly negative between the two line boxes.
   tagline: {
     ...type.tagline,
+    marginTop: space.brandGap,
     textAlign: 'center',
   },
 });

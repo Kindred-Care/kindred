@@ -126,20 +126,25 @@ B2 is resolved by the approved border (section 6a).
 Where the Figma frame defines a position, size or gap, the Figma value wins; these defaults apply only
 where the handoff gives none. The frame exports in section 6c let the build read those Figma values.
 
+The frame exports arrived on 2026-10-18 (`docs/acceptance/m1/figma/`). Rows marked **From the frame**
+now carry values measured from them; the comparison is in `docs/acceptance/m1/figma/README.md`. The
+label and wordmark text properties were read from Figma by the founder on 2026-10-18. The link is
+not underlined, as confirmed by the founder.
+
 | Item | Default | Why |
 | --- | --- | --- |
-| Field labels | "Username:" and "Password:" as in Figma, Inter Medium 16, Charcoal (12.94:1 on Warm White), unless the frame specifies otherwise | Readable, distinct from typed text |
-| Wordmark and tagline on Log In | Sizes and gaps read from the Figma frame (P1); until then the splash values (64 and 24) | Same branding as the splash |
-| When labels stack above their fields | Stack when the label and a field of at least 160 pt no longer fit on one line within the margins, which covers both enlarged text and narrow screens | Prevents clipping (criterion 4) without changing the reference layout |
+| Field labels | **Approved (Figma text property, founder 2026-10-18):** "Username:" Inter Regular 24, letter spacing 0%, `#2F2F2F`; "Password:" in the same style. Glyphs at x 32. *Superseded default: Inter Medium 16* | Figma |
+| Wordmark and tagline on Log In | **From the frame:** 64 and 24 as on the splash; wordmark glyphs at y 114 on Log In and y 321 on the splash; tagline glyphs 18 pt below the wordmark baseline; wordmark Inter Regular 64 with letter spacing 0% (Figma text property, founder 2026-10-18) | Frame export |
+| When labels stack above their fields | Stack when the label, an 8 pt gap and a field of at least 160 pt no longer fit on one line within the margins, which covers both enlarged text and narrow screens. Below the frame's 199 pt, both fields shrink together first | Prevents clipping (criterion 4) without changing the reference layout |
 | Typed text | Inter Regular 16 (Body), Charcoal (13.39:1 on White); field height 14 + 24 + 14 ≈ 52 pt (at least 48 pt) | Body style |
 | Placeholder text inside fields | None; the visible label identifies the field | Avoids low-contrast hint text |
 | Password field | Masked; no show-password control in Milestone 1 | Static shell |
-| "Forgot your password?" | Inter Regular 16, Charcoal, underlined, 48 pt touch target | Terracotta text would be 3.60:1 and fail |
+| "Forgot your password?" | **From the frame:** Inter Regular 16, Charcoal, **not underlined**, centred; 48 pt touch target kept (invisible). *Superseded default: underlined* | Frame export; Terracotta text would be 3.60:1 and fail |
 | Focus indicator on fields | **Approved:** on both fields the border thickens from 1 pt `#767676` to 2 pt solid **`#A94F32`** (5.27:1 on Warm White, 5.45:1 on White); White fill and 12 pt radius unchanged. The change in thickness, not the colour alone, makes focus visible against the grey resting border (section 6a). This orange outline is intentional design | Founder approval 2026-10-17 (thickness); colour set by the founder 2026-10-18, superseding Terracotta `#C96A4A`; WCAG 2.4.7 and 1.4.11 |
 | Pressed button | Fill darkened about 10% | Feedback |
-| Side margins | 24 pt each side, so content is 354 pt wide in a 402 frame | Matches the 24 pt padding rhythm |
-| Spacing and composition | Taken from the Figma frame (founder: preserve the existing spacing). Fallback only if a gap cannot be read from the frame: 16 pt between rows, 24 pt before the button, 16 pt before the link, 12 pt between a label and its field | 8 pt grid |
-| Vertical placement | Content centred in the safe area and scrollable when it does not fit | Large text and small phones |
+| Side margins | **From the frame:** labels start at x 32 (30 pt margin), fields end at x 371 (31 pt margin). *Superseded default: 24 pt* | Frame export |
+| Spacing and composition | **From the frame:** fields 199 × 52 at y 330 and 389 (7 pt apart); compact Log In button 107 × 52, centred, 40 pt below the Password field; link glyphs at y 554 | Frame export |
+| Vertical placement | **From the frame:** content placed from the top of the screen at the frame's positions, never above the safe area, and scrollable when large text makes it taller than the screen. *Superseded default: centred* | Frame export; large text and small phones |
 | Line heights | 1.2× for 20 pt and larger; 1.5× for 16 pt and smaller | Common readable defaults |
 
 ## 4. Implementation rules (from the founder's handoff)

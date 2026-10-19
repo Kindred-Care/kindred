@@ -1,8 +1,8 @@
 import { fireEvent, render, screen } from '@testing-library/react-native';
 import { StyleSheet } from 'react-native';
 
-import { colors, size, space, touchTarget, wordmarkMaxScale } from '@/design/theme';
-import { FIELD_MIN_HEIGHT, shouldStackLabels } from '../components/LabeledTextField';
+import { colors, size, space, touchTarget, type, wordmarkMaxScale } from '@/design/theme';
+import { FIELD_MIN_HEIGHT, fieldWidthFor, shouldStackLabels } from '../components/LabeledTextField';
 import { LogInScreen } from '../screens/LogInScreen';
 
 const style = (node: { props: { style?: unknown } }) =>
@@ -20,8 +20,8 @@ async function measure(formWidth: number, labelWidth: number) {
   await fireEvent(screen.getByTestId('login-measure-password', hidden), 'layout', layout(labelWidth - 2));
 }
 
-// 390 pt screen minus the 24 pt margins on each side.
-const CONTENT_390 = 390 - 2 * space.screenMargin;
+// 390 pt screen minus the side margins.
+const CONTENT_390 = 390 - space.screenMarginStart - space.screenMarginEnd;
 
 describe('LogInScreen', () => {
   it('REQ-MOB-002 every control has a screen reader label and role', async () => {
@@ -79,6 +79,21 @@ describe('LogInScreen', () => {
     expect(style(screen.getByTestId('login-username-row')).flexDirection).toBe('row');
   });
 
+  it('REQ-MOB-003 both fields share the Figma width, giving way only on narrow screens', async () => {
+    await render(<LogInScreen />);
+    await measure(CONTENT_390, 122);
+    expect(style(screen.getByLabelText('Username')).width).toBe(size.fieldWidth);
+    expect(style(screen.getByLabelText('Password')).width).toBe(size.fieldWidth);
+
+    // Narrower: both shrink together (the measured labels differ by 2 pt, the widths do not).
+    await measure(300, 100);
+    const narrow = 300 - 100 - space.label;
+    expect(style(screen.getByLabelText('Username')).width).toBe(narrow);
+    expect(style(screen.getByLabelText('Password')).width).toBe(narrow);
+    expect(fieldWidthFor(100, 0)).toBe(size.fieldWidth);
+    expect(fieldWidthFor(200, 300)).toBe(size.minFieldWidth);
+  });
+
   it('REQ-MOB-002 the stacking rule follows the design brief default', () => {
     const room = CONTENT_390 - space.label - size.minFieldWidth;
     expect(shouldStackLabels(room, CONTENT_390)).toBe(false);
@@ -133,6 +148,27 @@ describe('LogInScreen', () => {
     expect(FIELD_MIN_HEIGHT).toBe(52);
     expect(style(screen.getByLabelText('Username')).minHeight).toBe(FIELD_MIN_HEIGHT);
     expect(style(screen.getByLabelText('Password')).minHeight).toBe(FIELD_MIN_HEIGHT);
+  });
+
+  it('REQ-MOB-003 matches the Figma frame: compact centred button, 199 pt fields, Regular 24 labels, plain link', async () => {
+    await render(<LogInScreen />);
+
+    const button = style(screen.getByTestId('login-submit'));
+    expect(button.alignSelf).toBe('center');
+    expect(button.width).toBeUndefined();
+    expect(button.paddingHorizontal).toBe(space.controlPaddingX);
+
+    const field = style(screen.getByLabelText('Username'));
+    expect(field.width).toBe(size.fieldWidth);
+    expect(style(screen.getByTestId('login-username-row')).justifyContent).toBe('space-between');
+
+    const label = style(screen.getAllByText('Username:', hidden)[0]);
+    expect(label.fontFamily).toBe('Inter_400Regular');
+    expect(label.fontSize).toBe(type.label.fontSize);
+
+    const link = style(screen.getByText('Forgot your password?'));
+    expect(link.textDecorationLine).toBeUndefined();
+    expect(link.fontFamily).toBe('Inter_400Regular');
   });
 
   it('REQ-MOB-003 controls use the approved colours, including the B1 and B2 corrections', async () => {
