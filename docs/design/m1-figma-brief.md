@@ -114,7 +114,7 @@ touch target. B1 is resolved by the approved fill (section 6a).
 | Property | Value |
 | --- | --- |
 | Fill | White `#FFFFFF` |
-| Border | **`#767676`**, 1 px, inside stroke (approved correction; the original Figma value was `#E5E7EB`). Focused: 2 pt |
+| Border | **`#767676`**, 1 px, inside stroke (approved correction; the original Figma value was `#E5E7EB`). Focused: 2 pt solid **`#A94F32`** (founder, 2026-10-18) |
 | Corner radius | 12 |
 | Padding | 24 horizontal, 14 vertical |
 | Auto-layout gap | 10 |
@@ -135,7 +135,7 @@ where the handoff gives none. The frame exports in section 6c let the build read
 | Placeholder text inside fields | None; the visible label identifies the field | Avoids low-contrast hint text |
 | Password field | Masked; no show-password control in Milestone 1 | Static shell |
 | "Forgot your password?" | Inter Regular 16, Charcoal, underlined, 48 pt touch target | Terracotta text would be 3.60:1 and fail |
-| Focus indicator on fields | **Approved:** border thickens from 1 pt to 2 pt and turns Terracotta (3.60:1 on Warm White). The change in thickness, not the colour alone, makes focus visible against the grey resting border (section 6a) | Founder approval 2026-10-17; WCAG 2.4.7 and 1.4.11 |
+| Focus indicator on fields | **Approved:** on both fields the border thickens from 1 pt `#767676` to 2 pt solid **`#A94F32`** (5.27:1 on Warm White, 5.45:1 on White); White fill and 12 pt radius unchanged. The change in thickness, not the colour alone, makes focus visible against the grey resting border (section 6a). This orange outline is intentional design | Founder approval 2026-10-17 (thickness); colour set by the founder 2026-10-18, superseding Terracotta `#C96A4A`; WCAG 2.4.7 and 1.4.11 |
 | Pressed button | Fill darkened about 10% | Feedback |
 | Side margins | 24 pt each side, so content is 354 pt wide in a 402 frame | Matches the 24 pt padding rhythm |
 | Spacing and composition | Taken from the Figma frame (founder: preserve the existing spacing). Fallback only if a gap cannot be read from the frame: 16 pt between rows, 24 pt before the button, 16 pt before the link, 12 pt between a label and its field | 8 pt grid |
@@ -197,7 +197,8 @@ authorizes implementation.
 | `#A94F32` button against the Warm White `#FCFBF8` page | 5.27:1 | 3:1 (non-text) | Pass |
 
 - **Brand Terracotta `#C96A4A` stays the primary brand colour.** `#A94F32` is an accessibility variant
-  used only as the fill of primary buttons that carry white text.
+  used as the fill of primary buttons that carry white text and, by the founder's decision of
+  2026-10-18, as the 2 pt border of a focused field.
 - Approved tokens: `color.brand.terracotta` stays `#C96A4A`, Kindred's primary brand colour;
   `color.brand.terracottaButton` `#A94F32` is the accessible button variant, not a replacement for the
   brand colour; `color.action.primary` points to `color.brand.terracottaButton`.
@@ -218,7 +219,7 @@ authorizes implementation.
 
 | Concern | Finding | Proposed handling |
 | --- | --- | --- |
-| **Focus indicator on fields** | Against a `#767676` resting border, a Terracotta focus border differs by only 1.22:1 (`#C96A4A`) or 1.20:1 (`#A94F32`), so a colour change alone would hardly show focus | Show focus by **thickening the border from 1 pt to 2 pt** and turning it Terracotta. The thickness change satisfies WCAG 2.4.7 (Focus Visible) at AA. The stricter AAA focus-appearance criterion is not required for V1 |
+| **Focus indicator on fields** | Against a `#767676` resting border, a Terracotta focus border differs by only 1.22:1 (`#C96A4A`) or 1.20:1 (`#A94F32`), so a colour change alone would hardly show focus | Show focus by **thickening the border from 1 pt to 2 pt** and turning it `#A94F32` (founder, 2026-10-18; originally Terracotta). The thickness change satisfies WCAG 2.4.7 (Focus Visible) at AA. The stricter AAA focus-appearance criterion is not required for V1 |
 | Pressed button state | Darkening `#A94F32` further only raises the white text contrast | No concern |
 | Disabled button | Not used in Milestone 1 (the button is always enabled) | When added later, it must stay distinguishable without relying on colour alone |
 | Colour-vision differences | The button and border rely on lightness contrast, not hue, so they hold for common colour-vision deficiencies | No concern |

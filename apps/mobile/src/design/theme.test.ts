@@ -24,10 +24,11 @@ describe('design tokens', () => {
   });
 
   it('REQ-PLAT-017 the approved accessibility corrections are the ones in use', () => {
-    // B1: buttons use the accessible variant; Terracotta itself stays the brand colour (focus border).
+    // B1: buttons use the accessible variant; Terracotta itself stays the brand colour.
     expect(colors.actionPrimary).toBe(tokens.color.brand.terracottaButton);
     expect(colors.actionPrimary).not.toBe(tokens.color.brand.terracotta);
-    expect(colors.borderFocus).toBe(tokens.color.brand.terracotta);
+    // A focused field's border is the same #A94F32 (founder decision 2026-10-18).
+    expect(colors.borderFocus).toBe(tokens.color.brand.terracottaButton);
     // B2: fields use the corrected border, not the original Figma border.
     expect(colors.borderInput).toBe(tokens.color.border.input);
     expect(colors.borderInput).not.toBe(tokens.color.brand.inputBorder);

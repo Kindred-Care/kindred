@@ -29,7 +29,7 @@
 ## Current values (2026-10-17)
 
 The approved brand colours, the approved accessibility corrections (B1 `#A94F32` button fill, B2
-`#767676` field border, 2 pt focus border), the Inter type scale and the approved control specification
+`#767676` field border, 2 pt focus border in `#A94F32` as set by the founder on 2026-10-18), the Inter type scale and the approved control specification
 are `approved`. Values the handoff does not give (side margins, the gaps between rows, the gap from the
 tagline to the form, the pressed fill, the link colour, line heights, the label-stacking width, the
 wordmark's 1.5x cap and the splash duration) are `default`, as listed in the design brief. Every declared

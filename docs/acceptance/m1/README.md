@@ -159,10 +159,10 @@ Android 14 and later scale large text non-linearly, so at the 200% setting the 1
 
 Contrast: all 11 declared pairs pass WCAG 2.2 AA using approved values (`npm run check:tokens`):
 Charcoal on Warm White 12.94:1, typed text on White 13.39:1, white on the `#A94F32` button 5.45:1, the
-field border 4.39:1 and 4.54:1, the focus border 3.60:1 and 3.72:1, the button against the page 5.27:1.
+field border 4.39:1 and 4.54:1, the focus border `#A94F32` 5.27:1 and 5.45:1 (set by the founder 2026-10-18). On the emulator, moving keyboard focus to Username with the Tab key drew a 2 dp border whose pixels are exactly `#A94F32`, while Password kept its 1 dp `#767676` border ([c4-android-login-focused.png](c4-android-login-focused.png)), the button against the page 5.27:1.
 
 Not captured on the emulator: typing into a focused field. The emulator's keyboard opened its
-handwriting tutorial over the app, so those two captures were discarded. Focus (2 pt Terracotta border
+handwriting tutorial over the app, so those two captures were discarded. Focus (2 pt `#A94F32` border on both fields
 at an unchanged height), masking and typing are covered by `LogInScreen.test.tsx`.
 
 **Result (Android emulator half): passed.** The iOS Dynamic Type check is **Blocked** until the iOS
