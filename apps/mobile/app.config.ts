@@ -23,6 +23,9 @@ const config: ExpoConfig = {
   ios: {
     bundleIdentifier,
     supportsTablet: false,
+    // Root view behind the splash and Log In (expo-system-ui). Unset, it is painted white, which showed
+    // for a frame between the launch screen and the splash.
+    backgroundColor: splashBackground,
   },
   android: {
     package: bundleIdentifier,
@@ -32,6 +35,8 @@ const config: ExpoConfig = {
     'expo-router',
     'expo-dev-client',
     'expo-font',
+    // Before expo-splash-screen, so it runs after that plugin's storyboard changes (see the plugin).
+    ['./plugins/withIosLaunchBackground', { backgroundColor: splashBackground }],
     ['expo-splash-screen', { backgroundColor: splashBackground }],
   ],
   experiments: {

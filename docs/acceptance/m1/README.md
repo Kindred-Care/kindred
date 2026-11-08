@@ -4,7 +4,7 @@ Evidence for the Section 10 acceptance criteria, collected as each check runs. O
 here. Results are reported exactly as observed: a check that could not run is listed as Blocked or Not
 yet run, never as Passed.
 
-## Status of all 15 criteria (updated 2026-10-17, after the approved splash and Log In were built)
+## Status of all 15 criteria (updated 2026-11-07, after the iOS release-build and accessibility checks on the Mac)
 
 Status values: **Passed** (verified with the evidence shown), **Partial** (part verified, the rest named),
 **Provisional** (built, but acceptance needs a named input: placeholders, or a comparison not yet possible), **Blocked** (cannot complete until a named prerequisite is met).
@@ -12,9 +12,9 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | # | Criterion | Status | Evidence |
 | --- | --- | --- | --- |
 | 1 | `docker compose up` plus one command starts PostgreSQL and the API; health 200 with a database check | **Passed** (Windows, recorded; Linux, CI smoke step on PR #2) | [c1-compose-run.txt](c1-compose-run.txt), [github-ci-evidence.md](github-ci-evidence.md) |
-| 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator re-run on the approved design and passed (release build: 0 error lines in 10 of 10 cold starts; no JavaScript errors or warnings in any run; one intermittent native warning in development builds only, explained below); iOS simulator **Blocked** (needs the Mac) | Android section below |
-| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Partial**: **Android portion Passed** (2026-10-18): every element within ±2 pt at 402 pt (largest 1.7) and at 390 pt (largest 2.0, via the approved 402 → 390 pt reference mapping); colours and typography exact; no inline hex. **Overall pending** the iOS verification on the Mac | [figma/README.md](figma/README.md) |
-| 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android re-run on the approved design and passed (approved values; all 11 contrast pairs AA); iOS Dynamic Type **Blocked** | Android section below |
+| 2 | Splash then Log In, no console errors, on an iOS simulator and an Android emulator | **Partial**: Android emulator re-run on the approved design and passed (release build: 0 error lines in 10 of 10 cold starts; no JavaScript errors or warnings in any run; one intermittent native warning in development builds only, explained below); iOS simulator (development build): the white native launch screen found on 2026-10-19 was **fixed and re-verified on 2026-10-20** (Warm White in 4 of 4 normal cold starts); no JavaScript errors or warnings and no Kindred error lines in any of 10 cold starts. iOS **release build** (2026-10-30, Metro stopped): Log In reached in 10 of 10 cold starts, no JavaScript errors, no Kindred error lines, no black screen. One release run showed a single pure-white frame between the launch screen and the splash; cause found and **fixed on 2026-11-07** (iOS root-view background set to Warm White), after which the release build passed **10 of 10** cold starts with no white or black frame in 220 frames. The 2026-10-20 development-build black screen was not reproduced in 25 later cold starts but is not explained. The evidence supports Passed; the criterion is marked Passed only on the founder's sign-off | Android and iOS sections below |
+| 3 | Splash and Log In match the Figma at 390 pt using tokens, no inline hex | **Passed** (2026-10-19): Android (2026-10-18) and iOS simulator portions both within ±2 pt at 402 pt (largest 1.7 on each) and at 390 pt (largest 2.0 on each, via the approved 402 → 390 pt reference mapping); colours exact; no inline hex | [figma/README.md](figma/README.md) |
+| 4 | Log In screen reader labels, 200% dynamic type without clipping, contrast | **Partial**: Android passed (all 11 contrast pairs AA). iOS: Larger Text at 235% passed (nothing clipped, labels stack, screen scrolls, wordmark capped); focus outline passed; screen reader labels and roles verified by the founder in Accessibility Inspector (2026-11-07); password masking confirmed. Every listed requirement now has evidence on both platforms; the criterion is marked Passed only on the founder's sign-off | Android and iOS sections below |
 | 5 | CI on every pull request runs every required check, security suite separate, all pass | **Passed** | [github-ci-evidence.md](github-ci-evidence.md) |
 | 6 | Every project has a passing unit test; a README gets a new developer running both apps in under 30 minutes | **Partial**: tests pass for every project; the timed walkthrough needs a developer other than the author | [local-full-run.txt](local-full-run.txt) |
 | 7 | No secrets in the repository; `.env.example` documents every variable; gitleaks | **Passed** (`secret-scan` on full history in CI; pre-commit hook) | [github-ci-evidence.md](github-ci-evidence.md) |
@@ -27,7 +27,7 @@ Status values: **Passed** (verified with the evidence shown), **Partial** (part 
 | 14 | Seed and dev scripts refuse outside local; seed data synthetic | **Passed** (`repo-checks` in CI) | [github-ci-evidence.md](github-ci-evidence.md) |
 | 15 | EAS development build on one physical iOS and one physical Android device | **Blocked**: no physical Android phone yet; Apple Developer enrollment paused; the EAS project is not yet created (needs `npx eas-cli login`) | — |
 
-**Summary:** 10 Passed (1, 5, 7 to 14), 4 Partial (2, 3, 4, 6), 1 Blocked (15).
+**Summary:** 11 Passed (1, 3, 5, 7 to 14), 3 Partial (2, 4, 6), 1 Blocked (15).
 The 10 Passed criteria come from earlier runs; this branch changes only the mobile screens, the design
 tokens and their generator, and CI re-runs every check on its pull request.
 Milestone 1 is not fully accepted until criterion 15 passes on both devices or the founder authorizes an
@@ -124,7 +124,7 @@ menu. It is not Kindred code. The only `ReactNativeJS` line in every run is the 
 
 **Result (Android emulator half): passed** for what a user runs (the release build: 0 errors in 10
 cold starts). The development-menu warning is recorded here, not hidden. The iOS simulator half is
-**Blocked**: it needs macOS.
+recorded in the iOS section below.
 
 ### Screen reader labels, 200% text and layout (criterion 4, Android emulator)
 
@@ -165,8 +165,7 @@ Not captured on the emulator: typing into a focused field. The emulator's keyboa
 handwriting tutorial over the app, so those two captures were discarded. Focus (2 pt `#A94F32` border on both fields
 at an unchanged height), masking and typing are covered by `LogInScreen.test.tsx`.
 
-**Result (Android emulator half): passed.** The iOS Dynamic Type check is **Blocked** until the iOS
-simulator run.
+**Result (Android emulator half): passed.** The iOS half is recorded in the iOS section below.
 
 ### Found and fixed during this run
 
@@ -175,9 +174,177 @@ simulator run.
 | Fields drew 48 dp tall on Android, not the specified 14 + 24 + 14 = 52 pt. Android's text input does not size itself from line height, so the 48 dp touch-target minimum set the height. That is outside the ±2 pt tolerance | The fields' minimum height is now 52 pt (`FIELD_MIN_HEIGHT`, tested) and was re-measured on the emulator at 52 dp |
 | Metro had been started with `CI=1`, which turns off file watching, so the app briefly ran stale code after that fix | Metro restarted with watching and a cleared cache before the captures above |
 
+## iOS simulator run (criteria 2, 3 and 4, iOS half) — 2026-10-19
+
+### Environment
+
+| Item | Value |
+| --- | --- |
+| Host | MacBook Pro (Intel, x86_64), macOS 26.7.1 |
+| Xcode | 26.6 (17F113); iOS 26.5 simulator runtime (23F77); CocoaPods 1.17.0 |
+| Node | 22.23.3 LTS, npm 10.9.9 (upgraded from 22.3.0, below Expo SDK 58's `^22.13.0`) |
+| Simulators | iPhone 17 Pro, 1206 × 2622 px = **402 × 874 pt** at 3×; iPhone 17e, 1170 × 2532 px = **390 × 844 pt** at 3× (same sizes as the handoff's iPhone 16 Pro and 16e) |
+| Build | Expo development build (`npx expo run:ios`, Debug) with Metro; the same binary (SHA-256 `20be6041…dc5b`) on both simulators ; rebuilt on 2026-10-20 for the launch-screen fix and re-verified on the iPhone 17 Pro |
+| Text size | `large`, the iOS default, unless stated |
+
+### Splash, then Log In (criterion 2, iOS simulator)
+
+Cold start from a terminated app on the iPhone 17 Pro, with screenshots taken back to back
+([c2-ios-0-native-launch.png](c2-ios-0-native-launch.png), [c2-ios-1-splash.png](c2-ios-1-splash.png),
+[c2-ios-2-login.png](c2-ios-2-login.png)):
+
+| Phase | Screen | Colour |
+| --- | --- | --- |
+| 1 | Native launch screen, then the development client loading the bundle from Metro; no artwork | **`#FFFFFF`** |
+| 2 | Kindred splash, wordmark and tagline in Inter, for about 1.5 s | `#FCFBF8` |
+| 3 | Log In | `#FCFBF8` |
+
+**Finding (2026-10-19): the native launch screen was white, not Warm White**
+([before the fix](c2-ios-0-native-launch-before-fix.png)). The generated
+`ios/Kindred/SplashScreen.storyboard` used `systemBackgroundColor` (white), although
+`SplashScreenBackground.colorset` correctly held `#FCFBF8`. In `expo-splash-screen` 58.0.10 (the newest
+58.x), the config plugin applies the named colour only when a splash image is configured; with no image it
+removes the image and leaves the template's white background. Android is unaffected.
+
+**Fix (2026-10-20, approved by the founder).** A project config plugin,
+[`apps/mobile/plugins/withIosLaunchBackground.js`](../../../apps/mobile/plugins/withIosLaunchBackground.js),
+listed before `expo-splash-screen` in `app.config.ts`, points the storyboard background at the
+`SplashScreenBackground` named colour (the Warm White token) and removes the unused system colour. It
+changes only the iOS launch storyboard; the in-app splash, Log In, typography and layout are untouched.
+After `expo prebuild` the only change in the storyboard was the background colour; unit test
+`withIosLaunchBackground.test.ts`.
+
+**Re-verification after the fix (2026-10-20).** Rebuilt development build, iPhone 17 Pro, 5 cold starts
+from a terminated app:
+
+| Run | Sequence | Error or fault lines | JavaScript errors or warnings |
+| --- | --- | --- | --- |
+| 1 | Previous session's Log In still showing for 10 frames, then a **black screen** for the rest of the capture, although JavaScript started (`Running "main"`) | 1 (UIKit focus notice) | 0 |
+| 2 ([c2-ios-app-log.txt](c2-ios-app-log.txt)) | Home screen → **Warm White launch screen** ([c2-ios-0-native-launch.png](c2-ios-0-native-launch.png)) → Log In | 1 (UIKit focus notice) | 0 |
+| 3 | Home → Warm White launch → splash → Log In | 3 (UIKit focus notice; a cancelled Bonjour connection of the development client) | 0 |
+| 4 | Home → Warm White launch → splash ([c2-ios-1-splash.png](c2-ios-1-splash.png)) → Log In ([c2-ios-2-login.png](c2-ios-2-login.png)) | 6 (UIKit focus notice; the development client's Metro discovery: a refused connection on port 8081, a cancelled Bonjour connection, a DNS query timer) | 0 |
+| 5 | Home → Warm White launch → the development client's launcher for one frame → Warm White → Log In | 1 (UIKit focus notice) | 0 |
+
+The launch screen samples `#FCFBF8` in every normal run, so there is no longer a white flash. None of the
+error-level lines comes from Kindred code: they are the UIKit notice and the development client finding
+Metro, which a release build does not have. Run 1 is not explained: the screenshots show black after
+JavaScript had started, and it did not happen again in runs 2 to 5. It came right after the development
+client had been re-pointed at Metro by a deep link, and the simulator was under heavy load, so a simulator
+display glitch is likely, but this is not proven.
+
+**Result (iOS simulator half): Partial.** Launch screen colour, navigation and console pass in 4 of 5
+development-build cold starts. Before this half is marked Passed: an iOS **release build** cold-started
+10 times, as was done on Android, to confirm there is no black screen without the development client.
+
+**Release build (2026-10-30).** `npx expo run:ios --configuration Release` for the simulator: JavaScript
+bundled into the app (`main.jsbundle`), no development client, **Metro stopped** before the runs. 10 cold
+starts from a terminated app on the iPhone 17 Pro, screenshots back to back (about one per second)
+([c2-ios-release-runs.txt](c2-ios-release-runs.txt), log of run 2:
+[c2-ios-release-app-log.txt](c2-ios-release-app-log.txt), Log In: [c2-ios-release-login.png](c2-ios-release-login.png)):
+
+| Check | Result |
+| --- | --- |
+| Reached Log In | **10 of 10**, within about 8 s of launch |
+| Native launch screen | Warm White `#FCFBF8` in 10 of 10 |
+| Black screen | **None** in 10 of 10 |
+| JavaScript log | Only the informational `Running "main"` in every run; no errors or warnings |
+| Error or fault lines | Every run: the UIKit `focusItemsInRect:` notice about React Native's scroll view; runs 1 and 3 also the system's `Failed to send CA Event for app launch measurements`. None from Kindred code |
+| White frame | **1 of 10** (run 1, the first launch after installing): one pure-white `#FFFFFF` frame between the Warm White launch screen and the Warm White splash ([before](c2-ios-release-white-frame-before.png), [white](c2-ios-release-white-frame.png), [after](c2-ios-release-white-frame-after.png)) |
+| Design | Splash and Log In measure exactly as the criterion 3 captures (every element at the same position to 0.1 pt); colours exact |
+
+**White frame: cause.** `expo-system-ui` sets the window and the React Native root view to a background
+colour from the app config (`ios.backgroundColor` or `backgroundColor`) at start-up. Kindred's config sets
+neither, so the module paints them pure white (the app log shows `found no value for key
+ExpoSystemUI.backgroundColor`). When the native launch screen is hidden a moment before React draws the
+splash, that white root view is visible for a frame. **Proposed fix (awaiting approval, not applied):** one
+line in `apps/mobile/app.config.ts`, `ios.backgroundColor` set to the Warm White token, with a unit test;
+then regenerate the iOS project, rebuild the release build and repeat the 10 cold starts. Applied on
+2026-11-07 after the founder's approval; results below.
+
+**Black screen (2026-10-20): not reproduced.** The raw frames and log of that run were in temporary storage
+and are no longer available. Reproduction was attempted by repeating its conditions (development build
+re-pointed at Metro by a deep link, then cold starts): 5 of 5 development cold starts
+([c2-ios-dev-black-screen-repro.txt](c2-ios-dev-black-screen-repro.txt)) and 10 of 10 release cold starts
+reached Log In with no black screen. It remains unexplained; a simulator display glitch under the heavy
+load of that session is the likeliest cause, but this is not proven. The development runs again showed the
+development client's own white window with its "Tools" button for one frame before Kindred drew (repro
+run 4); that window exists only in development builds.
+
+**Result (iOS simulator half), 2026-10-30: Partial.** Navigation, console and the launch screen colour pass
+in the release build in 10 of 10 cold starts. Open before it is marked Passed: the white frame (fix proposed)
+and, after the fix, a repeat of the 10 release cold starts.
+
+**Root-view fix and re-verification (2026-11-07).** `ios.backgroundColor` in `apps/mobile/app.config.ts` is
+now the Warm White token (unit test in `withIosLaunchBackground.test.ts`). After `expo prebuild` the
+generated `Info.plist` carries `RCTRootViewBackgroundColor = 4294769656` (`0xFFFCFBF8`); the launch
+storyboard is unchanged. Android is unaffected (an iOS-only key). Release build rebuilt and installed on the
+**iPhone 17** simulator (402 × 874 pt, the same size and scale as the iPhone 17 Pro), Metro stopped, 10 cold
+starts, run 1 being the first launch after installing
+([c2-ios-release-runs-after-fix.txt](c2-ios-release-runs-after-fix.txt), log of run 1:
+[c2-ios-release-app-log-after-fix.txt](c2-ios-release-app-log-after-fix.txt)):
+
+| Check | Result |
+| --- | --- |
+| Sequence | **10 of 10**: home screen → Warm White launch screen ([capture](c2-ios-release-after-fix-launch.png)) → Warm White splash ([capture](c2-ios-release-after-fix-splash.png)) → Log In ([capture](c2-ios-release-after-fix-login.png)) |
+| White or black frames | **None**: all 220 frames scanned; 0 mostly-white frames, no black screen |
+| JavaScript log | Only `Running "main"` in every run |
+| Error or fault lines | Every run: the UIKit `focusItemsInRect:` notice; runs 1 and 2 also the system's launch-analytics `Failed to send CA Event`. None from Kindred code |
+| Design | Splash and Log In within 0.4 pt of the criterion 3 measurements (for example the splash wordmark 88.0–313.3 × 321.7–370.3 against the frame's 88–314 × 321–370); colours exact |
+
+The screenshots are roughly 0.3 s apart (the 1.5 s splash spans 4 to 6 frames), so a flash shorter than that could be missed between
+samples; across the 10 runs none was caught, where before the fix 1 run in 10 caught one.
+
+**Result (iOS simulator half), 2026-11-07: the evidence supports Passed.** Release build: 10 of 10 cold
+starts with the correct colours throughout and no errors from Kindred, which matches the Android release
+evidence. Still recorded: the 2026-10-20 development-build black screen, unexplained, not seen again in 25
+cold starts (5 development, 20 release). Criterion 2 stays **Partial** until the founder signs off.
+
+### Visual match (criterion 3, iOS portion)
+
+Recorded in [figma/README.md](figma/README.md): every element within ±2 pt at 402 and 390 pt; colours exact.
+**Passed.**
+
+### Larger Text and focus (criterion 4, iOS simulator)
+
+iOS body text is 17 pt at the default size. `accessibility-extra-large` (40 pt, **235%**) is the first
+setting at or above 200%:
+
+| Check | Result |
+| --- | --- |
+| Nothing clipped at 235% | **Passed** ([c4-ios-login-text-235.png](c4-ios-login-text-235.png)) |
+| Labels stack above the fields | **Passed**: "Username:" and "Password:" above full-width fields |
+| Screen scrolls; whole form reachable | **Passed**: scrolled to the end, Log In and the wrapped "Forgot your password?" are fully visible ([c4-ios-login-text-235-scrolled.png](c4-ios-login-text-235-scrolled.png)) |
+| Wordmark caps at 1.5× and shrinks to fit | **Passed**: 325 pt wide at 235% and at the maximum size (225 pt at default) |
+| Focus: 2 pt `#A94F32` outline | **Passed**: Username focused draws 6 px = 2.00 pt of exactly `#A94F32`; Password keeps 1.00 pt `#767676` ([c4-ios-login-focused-235.png](c4-ios-login-focused-235.png)) |
+| Screen reader labels and roles | **Passed**, verified by the founder in Xcode's Accessibility Inspector on 2026-11-07 (iPhone 17 simulator, release build; table below). No Inspector screenshot was saved |
+| Password masked | **Passed**: a 10-character synthetic test string typed into Password shows as 10 dots while the field has focus, with no readable characters ([c4-ios-login-password-masked.png](c4-ios-login-password-masked.png)); the field sets `secureTextEntry` in `LogInScreen.tsx` |
+| Contrast | **Passed**: the 11 declared pairs pass WCAG 2.2 AA (`npm run check:tokens`), and the iOS captures read the exact token colours (criterion 3) |
+
+Accessibility Inspector, in navigation order (the simulator has no VoiceOver; the Inspector reports what
+VoiceOver reads):
+
+| # | Element | Label | Type or trait | Identifier |
+| --- | --- | --- | --- | --- |
+| 1 | Wordmark | Kindred | Header | — |
+| 2 | Tagline | Care for Every Chapter. | Text | — |
+| 3 | Username field | Username | Text field (`RCTUITextField`) | `login-username` |
+| 4 | Password field | Password | Text field (`RCTUITextField`) | `login-password` |
+| 5 | Button | Log In | Button | `login-submit` |
+| 6 | Link | Forgot your password? | Link | `login-forgot-password` |
+
+The visible "Username:" and "Password:" were not separate navigation stops, so they are not read twice. There
+is no "Log In" heading. The Inspector reported the password field's class rather than a "secure" trait, so
+masking is evidenced by the capture above, not by the Inspector.
+
+Beyond the criterion: at the maximum setting (`accessibility-extra-extra-extra-large`, about 310%) words
+too long for a line are broken: "Chapter." puts its full stop on a line of its own, and the "Username:"
+label breaks after "Userna" ([c4-ios-login-text-max.png](c4-ios-login-text-max.png)). That is above the
+200% the criterion requires; it is recorded for a later design decision, not as a failure.
+
 ## Criteria not covered by this run
 
 | Criterion | Status |
 | --- | --- |
-| 3 Visual match to Figma | **Partial.** Android portion Passed at 390 and 402 pt; overall pending iOS ([figma/README.md](figma/README.md)) |
+| 2 | **Partial** until the founder signs off: after the 2026-11-07 root-view fix the release build passes 10 of 10 cold starts with no white or black frame; the 2026-10-20 black screen is not reproduced and not explained |
+| 4 | **Partial** until the founder signs off; every listed requirement now has evidence on both platforms |
 | 15 Physical devices | **Blocked.** No physical Android phone yet; Apple Developer enrollment paused |

@@ -1,0 +1,24 @@
+
+> @kindred/mobile@0.1.0 start
+> expo start --dev-client --localhost
+
+Starting project at ~/Developer/kindred/apps/mobile
+React Compiler enabled
+Starting Metro Bundler
+
+Waiting on http://localhost:8081
+
+An update for expo is available: 58.0.14 → ~58.0.16
+2 other packages may need updating. Run npx expo install --check for details.
+Logs for your project will appear below.
+iOS Bundled 3031ms node_modules/expo-router/entry.js (1308 modules)
+iOS Bundled 73ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 417ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 77ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 115ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 148ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 157ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 398ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 106ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 345ms node_modules/expo-router/entry.js (1 module)
+iOS Bundled 261ms node_modules/expo-router/entry.js (1 module)

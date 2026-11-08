@@ -1,0 +1,456 @@
+# iOS app log, RELEASE build (bundled JavaScript, no development client, Metro stopped), cold start 2 of 10 on iPhone 17 Pro (iOS 26.5 simulator), 2026-10-30.
+# Captured with: xcrun simctl spawn <device> log stream --style compact --level debug --predicate 'process == "Kindred"'
+# Debug-level (Db) lines removed; home directory paths shortened to ~. Error-level lines: 1 (UIKit focus notice).
+getpwuid_r did not find a match for uid 501
+Filtering the log data using "process == "Kindred""
+Timestamp               Ty Process[PID:TID]
+    "en-001"
+) for key AppleLanguages in CFPrefsSource<0x600001704040> (Domain: Volatile, User: , ByHost: No, Container: , Contents Need Refresh: No)
+    "en-001"
+) for key NSLanguages in CFPrefsSource<0x600001704040> (Domain: Volatile, User: , ByHost: No, Container: , Contents Need Refresh: No)
+2026-10-30 00:55:07.619 Df Kindred[42950:cb385] (libMobileGestalt.dylib) No persisted cache on this platform.
+2026-10-30 00:55:07.620 Df Kindred[42950:cb3eb] [com.apple.xpc:connection] [0x1065048d0] activating connection: mach=true listener=false peer=false name=com.apple.cfprefsd.daemon
+2026-10-30 00:55:07.622 Df Kindred[42950:cb3ec] [com.apple.BoardServices:XPCErrors] [C:1] Alloc com.apple.frontboard.systemappservices
+2026-10-30 00:55:07.624 Df Kindred[42950:cb3ec] [com.apple.xpc:connection] [0x106204780] activating connection: mach=false listener=false peer=false name=(anonymous)
+	0   BaseBoard                           0x00007ff806ba6413 -[BSMachPortRight _initWithPort:type:owner:trace:] + 250
+	1   BaseBoard                           0x00007ff806ba854c -[BSMachPortTaskNameRight initWithPID:] + 275
+	2   BaseBoard                           0x00007ff806ba83e6 +[BSMachPortTaskNameRight taskNameForPID:] + 53
+	3   BaseBoard                           0x00007ff806bbe8aa +[BSProcessHandle processHandleForXPCConnection:] + 200
+	4   BoardServices                       0x00007ff80b4fb333 +[BSXPCServiceConnectionPeer peerOfConnection:] + 372
+	5   BoardServices                       0x00007ff80b53cd9b __55-[BSXPCServiceConnection _lock_activateNowOrWhenReady:]_block_invoke.235 + 137
+	6   BoardServices                       0x00007ff80b53161e __55-[BSXPCServiceConnectionMessage _actuallySendWithMode:]_block_invoke
+2026-10-30 00:55:07.643 A  Kindred[42950:cb3eb] (CoreFoundation) Loading Preferences From User Session CFPrefsD
+2026-10-30 00:55:07.646 Df Kindred[42950:cb3ea] [com.apple.UIKit:BackgroundTask] Creating new assertion because there is no existing background assertion.
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3ea] [com.apple.UIKit:BackgroundTask] Creating new background assertion
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3ea] [com.apple.UIKit:BackgroundTask] Created new background assertion <BKSProcessAssertion: 0x6000021116d0>
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3ea] [com.apple.runningboard:connection] Initializing connection
+2026-10-30 00:55:07.647 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason added: 10; deactivation reasons: 0 -> 1024; animating application lifecycle event: 0
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3ea] [com.apple.runningboard:process] Removing all cached process handles
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3eb] [com.apple.runningboard:connection] Sending handshake request attempt #1 to server
+2026-10-30 00:55:07.647 I  Kindred[42950:cb3ea] [com.apple.runningboard:assertion] Acquiring assertion: <RBSAssertionDescriptor| "Shared Background Assertion 0 for com.kindredcare.mobile" ID:(null) target:42950>
+2026-10-30 00:55:07.648 Df Kindred[42950:cb385] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.open
+2026-10-30 00:55:07.647 Df Kindred[42950:cb3eb] [com.apple.runningboard:connection] Creating connection to com.apple.runningboard
+2026-10-30 00:55:07.648 Df Kindred[42950:cb3eb] [com.apple.xpc:connection] [0x106504570] activating connection: mach=true listener=false peer=false name=com.apple.runningboard
+2026-10-30 00:55:07.648 Df Kindred[42950:cb385] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.workspace-service
+2026-10-30 00:55:07.649 Df Kindred[42950:cb385] [com.apple.FrontBoard:Common] FBSWorkspace registering source: com.apple.frontboard.systemappservices
+2026-10-30 00:55:07.650 A  Kindred[42950:cb3ef] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:33249-33244-1189 0>,
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:33249-33244-1186 0>
+)} lost:(null)>
+2026-10-30 00:55:07.651 Df Kindred[42950:cb3eb] [com.apple.runningboard:connection] Handshake succeeded
+2026-10-30 00:55:07.651 Df Kindred[42950:cb3eb] [com.apple.runningboard:connection] Identity resolved as app<com.kindredcare.mobile((null))>
+2026-10-30 00:55:07.653 Df Kindred[42950:cb3ea] [com.apple.UIKit:BackgroundTask] Incrementing reference count for background assertion <BKSProcessAssertion: 0x6000021116d0>
+2026-10-30 00:55:07.653 Df Kindred[42950:cb3ea] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x600001706000>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 33600 (elapsed = 0).
+2026-10-30 00:55:07.653 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UIApplicationSceneKeyboardSettings on FBSSceneSettings
+2026-10-30 00:55:07.653 Df Kindred[42950:cb385] [com.apple.FrontBoard:Common] FBSWorkspace connected to endpoint : <BSServiceConnectionEndpoint: 0x60000020c7a0; target: com.apple.frontboard.systemappservices; service: com.apple.frontboard.workspace-service>
+2026-10-30 00:55:07.654 Df Kindred[42950:cb385] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x600003004090 com.apple.frontboard.systemappservices> attempting immediate handshake from activate
+2026-10-30 00:55:07.654 Df Kindred[42950:cb385] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x600003004090 com.apple.frontboard.systemappservices> sent handshake
+2026-10-30 00:55:07.655 Df Kindred[42950:cb385] [com.apple.runningboard:general] Added observer for process assertions expiration warning: <_RBSExpirationWarningClient: 0x60000020ce40>
+2026-10-30 00:55:07.657 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneOcclusionSettings> on FBSSceneSettings
+2026-10-30 00:55:07.658 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneInterfaceProtectionSettings> on FBSSceneSettings
+2026-10-30 00:55:07.660 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferencesHostSettingsExtension on FBSSceneSettings
+2026-10-30 00:55:07.661 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneSafeAreaSettingsExtension on FBSSceneSettings
+2026-10-30 00:55:07.663 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferenceClientSettingsExtension on FBSSceneClientSettings
+2026-10-30 00:55:07.664 Df Kindred[42950:cb385] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x106405810> for initial
+2026-10-30 00:55:07.665 Df Kindred[42950:cb385] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x106405810> for CADisplay KVO
+2026-10-30 00:55:07.665 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UIHomeAffordanceHostSceneSettings> on FBSSceneSettings
+2026-10-30 00:55:07.666 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISystemShellSceneHostingEnvironmentSettings on FBSSceneSettings
+2026-10-30 00:55:07.667 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneRenderingEnvironmentSettings on FBSSceneSettings
+2026-10-30 00:55:07.667 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneRenderingEnvironmentClientSettings> on FBSSceneClientSettings
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600002c04900> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600002c04200> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [<null>]
+	Allow mixed   : 0 
+	Result        : [en]
+2026-10-30 00:55:07.668 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneTransitioningHostSettings> on FBSSceneSettings
+	Request       : InfoPlist type: loctable
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-30 00:55:07.669 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneFocusSystemSettings> on FBSSceneSettings
+2026-10-30 00:55:07.670 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationSettingsExtension on FBSSceneSettings
+2026-10-30 00:55:07.670 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationClientSettingsExtension on FBSSceneClientSettings
+2026-10-30 00:55:07.670 Df Kindred[42950:cb385] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 1, category name = (null)
+2026-10-30 00:55:07.671 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneWindowingControlClientSettings on FBSSceneClientSettings
+2026-10-30 00:55:07.671 Df Kindred[42950:cb385] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 0, category name = UICTContentSizeCategoryL
+2026-10-30 00:55:07.671 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingContentSizePreferenceClientSettings> on FBSSceneClientSettings
+2026-10-30 00:55:07.672 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneHostingTraitCollectionPropagationSettings on FBSSceneSettings
+2026-10-30 00:55:07.673 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationSettings> on FBSSceneSettings
+2026-10-30 00:55:07.674 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationClientSettings> on FBSSceneClientSettings
+2026-10-30 00:55:07.674 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingEventDeferringSettings> on FBSSceneSettings
+2026-10-30 00:55:07.675 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneSettings
+2026-10-30 00:55:07.676 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneClientSettings
+2026-10-30 00:55:07.677 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingViewControllerPreferencePropagationClientSettings> on FBSSceneClientSettings
+2026-10-30 00:55:07.677 Df Kindred[42950:cb3ea] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneZoomTransitionSettings> on FBSSceneSettings
+2026-10-30 00:55:07.678 Df Kindred[42950:cb3ec] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneSettingsCore on FBSSceneSettings
+2026-10-30 00:55:07.682 Df Kindred[42950:cb3ec] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneClientSettingsCore on FBSSceneClientSettings
+	Localizations : [English]
+	Dev language  : English
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [English]
+	Request       :  type: materialrecipe
+	Result        : platformContentThickLight~appletv.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, knowledgePlattersSheerDark.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, platformContentUltraThinLight.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resou<…>
+	Request       :  type: descendantrecipe
+	Result        : platformContentThickLightShadowed.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, modulesSheer.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, modulesBackgroundSheer.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeR<…>
+	Request       : platters type: descendantrecipe
+	Result        : None
+	Request       : platters type: materialrecipe
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platters.materialrecipe
+	Request       : platterFillLight type: descendantstyleset
+	Result        : None
+	Request       : platterFillLight type: visualstyleset
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platterFillLight.visualstyleset
+2026-10-30 00:55:07.690 Df Kindred[42950:cb385] [com.apple.dt.xctest:Default] Registering for test daemon availability notify post.
+2026-10-30 00:55:07.691 Df Kindred[42950:cb385] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-30 00:55:07.691 Df Kindred[42950:cb385] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-30 00:55:07.692 Df Kindred[42950:cb385] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-30 00:55:07.692 Df Kindred[42950:cb3ec] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneSettings setting counterpart class: UIApplicationSceneSettings
+2026-10-30 00:55:07.693 Df Kindred[42950:cb3ec] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneClientSettings setting counterpart class: UIApplicationSceneClientSettings
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, sq, en, uk, es_419, gu, zh_CN, kn, pa, es, is, sl, or, pt_BR, da, et, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, km, en_IN, ko, yue_CN, hy, mn, my, no, hu, zh_HK, ka, tr, pl, zh_TW, es_US, en_GB, vi, lv, lo, lt, ru, fr_CA, uz, fr, fi, id, nl, th, az, bn, ro, hr, hi, ca, hi_Latn]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+2026-10-30 00:55:07.694 Df Kindred[42950:cb3ec] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneTransitionContextCore on FBSSceneTransitionContext
+	Request       : emoji type: bitmap
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreEmoji.framework/emoji.bitmap
+2026-10-30 00:55:07.694 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason added: 11; deactivation reasons: 1024 -> 3072; animating application lifecycle event: 0
+2026-10-30 00:55:07.695 Df Kindred[42950:cb385] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:performFetchWithCompletionHandler:], but you still need to add "fetch" to the list of your supported UIBackgroundModes in your Info.plist.
+2026-10-30 00:55:07.695 Df Kindred[42950:cb385] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-30 00:55:07.696 Df Kindred[42950:cb385] (React) _setUpFeatureFlags called with release level 2
+2026-10-30 00:55:07.697 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason removed: 10; deactivation reasons: 3072 -> 2048; animating application lifecycle event: 0
+2026-10-30 00:55:07.699 I  Kindred[42950:cb3ec] [com.apple.FrontBoard:Common] [FBSScene] [(FBSceneManager):sceneID:com.kindredcare.mobile-default] Created client agent: <UIApplicationSceneClientAgent: 0x6000000189b0>
+2026-10-30 00:55:07.699 Df Kindred[42950:cb385] [com.apple.UIKit:EventBus] Event Timing Profile for Touch: not found, path="/System/Library/EventTimingProfiles/Sim.Touch.plist"
+2026-10-30 00:55:07.699 Df Kindred[42950:cb385] [com.apple.UIKit:EventBus] Event Timing Profile for Pencil: not found, path="/System/Library/EventTimingProfiles/Sim.Pencil.plist"
+2026-10-30 00:55:07.699 Df Kindred[42950:cb385] [com.apple.UIKit:UpdateScheduler] Selected display: name=LCD (PurpleMain), id=1
+2026-10-30 00:55:07.706 Df Kindred[42950:cb385] [com.apple.xpc:connection] [0x1062094f0] activating connection: mach=true listener=false peer=false name=com.apple.lsd.mapdb
+2026-10-30 00:55:07.708 I  Kindred[42950:cb385] [com.apple.launchservices:db] LaunchServices database schema version: 20971544
+2026-10-30 00:55:07.709 I  Kindred[42950:cb385] [com.apple.launchservices:datasep] application record search init. Node: <FSNode 0x60000022d920> { isDir = y, path = '~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app' } bundleID: (null) itemID: 0
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, en, uk, es_419, gu, zh_CN, kn, pa, es, sl, or, da, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, ko, no, hu, zh_HK, tr, pl, zh_TW, en_GB, vi, lt, ru, fr_CA, fr, fi, id, nl, th, pt, bn, ro, hr, hi, ca]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Localizable type: loctable
+	Result        : None
+	Request       : Localizable type: strings
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/en.lproj/Localizable.strings
+	Request       : Localizable type: stringsdict
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/en.lproj/Localizable.stringsdict
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-30 00:55:07.750 Df Kindred[42950:cb385] [com.apple.BoardServices:XPCErrors] [C:2] Alloc com.apple.backboard.hid-services.xpc
+2026-10-30 00:55:07.750 Df Kindred[42950:cb385] [com.apple.xpc:connection] [0x1065055f0] activating connection: mach=false listener=false peer=false name=(anonymous)
+	0   BaseBoard                           0x00007ff806ba6413 -[BSMachPortRight _initWithPort:type:owner:trace:] + 250
+	1   BaseBoard                           0x00007ff806ba854c -[BSMachPortTaskNameRight initWithPID:] + 275
+	2   BaseBoard                           0x00007ff806ba83e6 +[BSMachPortTaskNameRight taskNameForPID:] + 53
+	3   BaseBoard                           0x00007ff806bbe8aa +[BSProcessHandle processHandleForXPCConnection:] + 200
+	4   BoardServices                       0x00007ff80b4fb333 +[BSXPCServiceConnectionPeer peerOfConnection:] + 372
+	5   BoardServices                       0x00007ff80b53cd9b __55-[BSXPCServiceConnection _lock_activateNowOrWhenReady:]_block_invoke.235 + 137
+	6   BoardServices                       0x00007ff80b53161e __55-[BSXPCServiceConnectionMessage _actuallySendWithMode:]_block_invoke +
+2026-10-30 00:55:07.753 Df Kindred[42950:cb3ef] [com.apple.BackBoard:EventDelivery] BKSHIDEventDeliveryManager - connection activation
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; keyCommands: 34];
+}
+2026-10-30 00:55:07.756 I  Kindred[42950:cb385] [com.apple.runningboard:assertion] Acquiring assertion: <RBSAssertionDescriptor| "app_launch_measurement: pageins recording enabled" ID:(null) target:42950>
+2026-10-30 00:55:07.757 Df Kindred[42950:cb385] [com.apple.app_launch_measurement:ApplicationLaunch] alm_acquire_pageins_recording_assertion: acquired pageins recording assertion!
+2026-10-30 00:55:07.761 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason added: 5; deactivation reasons: 2048 -> 2080; animating application lifecycle event: 1
+2026-10-30 00:55:07.762 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Should send trait collection or coordinate space update, interface style 1 -> 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:07.764 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+    session = <UISceneSession: 0x6000021166c0; persistentIdentifier: 7BEA2D15-C762-47A7-AD9A-D63F81947702> {
+        configuration = <UISceneConfiguration: 0x600002116350; name: "Default Configuration">;
+    };
+    delegate = <SceneDelegate: 0x600000c16df0>;
+    effectiveGeometry = <UIWindowSceneGeometry: 0x600002116210; coordinateSpace.bounds: {{0, 0}, {402, 874}}; interfaceOrientation: portrait (1); isInteractivelyResizing: NO>;
+    screen = <UIScreen: 0x106405810; bounds: {{0, 0}, {402, 874}}; mode: <UIScreenMode: 0x6000002386e0; size = 1206.000000 x 2622.000000>>;
+}
+    settings = <UIApplicationSceneSettings: 0x600002129040> {
+        settings = <BSKeyedSettings: 0x600000c31fb0> {
+            displayConfiguration = <FBSDisplayConfiguration: 0x600003d000f0; Main; mode: "402x874@3x 60Hz p3 SDR">;
+            foreground = Yes;
+            frame = NSRect: {{0, 0}, {402, 874}};
+            interfaceOrientation = portrait (1);
+            interruptionPolicy = reconnect (2);
+            level = 1;
+            <SBSUIHomeScreenIconStyleSceneSettings> = <BSKeyedSettings: 0x600000c32040> {
+                iconStyleConfiguration = <SBSHomeScreenIconStyleConfiguration: 0x600000230660>;
+            };
+            <_UISceneTransitioningHostSettings> = <BSKeyedSettings:<…>
+2026-10-30 00:55:07.806 Df Kindred[42950:cb385] [com.apple.UIKit:HomeAffordanceObservation] Initializing: <_UIHomeAffordanceSceneNotifier: 0x600002900ee0>; with scene: <UIWindowScene: 0x1065083c0>
+2026-10-30 00:55:07.815 Df Kindred[42950:cb385] [com.apple.BacklightServices:scenes] 0x600000c176c0 setDelegate:<0x600000c1c450 _UIBacklightEnvironment> hasDelegate:YES for environment:sceneID:com.kindredcare.mobile-default
+2026-10-30 00:55:07.816 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:07.817 Df Kindred[42950:cb385] [com.apple.UIKit:EventDeferring] [0x60000292c7e0] Initialized with scene: <UIWindowScene: 0x1065083c0>; behavior: <_UIEventDeferringBehavior_iOS: 0x600000234d80>; availableForProcess: 1, systemShellManagesKeyboardFocus: 1
+2026-10-30 00:55:07.827 Df Kindred[42950:cb3ef] [com.apple.BackBoard:EventDelivery] BKSHIDEventObserver - connection activation
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x600002618000; process scope; status: target> was:none
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to LastOneWins
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Scene target of keyboard event deferring environment did change: 1; scene: UIWindowScene: 0x1065083c0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:EventDeferring] [0x60000292c7e0] Scene target of event deferring environments did update: scene: 0x1065083c0; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x1065083c0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Stack[KeyWindow] 0x600000c03a80: Taking no further action for migration from LastOneWins -> SystemShellManaged as there are no scenes
+2026-10-30 00:55:07.827 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to SystemShellManaged
+2026-10-30 00:55:07.828 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Key window needs update: 0; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x1065083c0; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x0; reason: UIWindowScene: 0x1065083c0: Window scene became target of keyboard environment
+2026-10-30 00:55:07.829 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:07.831 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:07.837 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+	Request       : main type: jsbundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/main.jsbundle
+	Request       : main type: jsbundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/main.jsbundle
+2026-10-30 00:55:07.857 Df Kindred[42950:cb385] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+2026-10-30 00:55:07.858 Df Kindred[42950:cb385] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    NSAllowsLocalNetworking = 1;
+    NSExceptionDomains =     {
+        "apple-mapkit.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.2";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "geo.apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "gs.apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecure
+	Request       : main type: jsbundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/main.jsbundle
+2026-10-30 00:55:07.924 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoModulesCoreJSLogger'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreenViewController type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/SplashScreenViewController.nib
+	Request       : EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView.nib
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/
+	Request       : EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/SplashScreen.storyboardc/EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView.nib
+	Request       : Assets type: car
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/Assets.car
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Assets type: car
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/BoundingPathData.bundle/Assets.car
+2026-10-30 00:55:07.952 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoDomWebViewModule'
+2026-10-30 00:55:07.960 Df Kindred[42950:cb385] [com.apple.UIKit:Orientation] <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702) Scene updated orientation preferences: none -> ( Pu )
+2026-10-30 00:55:07.972 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFetchModule'
+2026-10-30 00:55:07.972 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoAsset'
+2026-10-30 00:55:07.972 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExponentConstants'
+2026-10-30 00:55:07.973 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Key window API is scene-level: YES
+2026-10-30 00:55:07.973 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] UIWindowScene: 0x1065083c0: Window became key in scene: UIWindow: 0x106407d10; contextId: 0xE68FC33D: reason: UIWindowScene: 0x1065083c0: Window requested to become key in scene: 0x106407d10
+2026-10-30 00:55:07.973 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Key window needs update: 1; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x1065083c0; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x106407d10; reason: UIWindowScene: 0x1065083c0: Window requested to become key in scene: 0x106407d10
+2026-10-30 00:55:07.974 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Window did become application key: UIWindow: 0x106407d10; contextId: 0xE68FC33D; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-30 00:55:07.974 Df Kindred[42950:cb385] [com.apple.UIKit:EventDeferring] [0x60000292c7e0] Begin local event deferring requested for token: 0x6000026037e0; environments: 1; reason: UIWindowScene: 0x1065083c0: Begin event deferring in keyboardFocus for window: 0x106407d10
+    contentsMask: 0x2; deferringRules: [[42950-1]];
+}
+2026-10-30 00:55:07.978 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:07.979 Df Kindred[42950:cb3ed] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x600002618000; token: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default; status: ancestor> was:target
+2026-10-30 00:55:07.979 Df Kindred[42950:cb385] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+2026-10-30 00:55:07.979 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Ignoring already applied deactivation reason: 5; deactivation reasons: 2080
+2026-10-30 00:55:07.979 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason added: 12; deactivation reasons: 2080 -> 6176; animating application lifecycle event: 1
+2026-10-30 00:55:07.987 I  Kindred[42950:cb385] [dev.expo.modules:expo] 🟢 Posting 'appEntersForeground' event to registered modules
+2026-10-30 00:55:07.987 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason removed: 11; deactivation reasons: 6176 -> 4128; animating application lifecycle event: 1
+2026-10-30 00:55:07.988 Df Kindred[42950:cb385] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneIntelligenceSupportSettings> on FBSSceneSettings
+2026-10-30 00:55:07.988 Df Kindred[42950:cb3ef] [com.apple.UIIntelligenceSupport:xpc] establishing connection to agent
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:(null)
+  new:(null) (null)
+  old:(null) (null)
+  new:(null)
+2026-10-30 00:55:07.989 Df Kindred[42950:cb3ef] [com.apple.xpc:session] [0x60000212a0d0] Session created.
+2026-10-30 00:55:07.989 Df Kindred[42950:cb3ef] [com.apple.xpc:session] [0x60000212a0d0] Session created from connection [0x105a14d30]
+2026-10-30 00:55:07.989 Df Kindred[42950:cb3ef] [com.apple.xpc:connection] [0x105a14d30] activating connection: mach=true listener=false peer=false name=com.apple.uiintelligencesupport.agent
+2026-10-30 00:55:07.990 Df Kindred[42950:cb3ef] [com.apple.xpc:session] [0x60000212a0d0] Session activated
+2026-10-30 00:55:07.991 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; token: 0xE68FC33D; keyCommands: 34];
+}
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:1 [252A080B-6078-4C3C-AD92-E42E1F6DE3D9] (reporting strategy default)>
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:2 [64430147-FEE2-4A98-8F82-257D9CB379CC] (reporting strategy default)>
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.network:activity] Set activity <nw_activity 50:1 [252A080B-6078-4C3C-AD92-E42E1F6DE3D9] (reporting strategy default)> as the global parent
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.UIKit:BackgroundTask] Ending background task with UIBackgroundTaskIdentifier: 1
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.UIKit:BackgroundTask] Ending task with identifier 1 and description: <_UIBackgroundTaskInfo: 0x600001706000>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 33600 (elapsed = 0), _expireHandler: (null)
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x6000021116d0> (used by background task with identifier 1: <_UIBackgroundTaskInfo: 0x600001706000>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 33600 (elapsed = 0))
+2026-10-30 00:55:07.999 Df Kindred[42950:cb385] [com.apple.UIKit:BackgroundTask] Will invalidate assertion: <BKSProcessAssertion: 0x6000021116d0> for task identifier: 1
+2026-10-30 00:55:08.000 Df Kindred[42950:cb385] [com.apple.UIKit:EventDeferring] [0x60000292c7e0] Scene target of event deferring environments did update: scene: 0x1065083c0; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-30 00:55:08.000 Df Kindred[42950:cb385] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x1065083c0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-30 00:55:08.000 A  Kindred[42950:cb3ed] (RunningBoardServices) didChangeInheritances
+2026-10-30 00:55:08.001 Df Kindred[42950:cb385] [com.apple.UIKit:UpdateScheduler] Target list changed: <CADisplay:LCD PurpleMain>
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:33249-33244-1203 payload 9337310003945371367>
+)} lost:(null)>
+2026-10-30 00:55:08.002 Df Kindred[42950:cb385] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:<FBSSceneSettingsDiff: 0x600001740f00; UIApplicationSceneSettings> {
+    settings = <BSKeyedSettingsDiff: 0x600000c30fc0> {
+        _UISceneRenderingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600000c32190> {
+            activeAppearance = 1;
+        };
+    };
+}
+  new:(null) (null)
+  old:(null) (null)
+  new:(null)
+2026-10-30 00:55:08.004 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:08.006 Df Kindred[42950:cb385] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x1065083c0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-30 00:55:08.006 Df Kindred[42950:cb385] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+2026-10-30 00:55:08.006 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason removed: 12; deactivation reasons: 4128 -> 32; animating application lifecycle event: 1
+2026-10-30 00:55:08.007 Df Kindred[42950:cb385] [com.apple.KeyboardArbiter:Client] Send setDeactivating: N (-DeactivationReason:SuspendedEventsOnly)
+2026-10-30 00:55:08.007 Df Kindred[42950:cb385] [com.apple.UIKit:Application] Deactivation reason removed: 5; deactivation reasons: 32 -> 0; animating application lifecycle event: 0
+2026-10-30 00:55:08.008 I  Kindred[42950:cb385] [dev.expo.modules:expo] 🟢 Posting 'appBecomesActive' event to registered modules
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:<FBSSceneSettingsDiff: 0x600001708600; UIApplicationSceneSettings> {
+    settings = <BSKeyedSettingsDiff: 0x600000c05e30> {
+        SBUISecureRenderingSettingsExtension = <BSKeyedSettingsDiff: 0x600000c13f30> {
+            secureRenderingEnabled = 0;
+        };
+        _UISceneRenderingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600000c0bf00> {
+            systemDisplayIdentifier = DF242736-BCED-4C97-8C56-40A668772505;
+        };
+        _UISystemShellSceneHostingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600000c08480> {
+            systemShellHostingSpaceIdentifier = SB-display-<embedded>;
+        };
+        FBSSceneExtensions = <BSKeyedSettingsDiff: 0x600000c04cc0> {
+            14 = SBUISecureRenderingSceneExtension;
+        };
+    };
+    subclassSettings = <BSSettingsDiff: 0x600000c05e90> {
+        targetOfEventDeferringEnvironments = keyboardFocus;
+        scenePresenterRenderIdentifierForS
+  new:<decode: missing data>
+  old:<decode: missing data>
+  new:<decode: missing data>
+2026-10-30 00:55:08.010 A  Kindred[42950:cb3ed] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:33249-33244-1204 payload 9337310003945371367>
+)} lost:(null)>
+2026-10-30 00:55:08.011 Df Kindred[42950:cb385] [com.apple.KeyboardArbiter:Client] startConnection
+2026-10-30 00:55:08.012 Df Kindred[42950:cb385] [com.apple.xpc:connection] [0x105a197b0] activating connection: mach=true listener=false peer=false name=com.apple.UIKit.KeyboardManagement.hosted
+2026-10-30 00:55:08.018 Df Kindred[42950:cb385] [com.apple.KeyboardArbiter:Client] handleKeyboardChange: set currentKeyboard:N (wasKeyboard:N)
+2026-10-30 00:55:08.025 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'FileSystem'
+2026-10-30 00:55:08.025 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExponentFileSystem'
+2026-10-30 00:55:08.027 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFontLoader'
+2026-10-30 00:55:08.027 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFontUtils'
+2026-10-30 00:55:08.027 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoGlassEffect'
+2026-10-30 00:55:08.028 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoKeepAwake'
+2026-10-30 00:55:08.028 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoLinking'
+2026-10-30 00:55:08.033 Df Kindred[42950:cb385] [com.apple.UIKit:KeyboardSceneDelegate] forceReloadInputViews
+2026-10-30 00:55:08.033 Df Kindred[42950:cb385] [com.apple.UIKit:KeyboardSceneDelegate] Reloading input views for key-window scene responder: <(null): 0x0; > force:Y
+2026-10-30 00:55:08.033 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoHead'
+2026-10-30 00:55:08.035 Df Kindred[42950:cb385] [com.apple.UIKit:KeyboardArbiterClientLog] isWritingToolsHandlingKeyboardTracking:Y (WT ready:Y, Arbiter ready:Y)
+2026-10-30 00:55:08.036 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoRouterNativeLinkPreview'
+2026-10-30 00:55:08.036 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoRouterToolbarModule'
+2026-10-30 00:55:08.037 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoSplashScreen'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-30 00:55:08.037 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Registering module 'ExpoSystemUI'
+2026-10-30 00:55:08.048 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExponentConstants'
+2026-10-30 00:55:08.059 Df Kindred[42950:cb3ef] [com.apple.xpc:connection] [0x1063079f0] activating connection: mach=true listener=false peer=false name=com.apple.fontservicesd
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : app type: config
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/EXConstants.bundle/app.config
+2026-10-30 00:55:08.108 A  Kindred[42950:cb3ef] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:33249-33244-1203 payload 9337310003945371367>
+)}>
+2026-10-30 00:55:08.155 Df Kindred[42950:cb385] [com.apple.network:activity] <nw_activity 50:1 [252A080B-6078-4C3C-AD92-E42E1F6DE3D9] (global parent) (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 3404ms
+2026-10-30 00:55:08.156 Df Kindred[42950:cb385] [com.apple.network:activity] <nw_activity 50:2 [64430147-FEE2-4A98-8F82-257D9CB379CC] (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 3405ms
+2026-10-30 00:55:08.156 Df Kindred[42950:cb385] [com.apple.network:activity] Unsetting the global parent activity <nw_activity 50:1 [252A080B-6078-4C3C-AD92-E42E1F6DE3D9] (global parent) (reporting strategy default) complete (reason success)>
+2026-10-30 00:55:08.156 Df Kindred[42950:cb385] [com.apple.network:activity] Unset the global parent activity
+2026-10-30 00:55:08.156 Df Kindred[42950:cb385] [com.apple.app_launch_measurement:ApplicationLaunch] alm_release_pageins_recording_assertion: releasing pageins recording assertion
+2026-10-30 00:55:08.158 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoAsset'
+2026-10-30 00:55:08.163 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFetchModule'
+2026-10-30 00:55:08.183 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoRouterNativeLinkPreview'
+2026-10-30 00:55:08.190 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoSplashScreen'
+2026-10-30 00:55:08.192 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoHead'
+2026-10-30 00:55:08.201 Df Kindred[42950:cb385] [com.apple.Accessibility:AXCommon] Read Per-App on Init: Smart invert = (null)
+2026-10-30 00:55:08.208 I  Kindred[42950:cb3f5] [com.facebook.react.log:javascript] Running "main"
+2026-10-30 00:55:08.212 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFontLoader'
+2026-10-30 00:55:08.212 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFontUtils'
+2026-10-30 00:55:08.213 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoGlassEffect'
+2026-10-30 00:55:08.215 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoRouterToolbarModule'
+2026-10-30 00:55:08.219 I  Kindred[42950:cb3f5] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoLinking'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+URL = file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/75405B79-03D1-46FE-A002-1EA1419AA273/Kindred.app/assets/node_modules/@expo-google-fonts/inter/400Regular/Inter_400Regular.ttf
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600002c04900> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600002c04200> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600002c04900> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600002c04200> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-30 00:55:08.378 Df Kindred[42950:cb385] [PrototypeTools:domain] Not observing PTDefaults on customer install.
+	Request       : platformContentThickLight type: descendantrecipe
+	Result        : None
+	Request       : platformContentThickLight type: materialrecipe
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platformContentThickLight.materialrecipe
+	Request       : platformStrokeLight type: descendantstyleset
+	Result        : None
+	Request       : platformStrokeLight type: visualstyleset
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platformStrokeLight.visualstyleset
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600002c04900> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600002c04200> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; token: 0xE68FC33D; keyCommands: 35];
+}
+2026-10-30 00:55:08.800 A  Kindred[42950:cb3ef] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:33249-33244-1186 0>
+)}>
+2026-10-30 00:55:09.847 E  Kindred[42950:cb385] [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement is limited as long as this view is on screen.
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Assets type: car
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/Artwork.bundle/Assets.car
+Child process terminated with signal 15: Terminated

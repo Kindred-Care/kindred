@@ -15,15 +15,17 @@ positions and dimensions within **±2 pt** at **390 pt and 402 pt**; brand colou
 family, size and weight exact; accessibility requirements hold; responsive behaviour, safe areas and
 accessibility text scaling take precedence over pixel matching.
 
-**Status: Partial.**
+**Status: Passed (2026-10-19).**
 
 | Portion | Status |
 | --- | --- |
 | Android, 402 pt | **Passed**: every element within ±2 pt (largest 1.7 pt); colours exact; typography as confirmed in Figma; no inline hex |
 | Android, 390 pt | **Passed**: every element within ±2 pt of the mapped 402 pt frame (largest 2.0 pt, at the limit: the fields, see "Responsive adjustments"); same colours and typography |
 | **Android portion** | **Passed (2026-10-18)** |
-| iOS, 390 and 402 pt | **Not run.** To be done on the Mac (2026-10-19, [ios-handoff.md](../ios-handoff.md)) |
-| **Criterion 3 overall** | **Pending** until the iOS verification is complete |
+| iOS simulator, 402 pt | **Passed**: every element within ±2 pt (largest 1.7 pt, the button); colours exact |
+| iOS simulator, 390 pt | **Passed**: every element within ±2 pt of the mapped 402 pt frame (largest 2.0 pt, the fields, the same responsive adjustment as on Android) |
+| **iOS portion** | **Passed (2026-10-19)** |
+| **Criterion 3 overall** | **Passed (2026-10-19)** |
 
 ## References
 
@@ -110,6 +112,51 @@ Side by side: [402 pt](c3-log-in-402-compare.png), [390 pt](c3-log-in-390-compar
 
 Side by side: [402 pt](c3-splash-402-compare.png), [390 pt](c3-splash-390-compare.png).
 
+## Results: iOS simulator (2026-10-19)
+
+Same method, scripts and reference mapping as Android. Development build on the iOS 26.5 simulator
+(Xcode 26.6) at the default text size: **iPhone 17 Pro**, 1206 × 2622 px = 402 × 874 pt, and **iPhone 17e**,
+1170 × 2532 px = 390 × 844 pt, both at 3×. The handoff named the iPhone 16 Pro and 16e; the iPhone 17 Pro
+and 17e have the same point sizes and scale. The development client's floating button was left visible;
+it sits at x 330–390 pt above y 115 pt and overlaps no Kindred element. `capture.sh` is Android-only;
+captures were taken with `xcrun simctl io <device> screenshot`.
+
+### Log In
+
+| Element | Figma, 402 | iOS, 402 | Largest difference | Figma at 390 (by anchor) | iOS, 390 | Largest difference |
+| --- | --- | --- | --- | --- | --- | --- |
+| Wordmark | 87–313 × 114–163 | 88.0–313.3 × 114.3–163.3 | 1.0 | 81–307 × 114–163 | 82.0–307.3 × 114.3–163.3 | 1.0 |
+| Tagline | 69–332 × 181–205 | 68.7–331.0 × 181.3–204.7 | 1.0 | 63–326 × 181–205 | 62.7–325.0 × 181.3–204.7 | 1.0 |
+| "Username:" | 32–150 × 345–363 | 32.0–151.3 × 346.0–363.7 | 1.3 | 32–150 × 345–363 | 32.0–151.3 × 346.0–363.7 | 1.3 |
+| "Password:" | 32–145 × 405–423 | 32.0–146.0 × 405.3–423.0 | 1.0 | 32–145 × 405–423 | 32.0–146.0 × 405.3–423.0 | 1.0 |
+| Username field | 172–371 × 330–382 | 172.0–371.0 × 330.7–383.0 | 1.0 | 160–359 × 330–382 | 162.0–359.0 × 330.7–383.0 | **2.0** |
+| Password field | 172–371 × 389–441 | 172.0–371.0 × 390.0–442.3 | 1.3 | 160–359 × 389–441 | 162.0–359.0 × 390.0–442.3 | **2.0** |
+| Log In button | 147–254 × 481–533 | 147.3–254.0 × 482.3–534.7 | 1.7 | 141–248 × 481–533 | 141.3–248.0 × 482.3–534.7 | 1.7 |
+| Forgot your password? | 115–286 × 554–570 | 115.0–286.3 × 555.3–571.0 | 1.3 | 109–280 × 554–570 | 109.0–280.3 × 555.3–571.0 | 1.3 |
+
+Side by side: [402 pt](c3-ios-log-in-402-compare.png), [390 pt](c3-ios-log-in-390-compare.png). Captures:
+[402](c3-ios-build-log-in-402.png), [390](c3-ios-build-log-in-390.png).
+
+### Splash
+
+| Element | Figma, 402 | iOS, 402 | Largest difference | Figma at 390 (by anchor) | iOS, 390 | Largest difference |
+| --- | --- | --- | --- | --- | --- | --- |
+| Wordmark | 88–314 × 321–370 | 88.0–313.3 × 321.3–370.3 | 0.7 | 82–308 × 321–370 | 82.0–307.3 × 321.3–370.3 | 0.7 |
+| Tagline | 69–332 × 388–412 | 68.7–331.0 × 388.3–411.7 | 1.0 | 63–326 × 388–412 | 62.7–325.0 × 388.3–411.7 | 1.0 |
+
+Side by side: [402 pt](c3-ios-splash-402-compare.png), [390 pt](c3-ios-splash-390-compare.png). Captures:
+[402](c3-ios-build-splash-402.png), [390](c3-ios-build-splash-390.png).
+
+### Notes
+
+- From the fields down, iOS draws each element 0.7 to 1.7 pt lower than the frame (Android: 0 to 0.7);
+  every value stays within ±2 pt. The wordmark is drawn at full size at the default text size, as on
+  Android (225.3 pt wide against the frame's 226).
+- Colours read exactly in the captures: background `#FCFBF8`, text `#2F2F2F`, field fill `#FFFFFF`, field
+  border `#767676`, button `#A94F32`.
+- The native launch screen before the splash is not part of the Figma frames; its colour is a criterion 2
+  finding ([../README.md](../README.md)).
+
 ## Colours and typography
 
 - Colours: Warm White `#FCFBF8` background, Charcoal `#2F2F2F` text, White field fill, `#767676` field
@@ -144,8 +191,7 @@ Side by side: [402 pt](c3-splash-402-compare.png), [390 pt](c3-splash-390-compar
 
 ## Open before criterion 3 can be marked Passed
 
-1. **iOS** (2026-10-19, on the Mac): the same captures and measurements on the iOS simulator at 390 and
-   402 pt, using the same reference mapping; see [ios-handoff.md](../ios-handoff.md).
+Nothing. The iOS portion was completed on 2026-10-19 (above).
 
 Resolved on 2026-10-18: the reference files are the founder-supplied originals; the label and wordmark
 text properties were read from Figma by the founder; the link stays not underlined; the founder approved
