@@ -1,0 +1,78 @@
+# iOS release build AFTER the root-view fix (ios.backgroundColor = Warm White): 10 cold starts from a terminated app, iPhone 17 simulator (402 x 874 pt), Metro stopped, 2026-11-07.
+# Run 1 is the first launch after installing. Per run: counts of consecutive frames by screen (background sampled at 90% height); f01 is the home screen. Then error/fault lines.
+# Separately, all 220 frames were scanned for mostly-white (#FFFFFF) frames: 0 found.
+== release 01
+   1 f01.png #2F3131 splash
+   7 f02.png #FCFBF8 blank
+   6 f09.png #FCFBF8 splash
+   8 f15.png #FCFBF8 login
+E/F lines: 3; JS lines: 1
+  [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 0 ev
+  [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 1 ev
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 02
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   4 f10.png #FCFBF8 splash
+   9 f14.png #FCFBF8 login
+E/F lines: 3; JS lines: 1
+  [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 0 ev
+  [com.apple.app_launch_measurement:General] Failed to send CA Event for app launch measurements for ca_event_type: 1 ev
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 03
+   1 f01.png #2F3131 splash
+   6 f02.png #FCFBF8 blank
+   4 f08.png #FCFBF8 splash
+  11 f12.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 04
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   5 f10.png #FCFBF8 splash
+   8 f15.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 05
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   5 f10.png #FCFBF8 splash
+   8 f15.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 06
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   4 f10.png #FCFBF8 splash
+   9 f14.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 07
+   1 f01.png #2F3131 splash
+   7 f02.png #FCFBF8 blank
+   5 f09.png #FCFBF8 splash
+   9 f14.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 08
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   5 f10.png #FCFBF8 splash
+   8 f15.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 09
+   1 f01.png #2F3131 splash
+   8 f02.png #FCFBF8 blank
+   5 f10.png #FCFBF8 splash
+   8 f15.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+== release 10
+   1 f01.png #2F3131 splash
+   5 f02.png #FCFBF8 blank
+   5 f07.png #FCFBF8 splash
+  11 f12.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+  [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement 
+

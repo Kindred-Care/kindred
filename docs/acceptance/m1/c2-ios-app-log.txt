@@ -1,0 +1,1254 @@
+# iOS app log, development build after the launch-screen fix, cold start 2 of 5 on iPhone 17 Pro (iOS 26.5 simulator), 2026-10-20.
+# Captured with: xcrun simctl spawn <device> log stream --style compact --level debug --predicate 'process == "Kindred"'
+# Debug-level (Db) lines removed; home directory paths shortened to ~. Error-level lines: 1 (UIKit focus notice).
+getpwuid_r did not find a match for uid 501
+Filtering the log data using "process == "Kindred""
+Timestamp               Ty Process[PID:TID]
+    "en-001"
+) for key AppleLanguages in CFPrefsSource<0x6000024ed240> (Domain: Volatile, User: , ByHost: No, Container: , Contents Need Refresh: No)
+    "en-001"
+) for key NSLanguages in CFPrefsSource<0x6000024ed240> (Domain: Volatile, User: , ByHost: No, Container: , Contents Need Refresh: No)
+2026-10-20 00:49:25.539 Df Kindred[89785:23193c] [com.apple.xpc:connection] [0x7fb022f04610] activating connection: mach=true listener=false peer=false name=com.apple.cfprefsd.daemon
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [<null>]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : InfoPlist type: loctable
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:25.617 Df Kindred[89785:231c60] [com.apple.UIKit:BackgroundTask] Creating new assertion because there is no existing background assertion.
+2026-10-20 00:49:25.617 Df Kindred[89785:231c60] [com.apple.UIKit:BackgroundTask] Creating new background assertion
+2026-10-20 00:49:25.617 A  Kindred[89785:231c5f] (CoreFoundation) Loading Preferences From User Session CFPrefsD
+2026-10-20 00:49:25.618 Df Kindred[89785:231c60] [com.apple.UIKit:BackgroundTask] Created new background assertion <BKSProcessAssertion: 0x6000012edf40>
+2026-10-20 00:49:25.618 Df Kindred[89785:231c60] [com.apple.runningboard:connection] Initializing connection
+2026-10-20 00:49:25.618 Df Kindred[89785:231c60] [com.apple.runningboard:process] Removing all cached process handles
+2026-10-20 00:49:25.618 Df Kindred[89785:231c61] [com.apple.runningboard:connection] Sending handshake request attempt #1 to server
+2026-10-20 00:49:25.619 Df Kindred[89785:231c61] [com.apple.runningboard:connection] Creating connection to com.apple.runningboard
+2026-10-20 00:49:25.619 Df Kindred[89785:231c61] [com.apple.xpc:connection] [0x7fb022d04850] activating connection: mach=true listener=false peer=false name=com.apple.runningboard
+2026-10-20 00:49:25.619 I  Kindred[89785:231c60] [com.apple.runningboard:assertion] Acquiring assertion: <RBSAssertionDescriptor| "Shared Background Assertion 0 for com.kindredcare.mobile" ID:(null) target:89785>
+2026-10-20 00:49:25.621 A  Kindred[89785:231c63] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:12914-12911-6633 0>,
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:12914-12911-6630 0>
+)} lost:(null)>
+2026-10-20 00:49:25.624 Df Kindred[89785:23193c] (libMobileGestalt.dylib) No persisted cache on this platform.
+2026-10-20 00:49:25.624 Df Kindred[89785:231c61] [com.apple.runningboard:connection] Handshake succeeded
+2026-10-20 00:49:25.624 Df Kindred[89785:231c61] [com.apple.runningboard:connection] Identity resolved as app<com.kindredcare.mobile((null))>
+2026-10-20 00:49:25.625 Df Kindred[89785:231c60] [com.apple.UIKit:BackgroundTask] Incrementing reference count for background assertion <BKSProcessAssertion: 0x6000012edf40>
+2026-10-20 00:49:25.626 Df Kindred[89785:231c60] [com.apple.UIKit:BackgroundTask] Created background task <_UIBackgroundTaskInfo: 0x6000024fcec0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 74605 (elapsed = 0).
+2026-10-20 00:49:25.626 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UIApplicationSceneKeyboardSettings on FBSSceneSettings
+2026-10-20 00:49:25.628 Df Kindred[89785:231c62] [com.apple.BoardServices:XPCErrors] [C:1] Alloc com.apple.frontboard.systemappservices
+2026-10-20 00:49:25.630 Df Kindred[89785:231c62] [com.apple.xpc:connection] [0x7fb022b043e0] activating connection: mach=false listener=false peer=false name=(anonymous)
+	0   BaseBoard                           0x000000011ead6413 -[BSMachPortRight _initWithPort:type:owner:trace:] + 250
+	1   BaseBoard                           0x000000011ead854c -[BSMachPortTaskNameRight initWithPID:] + 275
+	2   BaseBoard                           0x000000011ead83e6 +[BSMachPortTaskNameRight taskNameForPID:] + 53
+	3   BaseBoard                           0x000000011eaee8aa +[BSProcessHandle processHandleForXPCConnection:] + 200
+	4   BoardServices                       0x00000001319e8333 +[BSXPCServiceConnectionPeer peerOfConnection:] + 372
+	5   BoardServices                       0x0000000131a29d9b __55-[BSXPCServiceConnection _lock_activateNowOrWhenReady:]_block_invoke.235 + 137
+	6   BoardServices                       0x0000000131a1e61e __55-[BSXPCServiceConnectionMessage _actuallySendWithMode:]_block_invoke
+2026-10-20 00:49:25.716 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneOcclusionSettings> on FBSSceneSettings
+2026-10-20 00:49:25.718 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneInterfaceProtectionSettings> on FBSSceneSettings
+2026-10-20 00:49:25.719 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferencesHostSettingsExtension on FBSSceneSettings
+2026-10-20 00:49:25.719 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason added: 10; deactivation reasons: 0 -> 1024; animating application lifecycle event: 0
+2026-10-20 00:49:25.720 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneSafeAreaSettingsExtension on FBSSceneSettings
+2026-10-20 00:49:25.720 Df Kindred[89785:23193c] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.open
+2026-10-20 00:49:25.721 Df Kindred[89785:23193c] [com.apple.BoardServices:Injection] activating monitor for service com.apple.frontboard.workspace-service
+2026-10-20 00:49:25.722 Df Kindred[89785:23193c] [com.apple.FrontBoard:Common] FBSWorkspace registering source: com.apple.frontboard.systemappservices
+2026-10-20 00:49:25.724 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneLayoutPreferenceClientSettingsExtension on FBSSceneClientSettings
+2026-10-20 00:49:25.726 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UIHomeAffordanceHostSceneSettings> on FBSSceneSettings
+2026-10-20 00:49:25.727 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISystemShellSceneHostingEnvironmentSettings on FBSSceneSettings
+2026-10-20 00:49:25.727 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneRenderingEnvironmentSettings on FBSSceneSettings
+2026-10-20 00:49:25.728 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneRenderingEnvironmentClientSettings> on FBSSceneClientSettings
+2026-10-20 00:49:25.729 Df Kindred[89785:23193c] [com.apple.FrontBoard:Common] FBSWorkspace connected to endpoint : <BSServiceConnectionEndpoint: 0x6000031ee700; target: com.apple.frontboard.systemappservices; service: com.apple.frontboard.workspace-service>
+2026-10-20 00:49:25.729 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneTransitioningHostSettings> on FBSSceneSettings
+2026-10-20 00:49:25.730 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneFocusSystemSettings> on FBSSceneSettings
+2026-10-20 00:49:25.731 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationSettingsExtension on FBSSceneSettings
+2026-10-20 00:49:25.730 Df Kindred[89785:23193c] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x6000003f8090 com.apple.frontboard.systemappservices> attempting immediate handshake from activate
+2026-10-20 00:49:25.731 Df Kindred[89785:23193c] [com.apple.FrontBoard:Common] <FBSWorkspaceScenesClient:0x6000003f8090 com.apple.frontboard.systemappservices> sent handshake
+2026-10-20 00:49:25.731 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneOrientationClientSettingsExtension on FBSSceneClientSettings
+2026-10-20 00:49:25.732 Df Kindred[89785:23193c] [com.apple.runningboard:general] Added observer for process assertions expiration warning: <_RBSExpirationWarningClient: 0x6000031e1260>
+2026-10-20 00:49:25.732 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneWindowingControlClientSettings on FBSSceneClientSettings
+2026-10-20 00:49:25.733 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingContentSizePreferenceClientSettings> on FBSSceneClientSettings
+2026-10-20 00:49:25.733 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension _UISceneHostingTraitCollectionPropagationSettings on FBSSceneSettings
+2026-10-20 00:49:25.735 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationSettings> on FBSSceneSettings
+2026-10-20 00:49:25.736 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingSheetPresentationClientSettings> on FBSSceneClientSettings
+2026-10-20 00:49:25.737 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingEventDeferringSettings> on FBSSceneSettings
+2026-10-20 00:49:25.738 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneSettings
+2026-10-20 00:49:25.739 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <UIKit__UITypedKeyValueSceneSettings> on FBSSceneClientSettings
+2026-10-20 00:49:25.739 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneHostingViewControllerPreferencePropagationClientSettings> on FBSSceneClientSettings
+2026-10-20 00:49:25.740 Df Kindred[89785:231c60] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneZoomTransitionSettings> on FBSSceneSettings
+2026-10-20 00:49:25.741 Df Kindred[89785:231c65] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneSettingsCore on FBSSceneSettings
+2026-10-20 00:49:25.742 Df Kindred[89785:23193c] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x7fb021f05d10> for initial
+2026-10-20 00:49:25.743 Df Kindred[89785:23193c] [com.apple.UIKit:UIScreen] Evaluated capturing state as 0 on <UIScreen: 0x7fb021f05d10> for CADisplay KVO
+2026-10-20 00:49:25.746 Df Kindred[89785:231c65] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneClientSettingsCore on FBSSceneClientSettings
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:25.748 Df Kindred[89785:23193c] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 1, category name = (null)
+2026-10-20 00:49:25.750 Df Kindred[89785:23193c] [com.apple.Accessibility:AXSupportCommon] Read CategoryName: per-app = 0, category name = UICTContentSizeCategoryL
+	Localizations : [English]
+	Dev language  : English
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [English]
+	Request       :  type: materialrecipe
+	Result        : platformContentThickLight~appletv.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, knowledgePlattersSheerDark.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, platformContentUltraThinLight.materialrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resou<…>
+	Request       :  type: descendantrecipe
+	Result        : platformContentThickLightShadowed.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, modulesSheer.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/, modulesBackgroundSheer.descendantrecipe -- file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeR<…>
+	Request       : platters type: descendantrecipe
+	Result        : None
+	Request       : platters type: materialrecipe
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platters.materialrecipe
+	Request       : platterFillLight type: descendantstyleset
+	Result        : None
+	Request       : platterFillLight type: visualstyleset
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platterFillLight.visualstyleset
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, sq, en, uk, es_419, gu, zh_CN, kn, pa, es, is, sl, or, pt_BR, da, et, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, km, en_IN, ko, yue_CN, hy, mn, my, no, hu, zh_HK, ka, tr, pl, zh_TW, es_US, en_GB, vi, lv, lo, lt, ru, fr_CA, uz, fr, fi, id, nl, th, az, bn, ro, hr, hi, ca, hi_Latn]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : emoji type: bitmap
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreEmoji.framework/emoji.bitmap
+2026-10-20 00:49:25.774 Df Kindred[89785:23193c] [com.apple.dt.xctest:Default] Registering for test daemon availability notify post.
+2026-10-20 00:49:25.775 Df Kindred[89785:231c65] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneSettings setting counterpart class: UIApplicationSceneSettings
+2026-10-20 00:49:25.776 Df Kindred[89785:231c65] [com.apple.FrontBoard:SceneExtension] UIMutableApplicationSceneClientSettings setting counterpart class: UIApplicationSceneClientSettings
+2026-10-20 00:49:25.777 Df Kindred[89785:231c65] [com.apple.FrontBoard:SceneExtension] Realizing settings extension FBSSceneTransitionContextCore on FBSSceneTransitionContext
+2026-10-20 00:49:25.783 I  Kindred[89785:231c65] [com.apple.FrontBoard:Common] [FBSScene] [(FBSceneManager):sceneID:com.kindredcare.mobile-default] Created client agent: <UIApplicationSceneClientAgent: 0x6000033ec730>
+2026-10-20 00:49:25.793 Df Kindred[89785:23193c] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-20 00:49:25.794 Df Kindred[89785:23193c] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-20 00:49:25.795 Df Kindred[89785:23193c] [com.apple.dt.xctest:Default] notify_get_state check indicated test daemon not ready.
+2026-10-20 00:49:25.799 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason added: 11; deactivation reasons: 1024 -> 3072; animating application lifecycle event: 0
+2026-10-20 00:49:25.801 Df Kindred[89785:23193c] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:performFetchWithCompletionHandler:], but you still need to add "fetch" to the list of your supported UIBackgroundModes in your Info.plist.
+2026-10-20 00:49:25.801 Df Kindred[89785:23193c] (UIKitCore) You've implemented -[<UIApplicationDelegate> application:didReceiveRemoteNotification:fetchCompletionHandler:], but you still need to add "remote-notification" to the list of your supported UIBackgroundModes in your Info.plist.
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:25.803 Df Kindred[89785:23193c] (React) _setUpFeatureFlags called with release level 2
+2026-10-20 00:49:25.805 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason removed: 10; deactivation reasons: 3072 -> 2048; animating application lifecycle event: 0
+2026-10-20 00:49:25.882 Df Kindred[89785:23193c] [com.apple.UIKit:EventBus] Event Timing Profile for Touch: not found, path="/System/Library/EventTimingProfiles/Sim.Touch.plist"
+2026-10-20 00:49:25.882 Df Kindred[89785:23193c] [com.apple.UIKit:EventBus] Event Timing Profile for Pencil: not found, path="/System/Library/EventTimingProfiles/Sim.Pencil.plist"
+2026-10-20 00:49:25.882 Df Kindred[89785:23193c] [com.apple.UIKit:UpdateScheduler] Selected display: name=LCD (PurpleMain), id=1
+2026-10-20 00:49:25.913 Df Kindred[89785:23193c] [com.apple.xpc:connection] [0x7fb022d058e0] activating connection: mach=true listener=false peer=false name=com.apple.lsd.mapdb
+2026-10-20 00:49:25.916 I  Kindred[89785:23193c] [com.apple.launchservices:db] LaunchServices database schema version: 20971544
+2026-10-20 00:49:25.917 I  Kindred[89785:23193c] [com.apple.launchservices:datasep] application record search init. Node: <FSNode 0x6000031d4dc0> { isDir = y, path = '~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app' } bundleID: (null) itemID: 0
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, en, uk, es_419, gu, zh_CN, kn, pa, es, sl, or, da, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, ko, no, hu, zh_HK, tr, pl, zh_TW, en_GB, vi, lt, ru, fr_CA, fr, fi, id, nl, th, pt, bn, ro, hr, hi, ca]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Localizable type: loctable
+	Result        : None
+	Request       : Localizable type: strings
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/en.lproj/Localizable.strings
+	Request       : Localizable type: stringsdict
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/en.lproj/Localizable.stringsdict
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.056 Df Kindred[89785:23193c] [com.apple.BoardServices:XPCErrors] [C:2] Alloc com.apple.backboard.hid-services.xpc
+2026-10-20 00:49:26.056 Df Kindred[89785:23193c] [com.apple.xpc:connection] [0x7fb022f062f0] activating connection: mach=false listener=false peer=false name=(anonymous)
+2026-10-20 00:49:26.062 I  Kindred[89785:23193c] [com.apple.runningboard:assertion] Acquiring assertion: <RBSAssertionDescriptor| "app_launch_measurement: pageins recording enabled" ID:(null) target:89785>
+2026-10-20 00:49:26.063 Df Kindred[89785:23193c] [com.apple.app_launch_measurement:ApplicationLaunch] alm_acquire_pageins_recording_assertion: acquired pageins recording assertion!
+	0   BaseBoard                           0x000000011ead6413 -[BSMachPortRight _initWithPort:type:owner:trace:] + 250
+	1   BaseBoard                           0x000000011ead854c -[BSMachPortTaskNameRight initWithPID:] + 275
+	2   BaseBoard                           0x000000011ead83e6 +[BSMachPortTaskNameRight taskNameForPID:] + 53
+	3   BaseBoard                           0x000000011eaee8aa +[BSProcessHandle processHandleForXPCConnection:] + 200
+	4   BoardServices                       0x00000001319e8333 +[BSXPCServiceConnectionPeer peerOfConnection:] + 372
+	5   BoardServices                       0x0000000131a29d9b __55-[BSXPCServiceConnection _lock_activateNowOrWhenReady:]_block_invoke.235 + 137
+	6   BoardServices                       0x0000000131a1e61e __55-[BSXPCServiceConnectionMessage _actuallySendWithMode:]_block_invoke +
+2026-10-20 00:49:26.067 Df Kindred[89785:231c5f] [com.apple.BackBoard:EventDelivery] BKSHIDEventDeliveryManager - connection activation
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; keyCommands: 34];
+}
+2026-10-20 00:49:26.072 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason added: 5; deactivation reasons: 2048 -> 2080; animating application lifecycle event: 1
+2026-10-20 00:49:26.073 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Should send trait collection or coordinate space update, interface style 1 -> 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:26.075 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+    session = <UISceneSession: 0x6000012dabc0; persistentIdentifier: 7BEA2D15-C762-47A7-AD9A-D63F81947702> {
+        configuration = <UISceneConfiguration: 0x6000012f5950; name: "Default Configuration">;
+    };
+    delegate = <SceneDelegate: 0x600003fcd710>;
+    effectiveGeometry = <UIWindowSceneGeometry: 0x6000012c93b0; coordinateSpace.bounds: {{0, 0}, {402, 874}}; interfaceOrientation: portrait (1); isInteractivelyResizing: NO>;
+    screen = <UIScreen: 0x7fb021f05d10; bounds: {{0, 0}, {402, 874}}; mode: <UIScreenMode: 0x6000031c1080; size = 1206.000000 x 2622.000000>>;
+}
+    settings = <UIApplicationSceneSettings: 0x6000012ea080> {
+        settings = <BSKeyedSettings: 0x600003fde220> {
+            displayConfiguration = <FBSDisplayConfiguration: 0x600000ef0000; Main; mode: "402x874@3x 60Hz p3 SDR">;
+            foreground = Yes;
+            frame = NSRect: {{0, 0}, {402, 874}};
+            interfaceOrientation = portrait (1);
+            interruptionPolicy = reconnect (2);
+            level = 1;
+            <SBSUIHomeScreenIconStyleSceneSettings> = <BSKeyedSettings: 0x600003fde2b0> {
+                iconStyleConfiguration = <SBSHomeScreenIconStyleConfiguration: 0x6000031cd740>;
+            };
+            <_UISceneTransitioningHostSettings> = <BSKeyedSettings:<…>
+2026-10-20 00:49:26.228 Df Kindred[89785:23193c] [com.apple.UIKit:HomeAffordanceObservation] Initializing: <_UIHomeAffordanceSceneNotifier: 0x600001ac47e0>; with scene: <UIWindowScene: 0x7fb023e046b0>
+2026-10-20 00:49:26.228 Df Kindred[89785:23193c] [com.apple.BacklightServices:scenes] 0x600003ff1890 setDelegate:<0x600003fe2760 _UIBacklightEnvironment> hasDelegate:YES for environment:sceneID:com.kindredcare.mobile-default
+2026-10-20 00:49:26.229 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:26.229 Df Kindred[89785:23193c] [com.apple.UIKit:EventDeferring] [0x600001ac48c0] Initialized with scene: <UIWindowScene: 0x7fb023e046b0>; behavior: <_UIEventDeferringBehavior_iOS: 0x6000031a80a0>; availableForProcess: 1, systemShellManagesKeyboardFocus: 1
+2026-10-20 00:49:26.234 Df Kindred[89785:231c5f] [com.apple.BackBoard:EventDelivery] BKSHIDEventObserver - connection activation
+2026-10-20 00:49:26.234 Df Kindred[89785:23193c] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x6000015e6340; process scope; status: target> was:none
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to LastOneWins
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Scene target of keyboard event deferring environment did change: 1; scene: UIWindowScene: 0x7fb023e046b0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:EventDeferring] [0x600001ac48c0] Scene target of event deferring environments did update: scene: 0x7fb023e046b0; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x7fb023e046b0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Stack[KeyWindow] 0x600003fe3ed0: Taking no further action for migration from LastOneWins -> SystemShellManaged as there are no scenes
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Setting default evaluation strategy for UIUserInterfaceIdiomPhone to SystemShellManaged
+2026-10-20 00:49:26.235 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Key window needs update: 0; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x7fb023e046b0; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x0; reason: UIWindowScene: 0x7fb023e046b0: Window scene became target of keyboard environment
+2026-10-20 00:49:26.237 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:26.238 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:26.242 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:26.284 I  Kindred[89785:23193c] [com.facebook.react.log:native] Packager server access is disabled in this environment
+	Request       : main type: jsbundle
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    "http://localhost:8081" =     {
+        isEASUpdate = 0;
+        name = Kindred;
+        timestamp = 1792471582717;
+        url = "http://localhost:8081";
+    };
+} for key expo.devlauncher.recentlyopenedapps in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : main type: jsbundle
+	Result        : None
+2026-10-20 00:49:26.336 Df Kindred[89785:23193c] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+2026-10-20 00:49:26.336 Df Kindred[89785:23193c] [com.apple.network:] networkd_settings_read_from_file_locked initialized networkd settings by reading plist directly
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    NSAllowsLocalNetworking = 1;
+    NSExceptionDomains =     {
+        "apple-mapkit.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.2";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "geo.apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecureHTTPLoads = 1;
+            NSExceptionMinimumTLSVersion = "TLSv1.0";
+            NSExceptionRequiresForwardSecrecy = 0;
+            NSIncludesSubdomains = 1;
+        };
+        "gs.apple.com" =         {
+            NSATSBuiltinOverride = 1;
+            NSExceptionAllowsInsecure
+2026-10-20 00:49:26.341 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> resuming, timeouts(10.0, 604800.0) qos(0x21) voucher(<OS_voucher: 0x6000012efa20>) activity(00000000-0000-0000-0000-000000000000)
+2026-10-20 00:49:26.341 A  Kindred[89785:23193c] (CoreFoundation) Loading Preferences From User Session CFPrefsD
+2026-10-20 00:49:26.344 A  Kindred[89785:231c5f] (libsystem_containermanager.dylib) container_system_group_path_for_identifier
+2026-10-20 00:49:26.344 Df Kindred[89785:231c5f] [com.apple.containermanager:xpc] Requesting container lookup; class = 13, identifier = com.apple.nsurlsessiond, group_identifier = systemgroup.com.apple.nsurlstoragedresources, create = 1, temp = 0, euid = 501, uid = 501
+2026-10-20 00:49:26.344 A  Kindred[89785:231c5f] (libsystem_containermanager.dylib) container_query_t
+	"ContainerClass" => <uint64: 0xdca6f2e416e0a53d>: 13
+	"Platform" => <uint64: 0xdca6f2e416e0a537>: 7
+	"IdentifiersArray" => <array: 0x600003ffb2a0> { count = 1, capacity = 10, contents =
+		0: <string: 0x600003ffb270> { string cache = 0x0, length = 23, contents = "com.apple.nsurlsessiond" }
+	}
+	"Flags" => <uint64: 0xdca6f2ed16e0a533>: 38654705667
+	"Explicit" => <uint64: 0xdca6f2e416e0a517>: 39
+	"PrivateFlags" => <uint64: 0xdca6f2e416e0a533>: 3
+	"Transient" => <bool: 0x1185f2070>: false
+	"PersonaKernelID" => <uint64: 0xdca6f2e416e0a530>: 0
+	"Command" => <uint64: 0xdca6f2e416e0a517>: 39
+	"GroupIdentifiers" => <array: 0x600003ffb1e0> { count = 1, capacity = 10, contents =
+		0: <string: 0x600003ffb1b0> { string cache = 0x0, length = 44, contents = "systemgroup.com.apple.nsurlstoragedresources" }
+	}
+}
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : embedded type: mobileprovision
+	Result        : None
+2026-10-20 00:49:26.350 Df Kindred[89785:231c5f] [com.apple.containermanager:unspecified] _container_query_get_result_at_index: success
+2026-10-20 00:49:26.350 A  Kindred[89785:231c5f] (libsystem_containermanager.dylib) container_copy_object
+2026-10-20 00:49:26.350 Df Kindred[89785:231c5f] [com.apple.containermanager:unspecified] container_system_group_path_for_identifier: success
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "http://localhost:8081" =     {
+        isEASUpdate = 0;
+        name = Kindred;
+        timestamp = 1792471582717;
+        url = "http://localhost:8081";
+    };
+} for key expo.devlauncher.recentlyopenedapps in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : EXDevLauncher.DevLauncherViewController type: nib
+	Result        : None
+	Request       : EXDevLauncher.DevLauncherView type: nib
+	Result        : None
+	Request       : DevLauncherViewController type: nib
+	Result        : None
+	Request       : DevLauncherView type: nib
+	Result        : None
+2026-10-20 00:49:26.367 I  Kindred[89785:231c5f] [com.apple.runningboard:assertion] Acquiring assertion: <RBSAssertionDescriptor| "com.apple.CFNetwork.StorageDB" ID:(null) target:89785>
+2026-10-20 00:49:26.400 A  Kindred[89785:231c60] (Security) SecTrustReportNetworkingAnalytics
+2026-10-20 00:49:26.400 I  Kindred[89785:231c5f] [com.apple.network:ATS] Warning [ATS violation]: Did not use TLS when opening connection for server: <private>
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+2026-10-20 00:49:26.401 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Initializing NSHTTPCookieStorage singleton
+	Request       : Assets type: car
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/BoundingPathData.bundle/Assets.car
+2026-10-20 00:49:26.402 Df Kindred[89785:231c60] [com.apple.securityd:keychain] System Keychain Always Supported set via feature flag to disabled
+2026-10-20 00:49:26.402 Df Kindred[89785:231c60] [com.apple.xpc:connection] [0x7fb022f0bb60] activating connection: mach=true listener=false peer=false name=com.apple.trustd
+2026-10-20 00:49:26.402 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Initializing CFHTTPCookieStorage singleton
+2026-10-20 00:49:26.402 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Creating default cookie storage with process/bundle identifier
+2026-10-20 00:49:26.403 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Initializing AlternativeServices Storage singleton
+2026-10-20 00:49:26.404 Df Kindred[89785:231c60] [com.apple.securityd:SecError] SecTrustReportNetworkingAnalytics failed with error: -4
+2026-10-20 00:49:26.407 Df Kindred[89785:231c5f] [com.apple.FileURL:default] kExcludedFromBackupXattrName set on path: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Data/Application/1B4EC610-36BB-4142-8D35-6110F01BB7AF/Library/HTTPStorages/com.kindredcare.mobile
+2026-10-20 00:49:26.412 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Garbage collection for alternative services
+2026-10-20 00:49:26.436 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_create_with_id [C1] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:26.436 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 1: starting, TC(0x0)
+2026-10-20 00:49:26.438 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 630C01DF-9113-4916-ACC3-7D0E98F86789 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{21128323-7E7C-4AB7-B8D3-8965BB54BDE2}{(null)}{Y}{2}{0x0} (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0] start
+2026-10-20 00:49:26.438 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C1 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:26.438 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.442 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.003s, uuid: DF7BA020-C39F-4A96-AD2D-30376BE771F0
+2026-10-20 00:49:26.442 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C1 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:26.445 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.006s
+2026-10-20 00:49:26.445 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C1] reporting state preparing
+2026-10-20 00:49:26.445 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connect [C1 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:26.445 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.007s
+2026-10-20 00:49:26.446 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C1.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:26.446 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.007s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.446 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.008s, uuid: DF7BA020-C39F-4A96-AD2D-30376BE771F0
+2026-10-20 00:49:26.447 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.009s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.448 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C1.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:26.448 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> setting up Connection 1
+2026-10-20 00:49:26.448 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C1.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:26.448 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C1.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:26.449 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:26.450 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:26.450 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.011s
+2026-10-20 00:49:26.450 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:26.450 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C1.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:26.450 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.012s
+2026-10-20 00:49:26.451 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.013s, uuid: DA124C8B-385D-49B4-AAB8-42974DCA1615
+2026-10-20 00:49:26.457 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 6E1BFE1F-2888-4E13-8113-0B5E43A6A4FE
+2026-10-20 00:49:26.457 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 6E1BFE1F-2888-4E13-8113-0B5E43A6A4FE
+2026-10-20 00:49:26.461 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.022s
+2026-10-20 00:49:26.461 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C1] Association has 0 connected flows
+2026-10-20 00:49:26.461 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:26.461 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:26.461 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_handle_socket_event [C1.1.1:2] Socket received CONNECTED event
+2026-10-20 00:49:26.463 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Transport protocol connected (socket)
+2026-10-20 00:49:26.463 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:finish_transport @0.025s
+2026-10-20 00:49:26.463 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_receive_report [C1.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] pushing out endpoint race by 2000ms
+2026-10-20 00:49:26.464 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C1.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (CFNetworkConnection-1812150797)
+2026-10-20 00:49:26.464 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:26.465 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.027s
+2026-10-20 00:49:26.466 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.027s
+2026-10-20 00:49:26.466 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_cancel [C1.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:26.466 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C1 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:26.466 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:26.467 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.028s
+2026-10-20 00:49:26.467 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C1] Checking whether to start candidate manager
+2026-10-20 00:49:26.467 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C1] reporting state ready
+2026-10-20 00:49:26.467 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 1: connected successfully
+2026-10-20 00:49:26.468 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 1: ready C(N) E(N)
+2026-10-20 00:49:26.469 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> now using Connection 1
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, en, uk, es_419, gu, zh_CN, kn, pa, es, sl, or, pt_BR, da, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, ko, no, hu, zh_HK, tr, pl, zh_TW, es_US, en_GB, vi, lt, ru, fr_CA, fr, fi, id, nl, th, bn, ro, hr, hi, ca]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : InfoPlist type: loctable
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.489 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> sent request, body N 0
+2026-10-20 00:49:26.508 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> received response, status 200 content U
+2026-10-20 00:49:26.508 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> response ended
+2026-10-20 00:49:26.508 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> done using Connection 1
+2026-10-20 00:49:26.509 Df Kindred[89785:231c60] [com.apple.network:connection] [C1] event: client:connection_idle @0.070s
+2026-10-20 00:49:26.509 I  Kindred[89785:231c60] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:26.509 I  Kindred[89785:231c60] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.509 Df Kindred[89785:231c60] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is true
+2026-10-20 00:49:26.509 Df Kindred[89785:231c60] [com.apple.network:connection] [C1] event: client:connection_idle @0.071s
+2026-10-20 00:49:26.509 I  Kindred[89785:231c60] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:26.509 I  Kindred[89785:231c60] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.509 Df Kindred[89785:231c60] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is true
+2026-10-20 00:49:26.509 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Summary] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> summary for task success {transaction_duration_ms=143, response_status=200, connection=1, protocol="http/1.1", domain_lookup_duration_ms=2, connect_duration_ms=6, secure_connection_duration_ms=0, private_relay=false, request_start_ms=121, request_duration_ms=1, response_start_ms=142, response_duration_ms=0, request_bytes=444, request_throughput_kbps=2736, response_bytes=222, response_throughput_kbps=3217, cache_hit=false}
+2026-10-20 00:49:26.510 Df Kindred[89785:231c5f] [com.apple.CoreAnalytics:client] No XPC connection in Simulator
+2026-10-20 00:49:26.511 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <FB388584-328E-4762-8757-A774CF3E063C>.<1> finished successfully
+2026-10-20 00:49:26.511 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> resuming, timeouts(10.0, 604800.0) qos(0x19) voucher(<OS_voucher: 0x6000012efa20>) activity(00000000-0000-0000-0000-000000000000)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:26.516 I  Kindred[89785:231c60] [com.apple.network:ATS] Warning [ATS violation]: Did not use TLS when opening connection for server: <private>
+2026-10-20 00:49:26.516 A  Kindred[89785:231c63] (Security) SecTrustReportNetworkingAnalytics
+2026-10-20 00:49:26.517 Df Kindred[89785:231c60] [com.apple.network:connection] [C1] event: client:connection_idle @0.079s
+2026-10-20 00:49:26.517 I  Kindred[89785:231c60] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:26.517 I  Kindred[89785:231c60] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.517 Df Kindred[89785:231c60] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is true
+2026-10-20 00:49:26.517 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> now using Connection 1
+2026-10-20 00:49:26.517 Df Kindred[89785:231c60] [com.apple.network:connection] [C1] event: client:connection_reused @0.079s
+2026-10-20 00:49:26.517 I  Kindred[89785:231c60] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection not idle to protocols
+2026-10-20 00:49:26.517 I  Kindred[89785:231c60] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.518 Df Kindred[89785:231c60] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is false
+2026-10-20 00:49:26.518 Df Kindred[89785:231c63] [com.apple.securityd:SecError] SecTrustReportNetworkingAnalytics failed with error: -4
+2026-10-20 00:49:26.518 Df Kindred[89785:231c60] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> sent request, body N 0
+2026-10-20 00:49:26.529 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> received response, status 200 content C
+2026-10-20 00:49:26.529 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> response ended
+2026-10-20 00:49:26.529 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> done using Connection 1
+2026-10-20 00:49:26.530 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1] event: client:connection_idle @0.091s
+2026-10-20 00:49:26.530 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:26.530 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.530 Df Kindred[89785:231c60] [com.apple.CFNetwork:Summary] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> summary for task success {transaction_duration_ms=14, response_status=200, connection=1, reused=1, reused_after_ms=0, request_start_ms=2, request_duration_ms=0, response_start_ms=13, response_duration_ms=0, request_bytes=443, request_throughput_kbps=14644, response_bytes=2251, response_throughput_kbps=30942, cache_hit=true}
+2026-10-20 00:49:26.530 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is true
+2026-10-20 00:49:26.531 Df Kindred[89785:231c61] [com.apple.CFNetwork:Default] Task <4C660F64-23BE-484E-8D22-0684AA91F7F2>.<2> finished successfully
+2026-10-20 00:49:26.530 Df Kindred[89785:231c5f] [com.apple.network:connection] [C1] event: client:connection_idle @0.092s
+2026-10-20 00:49:26.531 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:26.531 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_passthrough_notify [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:26.531 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_protocol_socket_notify [C1.1.1:2] nw_protocol_notification_type_connection_idle is true
+    "http://localhost:8081" =     {
+        isEASUpdate = 0;
+        name = Kindred;
+        timestamp = 1792471582717;
+        url = "http://localhost:8081";
+    };
+} for key expo.devlauncher.recentlyopenedapps in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "http://localhost:8081" =     {
+        isEASUpdate = 0;
+        name = Kindred;
+        timestamp = 1792471582717;
+        url = "http://localhost:8081";
+    };
+} for key expo.devlauncher.recentlyopenedapps in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "expo.devlauncher.recentlyopenedapps" =     {
+        "http://localhost:8081" =         {
+            isEASUpdate = 0;
+            name = Kindred;
+            timestamp = 1792471766532;
+            url = "http://localhost:8081";
+        };
+    };
+} in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No)
+2026-10-20 00:49:26.630 A  Kindred[89785:23193c] (CoreFoundation) Updating Key-Value Observers Of Preferences
+2026-10-20 00:49:26.668 Df Kindred[89785:231c61] [com.apple.UIKit:BackgroundTask] Ending background task with UIBackgroundTaskIdentifier: 1
+2026-10-20 00:49:26.668 Df Kindred[89785:231c61] [com.apple.UIKit:BackgroundTask] Ending task with identifier 1 and description: <_UIBackgroundTaskInfo: 0x6000024fcec0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 74605 (elapsed = 1), _expireHandler: (null)
+2026-10-20 00:49:26.669 Df Kindred[89785:231c61] [com.apple.UIKit:BackgroundTask] Decrementing reference count for assertion <BKSProcessAssertion: 0x6000012edf40> (used by background task with identifier 1: <_UIBackgroundTaskInfo: 0x6000024fcec0>: taskID = 1, taskName = Launch Background Task for Coalescing, creationTime = 74605 (elapsed = 1))
+2026-10-20 00:49:26.669 Df Kindred[89785:231c61] [com.apple.UIKit:BackgroundTask] Will invalidate assertion: <BKSProcessAssertion: 0x6000012edf40> for task identifier: 1
+2026-10-20 00:49:26.889 A  Kindred[89785:231c63] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:(none) name:com.apple.frontboard.visibility origID:12914-12911-6630 0>
+)}>
+2026-10-20 00:49:27.095 Df Kindred[89785:231c62] [com.apple.xpc:connection] [0x7fb022e0a1e0] activating connection: mach=true listener=false peer=false name=com.apple.fontservicesd
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+2026-10-20 00:49:27.123 Df Kindred[89785:23193c] [PrototypeTools:domain] Not observing PTDefaults on customer install.
+2026-10-20 00:49:27.180 Df Kindred[89785:23193c] [com.apple.network:browser] -[NWConcrete_nw_browser initWithDescriptor:parameters:] [B1] create with <nw_browse_descriptor bonjour _expo._tcp.<NULL> (txt)>, parameters: generic, attribution: developer, reuse local address, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, use awdl
+2026-10-20 00:49:27.181 Df Kindred[89785:23193c] [com.apple.network:browser] nw_browser_start_dns_browser_locked [B1] start: dns browser
+2026-10-20 00:49:27.197 Df Kindred[89785:23193c] [com.apple.network:browser] nw_browser_start_path_browser_locked [B1] path: start browser
+2026-10-20 00:49:27.198 Df Kindred[89785:23193c] [com.apple.network:browser] nw_browser_set_state_locked [B1] state changed: invalid -> ready
+	Request       : Localizable type: loctable
+	Result        : None
+	Request       : Localizable type: strings
+	Result        : None
+	Request       : Localizable type: stringsdict
+	Result        : None
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+2026-10-20 00:49:27.341 Df Kindred[89785:231c62] [com.apple.network:browser] nw_browser_start_query_record_for_endpoint_locked [B1] start query record for kindred._expo._tcp.local. on en0
+2026-10-20 00:49:27.371 I  Kindred[89785:231c61] [com.apple.network:browser] nw_browser_notify_browse_result_changes_locked_block_invoke_2 [B1] browse_result_changed: ((null) -> Kindred._expo._tcp.local.@[en0]), <result_added>
+	Localizations : [de, ur, he, en_AU, ar, el, ja, mr, en, uk, es_419, gu, zh_CN, kn, pa, es, sl, or, pt_BR, da, it, bg, sk, kk, pt_PT, ms, ta, ml, sv, te, cs, en_IN, ko, no, hu, zh_HK, tr, pl, zh_TW, en_GB, vi, lt, ru, fr_CA, fr, fi, id, nl, th, bn, ro, hr, hi, ca]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : CoreGlyphs type: bundle
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/SFSymbols.framework/CoreGlyphs.bundle/
+	Localizations : [ar, bg, bn, el, gu, he, hi, ja, kk, km, kn, ko, ml, mni, mr, my, or, pa, ru, sat, si, ta, te, th, uk, ur, zh-Hans, zh-Hant, en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Assets type: car
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/SFSymbols.framework/CoreGlyphs.bundle/Assets.car
+2026-10-20 00:49:28.431 Df Kindred[89785:23193c] [com.apple.UIKit:Orientation] <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702) Scene updated orientation preferences: none -> ( Pu )
+2026-10-20 00:49:28.530 I  Kindred[89785:23193c] [com.apple.DesignLibrary:defaults] liveTuning=false
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : EXDevLauncher type: bundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+2026-10-20 00:49:30.118 Df Kindred[89785:23193c] [com.apple.UIKit:_UIVisualStyleRegistry] Note: no default visual style class registered as fallback for stylable class UIActivityIndicatorView
+2026-10-20 00:49:30.118 Df Kindred[89785:23193c] [com.apple.UIKit:_UIVisualStyleRegistry] Note: no default visual style class registered as fallback for stylable class UIActivityIndicatorView
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Assets type: car
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/Assets.car
+2026-10-20 00:49:30.221 Df Kindred[89785:231c61] [com.apple.xpc:connection] [0x7fb022e16f40] activating connection: mach=true listener=false peer=false name=com.apple.IOSurface.Remote
+    "http://localhost:8081" =     {
+        isEASUpdate = 0;
+        name = Kindred;
+        timestamp = 1792471766532;
+        url = "http://localhost:8081";
+    };
+} for key expo.devlauncher.recentlyopenedapps in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+	Request       : EXDevLauncher type: bundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : platformContentThickLight type: descendantrecipe
+	Result        : None
+	Request       : platformContentThickLight type: materialrecipe
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platformContentThickLight.materialrecipe
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : Assets type: car
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/UIKitCore.framework/Artwork.bundle/Assets.car
+2026-10-20 00:49:30.468 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Key window API is scene-level: YES
+2026-10-20 00:49:30.468 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] UIWindowScene: 0x7fb023e046b0: Window became key in scene: UIWindow: 0x7fb022d06e00; contextId: 0xBA0BFB64: reason: UIWindowScene: 0x7fb023e046b0: Window requested to become key in scene: 0x7fb022d06e00
+2026-10-20 00:49:30.468 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Key window needs update: 1; currentKeyWindowScene: 0x0; evaluatedKeyWindowScene: 0x7fb023e046b0; currentApplicationKeyWindow: 0x0; evaluatedApplicationKeyWindow: 0x7fb022d06e00; reason: UIWindowScene: 0x7fb023e046b0: Window requested to become key in scene: 0x7fb022d06e00
+2026-10-20 00:49:30.468 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Window did become application key: UIWindow: 0x7fb022d06e00; contextId: 0xBA0BFB64; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+2026-10-20 00:49:30.469 Df Kindred[89785:23193c] [com.apple.UIKit:EventDeferring] [0x600001ac48c0] Begin local event deferring requested for token: 0x6000015c5fe0; environments: 1; reason: UIWindowScene: 0x7fb023e046b0: Begin event deferring in keyboardFocus for window: 0x7fb022d06e00
+    contentsMask: 0x2; deferringRules: [[89785-1]];
+}
+2026-10-20 00:49:30.474 Df Kindred[89785:231c61] [com.apple.BackBoard:EventDelivery] policyStatus:<BKSHIDEventDeliveryPolicyObserver: 0x6000015e6340; token: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default; status: ancestor> was:target
+2026-10-20 00:49:30.484 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:30.487 Df Kindred[89785:23193c] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+2026-10-20 00:49:30.488 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Ignoring already applied deactivation reason: 5; deactivation reasons: 2080
+2026-10-20 00:49:30.488 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason added: 12; deactivation reasons: 2080 -> 6176; animating application lifecycle event: 1
+2026-10-20 00:49:30.488 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason removed: 11; deactivation reasons: 6176 -> 4128; animating application lifecycle event: 1
+2026-10-20 00:49:30.488 Df Kindred[89785:23193c] [com.apple.FrontBoard:SceneExtension] Realizing settings extension <_UISceneIntelligenceSupportSettings> on FBSSceneSettings
+2026-10-20 00:49:30.489 Df Kindred[89785:231c62] [com.apple.UIIntelligenceSupport:xpc] establishing connection to agent
+2026-10-20 00:49:30.490 Df Kindred[89785:231c62] [com.apple.xpc:session] [0x600001284e60] Session created.
+2026-10-20 00:49:30.490 Df Kindred[89785:231c62] [com.apple.xpc:session] [0x600001284e60] Session created from connection [0x7fb022c20540]
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:(null)
+  new:(null) (null)
+  old:(null) (null)
+  new:(null)
+2026-10-20 00:49:30.490 Df Kindred[89785:231c62] [com.apple.xpc:connection] [0x7fb022c20540] activating connection: mach=true listener=false peer=false name=com.apple.uiintelligencesupport.agent
+2026-10-20 00:49:30.490 Df Kindred[89785:231c62] [com.apple.xpc:session] [0x600001284e60] Session activated
+2026-10-20 00:49:30.491 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+	Request       : EXDevLauncher type: bundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; token: 0xBA0BFB64; keyCommands: 34];
+}
+2026-10-20 00:49:30.717 A  Kindred[89785:231c63] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:12914-12911-6645 payload 17411391367266977526>
+)} lost:(null)>
+2026-10-20 00:49:30.723 A  Kindred[89785:231c63] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:12914-12911-6646 payload 17411391367266977526>
+)} lost:(null)>
+2026-10-20 00:49:30.813 Df Kindred[89785:23193c] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:1 [8F516ECC-60C4-43A0-889C-3DCAB2BE3B72] (reporting strategy default)>
+2026-10-20 00:49:30.813 Df Kindred[89785:23193c] [com.apple.network:activity] Create activity from XPC object <nw_activity 50:2 [57696DFF-E69F-448D-8208-E5786E5F3E41] (reporting strategy default)>
+2026-10-20 00:49:30.813 Df Kindred[89785:23193c] [com.apple.network:activity] Set activity <nw_activity 50:1 [8F516ECC-60C4-43A0-889C-3DCAB2BE3B72] (reporting strategy default)> as the global parent
+2026-10-20 00:49:30.814 Df Kindred[89785:23193c] [com.apple.UIKit:UpdateScheduler] Target list changed: <CADisplay:LCD PurpleMain>
+2026-10-20 00:49:30.818 Df Kindred[89785:23193c] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:<FBSSceneSettingsDiff: 0x6000024a8880; UIApplicationSceneSettings> {
+    settings = <BSKeyedSettingsDiff: 0x600003feae80> {
+        _UISceneRenderingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600003feafa0> {
+            activeAppearance = 1;
+        };
+    };
+}
+  new:(null) (null)
+  old:(null) (null)
+  new:(null)
+2026-10-20 00:49:30.819 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:30.820 Df Kindred[89785:23193c] [com.apple.Accessibility:AXCommon] Read Per-App on Init: Smart invert = (null)
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:30.824 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn [2:0x6000000e9cc0] using empty proxy configuration
+2026-10-20 00:49:30.824 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Stream client bypassing proxies on TCP Conn [2:0x6000000e9cc0]
+2026-10-20 00:49:30.824 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e9cc0 started
+2026-10-20 00:49:30.824 I  Kindred[89785:23193c] [com.apple.network:connection] nw_connection_create_with_id [C2] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:30.825 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 F3F6E379-33D3-48A3-AF4E-BDF2DDE4BBE5 Hostname#ba12b671:8081 tcp, definite, attribution: developer, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, no proxy, prohibit fallback, allow socket access] start
+2026-10-20 00:49:30.825 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C2 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:30.825 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:30.825 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.000s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:30.825 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C2 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:30.826 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.001s
+2026-10-20 00:49:30.826 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state preparing
+2026-10-20 00:49:30.826 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connect [C2 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:30.826 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.001s
+2026-10-20 00:49:30.826 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C2.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:30.826 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.001s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:30.827 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.002s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:30.827 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.002s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:30.828 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C2.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:30.828 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_host_resolve_callback [C2.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:30.828 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_host_resolve_callback [C2.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:30.829 Df Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:30.829 Df Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_update [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:30.829 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.004s
+2026-10-20 00:49:30.829 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:30.829 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C2.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:30.830 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.005s
+2026-10-20 00:49:30.831 A  Kindred[89785:231c61] (RunningBoardServices) didChangeInheritances
+    <RBSInheritance| environment:UIScene:com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default name:com.apple.frontboard.visibility origID:12914-12911-6645 payload 17411391367266977526>
+)}>
+2026-10-20 00:49:30.832 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.006s, uuid: 48FD9AA1-2AA0-4FE9-AF9B-8B4FFA7CDE72
+2026-10-20 00:49:30.832 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 641DE7D3-9E4B-496B-A494-8238563D9669
+2026-10-20 00:49:30.832 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C2.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 641DE7D3-9E4B-496B-A494-8238563D9669
+2026-10-20 00:49:30.833 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_initialize_socket [C2.1.1:1] Not guarding fd 15
+2026-10-20 00:49:30.833 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.008s
+2026-10-20 00:49:30.833 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C2] Association has 0 connected flows
+2026-10-20 00:49:30.833 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C2.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:30.834 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C2.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:30.834 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_handle_socket_event [C2.1.1:1] Socket received CONNECTED event
+2026-10-20 00:49:30.834 Df Kindred[89785:231c63] [com.apple.network:connection] nw_flow_connected [C2.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (socket)
+2026-10-20 00:49:30.834 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C2.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:30.834 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.009s
+2026-10-20 00:49:30.835 Df Kindred[89785:231c63] [com.apple.network:connection] [C2.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.010s
+2026-10-20 00:49:30.835 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C2.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:30.835 Df Kindred[89785:231c63] [com.apple.network:connection] nw_flow_connected [C2 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:30.835 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C2 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:30.835 Df Kindred[89785:231c63] [com.apple.network:connection] [C2 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.010s
+2026-10-20 00:49:30.836 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C2] Checking whether to start candidate manager
+2026-10-20 00:49:30.836 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C2] reporting state ready
+2026-10-20 00:49:30.837 Df Kindred[89785:231c62] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e9cc0 event 1. err: 0
+2026-10-20 00:49:30.837 Df Kindred[89785:231c62] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e9cc0 complete. fd: 16, err: 0
+2026-10-20 00:49:30.995 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoModulesCoreJSLogger'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/
+	Request       : SplashScreenViewController type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/SplashScreenViewController.nib
+	Request       : EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView.nib
+	Request       : SplashScreen type: storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/
+	Request       : EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView type: nib path: SplashScreen.storyboardc
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/SplashScreen.storyboardc/EXPO-VIEWCONTROLLER-1-view-EXPO-ContainerView.nib
+	Request       : Assets type: car
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/Assets.car
+2026-10-20 00:49:31.061 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoDomWebViewModule'
+2026-10-20 00:49:31.096 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFetchModule'
+2026-10-20 00:49:31.097 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoAsset'
+2026-10-20 00:49:31.097 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExponentConstants'
+	Request       : EXDevLauncher type: bundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.118 Df Kindred[89785:23193c] [com.apple.UIKit:EventDeferring] [0x600001ac48c0] Scene target of event deferring environments did update: scene: 0x7fb023e046b0; current systemShellManagesKeyboardFocus: 1; systemShellManagesKeyboardFocusForScene: 1; eligibleForRecordRemoval: 1;
+2026-10-20 00:49:31.118 Df Kindred[89785:23193c] [com.apple.UIKit:KeyWindow] Scene became target of keyboard event deferring environment: UIWindowScene: 0x7fb023e046b0; scene identity: com.apple.frontboard.systemappservices/FBSceneManager:sceneID%3Acom.kindredcare.mobile-default
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+	Request       : EXDevLauncher type: bundle
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXDevLauncher.bundle/
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.164 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'FileSystem'
+2026-10-20 00:49:31.165 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExponentFileSystem'
+2026-10-20 00:49:31.168 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFontLoader'
+2026-10-20 00:49:31.168 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoFontUtils'
+2026-10-20 00:49:31.169 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoGlassEffect'
+2026-10-20 00:49:31.169 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoKeepAwake'
+2026-10-20 00:49:31.169 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoLinking'
+2026-10-20 00:49:31.176 Df Kindred[89785:23193c] [com.apple.network:browser] nw_browser_cancel_path_browser_locked [B1] path: cancel browse
+2026-10-20 00:49:31.176 Df Kindred[89785:23193c] [com.apple.network:browser] nw_browser_set_state_locked [B1] state changed: ready -> cancelled
+2026-10-20 00:49:31.179 Df Kindred[89785:23193c] [com.apple.FrontBoard:SceneExtension] Realizing settings extension SBUISecureRenderingSettingsExtension on FBSSceneSettings
+2026-10-20 00:49:31.181 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:31.182 Df Kindred[89785:23193c] [com.apple.UIKit:InterfaceStyle] Not push traits update to screen for new style 1, <UIWindowScene: 0x7fb023e046b0> (7BEA2D15-C762-47A7-AD9A-D63F81947702)
+2026-10-20 00:49:31.182 Df Kindred[89785:23193c] [com.apple.UIKit:AppLifecycle] sceneOfRecord: sceneID: sceneID:com.kindredcare.mobile-default  persistentID: 7BEA2D15-C762-47A7-AD9A-D63F81947702
+2026-10-20 00:49:31.182 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason removed: 12; deactivation reasons: 4128 -> 32; animating application lifecycle event: 1
+2026-10-20 00:49:31.182 Df Kindred[89785:23193c] [com.apple.KeyboardArbiter:Client] Send setDeactivating: N (-DeactivationReason:SuspendedEventsOnly)
+2026-10-20 00:49:31.184 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoHead'
+2026-10-20 00:49:31.185 Df Kindred[89785:23193c] [com.apple.UIKit:Application] Deactivation reason removed: 5; deactivation reasons: 32 -> 0; animating application lifecycle event: 0
+2026-10-20 00:49:31.187 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoRouterNativeLinkPreview'
+2026-10-20 00:49:31.188 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoRouterToolbarModule'
+2026-10-20 00:49:31.188 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoSplashScreen'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.196 I  Kindred[89785:23193c] [dev.expo.modules:expo] 🟢 Posting 'appBecomesActive' event to registered modules
+  delta:{ visualState:0 date:0 active:0 seed:0 }
+  diff:<FBSSceneSettingsDiff: 0x6000024b8e00; UIApplicationSceneSettings> {
+    settings = <BSKeyedSettingsDiff: 0x600003fa5440> {
+        SBUISecureRenderingSettingsExtension = <BSKeyedSettingsDiff: 0x600003f94360> {
+            secureRenderingEnabled = 0;
+        };
+        _UISceneRenderingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600003fa6490> {
+            systemDisplayIdentifier = 735DA186-EDAA-4304-BB51-032042E2261A;
+        };
+        _UISystemShellSceneHostingEnvironmentSettings = <BSKeyedSettingsDiff: 0x600003f943f0> {
+            systemShellHostingSpaceIdentifier = SB-display-<embedded>;
+        };
+        FBSSceneExtensions = <BSKeyedSettingsDiff: 0x600003fa6580> {
+            14 = SBUISecureRenderingSceneExtension;
+        };
+    };
+    subclassSettings = <BSSettingsDiff: 0x600003fa63a0> {
+        targetOfEventDeferringEnvironments = keyboardFocus;
+        scenePresenterRenderIdentifierForS
+  new:<decode: missing data>
+  old:<decode: missing data>
+  new:<decode: missing data>
+2026-10-20 00:49:31.207 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoSystemUI'
+2026-10-20 00:49:31.207 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoDevLauncher'
+2026-10-20 00:49:31.208 Df Kindred[89785:23193c] [com.apple.KeyboardArbiter:Client] startConnection
+2026-10-20 00:49:31.208 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'ExpoDevMenu'
+2026-10-20 00:49:31.209 Df Kindred[89785:23193c] [com.apple.xpc:connection] [0x7fb022f0a940] activating connection: mach=true listener=false peer=false name=com.apple.UIKit.KeyboardManagement.hosted
+2026-10-20 00:49:31.211 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Registering module 'DevMenuPreferences'
+    hotLoadingEnabled = 1;
+    shakeToShow = 1;
+} for key RCTDevMenu in CFPrefsPlistSource<0x600001fe0b80> (Domain: com.kindredcare.mobile, User: kCFPreferencesCurrentUser, ByHost: No, Container: (null), Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+2026-10-20 00:49:31.212 Df Kindred[89785:231d68] (React) [RCTMultipartDataTask] GET http://localhost:8081/node_modules/expo-router/entry.bundle?platform=ios&dev=true&hot=false&lazy=true&transform.engine=hermes&transform.bytecode=1&transform.routerRoot=app&transform.reactCompiler=true&unstable_transformProfile=hermes-stable
+2026-10-20 00:49:31.213 Df Kindred[89785:231d68] [com.apple.CFNetwork:Default] Task <77104CB6-787E-49D9-8850-BBAF5A634699>.<1> resuming, timeouts(60.0, 604800.0) qos(0x21) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-20 00:49:31.214 Df Kindred[89785:231d6f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> resuming, timeouts(60.0, 604800.0) qos(0x19) voucher((null)) activity(00000000-0000-0000-0000-000000000000)
+2026-10-20 00:49:31.216 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn [3:0x6000000ea4e0] using empty proxy configuration
+2026-10-20 00:49:31.216 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Stream client bypassing proxies on TCP Conn [3:0x6000000ea4e0]
+2026-10-20 00:49:31.216 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn 0x6000000ea4e0 started
+2026-10-20 00:49:31.217 I  Kindred[89785:23193c] [com.apple.network:connection] nw_connection_create_with_id [C3] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:31.217 A  Kindred[89785:231c62] (Security) SecTrustReportNetworkingAnalytics
+2026-10-20 00:49:31.218 Df Kindred[89785:23193c] [com.apple.xpc:connection] [0x7fb022d2c960] activating connection: mach=true listener=false peer=false name=com.apple.lsd.advertisingidentifiers
+2026-10-20 00:49:31.217 I  Kindred[89785:231c5f] [com.apple.network:ATS] Warning [ATS violation]: Did not use TLS when opening connection for server: <private>
+2026-10-20 00:49:31.219 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 878D6C58-19EF-4D1D-82FD-24E8F8BC42A1 Hostname#ba12b671:8081 tcp, definite, attribution: developer, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, no proxy, prohibit fallback, allow socket access] start
+2026-10-20 00:49:31.219 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C3 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:31.219 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+2026-10-20 00:49:31.221 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn [4:0x6000000e5680] using empty proxy configuration
+2026-10-20 00:49:31.221 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Stream client bypassing proxies on TCP Conn [4:0x6000000e5680]
+2026-10-20 00:49:31.221 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e5680 started
+2026-10-20 00:49:31.220 Df Kindred[89785:231c62] [com.apple.securityd:SecError] SecTrustReportNetworkingAnalytics failed with error: -4
+2026-10-20 00:49:31.222 I  Kindred[89785:23193c] [com.apple.network:connection] nw_connection_create_with_id [C4] create connection to Hostname#ba12b671:8081
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.223 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.003s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:31.223 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C3 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:31.223 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.004s
+2026-10-20 00:49:31.224 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C3] reporting state preparing
+2026-10-20 00:49:31.224 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connect [C3 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:31.224 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.005s
+2026-10-20 00:49:31.224 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C3.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:31.224 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.005s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.225 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.006s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:31.226 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.007s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.227 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C3.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:31.227 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 A91E616A-B200-4D12-9174-499555E9A5C5 Hostname#ba12b671:8081 tcp, definite, attribution: developer, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, no proxy, prohibit fallback, allow socket access] start
+2026-10-20 00:49:31.227 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C4 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:31.227 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.228 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.001s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:31.228 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C4 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:31.229 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.002s
+2026-10-20 00:49:31.229 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C4] reporting state preparing
+2026-10-20 00:49:31.229 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connect [C4 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:31.230 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.002s
+2026-10-20 00:49:31.230 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C4.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:31.230 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.003s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.231 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.004s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:31.231 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.004s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.232 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C4.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:31.232 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C3.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:31.232 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C3.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:31.233 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_prefer_connected_variant [C3.1] Prefer Connected: IPv6#630d2aa5.8081 is already the first endpoint
+2026-10-20 00:49:31.233 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C4.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:31.233 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C4.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:31.233 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_prefer_connected_variant [C4.1] Prefer Connected: IPv6#630d2aa5.8081 is already the first endpoint
+2026-10-20 00:49:31.233 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:31.233 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:31.234 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.015s
+2026-10-20 00:49:31.234 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:31.234 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:31.235 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.007s
+2026-10-20 00:49:31.235 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_create_with_id [C5] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:31.235 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 5: starting, TC(0x0)
+2026-10-20 00:49:31.235 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 720A2830-A185-478B-BA01-E7CC951E5322 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/node_modules/expo-router/entry.bundle, definite, attribution: developer, context: com.apple.CFNetwork.NSURLSession.{8B7CE850-7734-4211-A7CC-DCCA9CB2C8BD}{(null)}{Y}{2}{0x0} (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0] start
+2026-10-20 00:49:31.236 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C5 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:31.236 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.237 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.001s, uuid: 1EE16AF3-3EA9-4DA2-B936-80E7BA0C7976
+2026-10-20 00:49:31.237 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C5 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:31.238 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.002s
+2026-10-20 00:49:31.238 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C5] reporting state preparing
+2026-10-20 00:49:31.238 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connect [C5 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:31.239 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.003s
+2026-10-20 00:49:31.239 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C5.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:31.239 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.003s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.240 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.004s, uuid: 1EE16AF3-3EA9-4DA2-B936-80E7BA0C7976
+2026-10-20 00:49:31.240 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.004s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:31.241 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C5.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:31.241 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> setting up Connection 5
+2026-10-20 00:49:31.241 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:31.241 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C3.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:31.241 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.022s
+2026-10-20 00:49:31.242 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.023s, uuid: 48FD9AA1-2AA0-4FE9-AF9B-8B4FFA7CDE72
+2026-10-20 00:49:31.242 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 021DBAC2-1454-4963-9ED4-D5DE21DF8361
+2026-10-20 00:49:31.242 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C3.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 021DBAC2-1454-4963-9ED4-D5DE21DF8361
+2026-10-20 00:49:31.243 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_initialize_socket [C3.1.1:1] Not guarding fd 19
+2026-10-20 00:49:31.243 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.024s
+2026-10-20 00:49:31.243 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C3] Association has 1 connected flows
+2026-10-20 00:49:31.243 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C3] nw_path_get_rtt_values returned false for association path
+2026-10-20 00:49:31.243 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C3.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:31.244 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C3.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:31.244 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:31.244 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C4.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:31.244 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.017s
+2026-10-20 00:49:31.245 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.017s, uuid: 48FD9AA1-2AA0-4FE9-AF9B-8B4FFA7CDE72
+2026-10-20 00:49:31.245 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID A04884CD-80E0-4049-9D8E-1C458CD5193E
+2026-10-20 00:49:31.245 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C4.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id A04884CD-80E0-4049-9D8E-1C458CD5193E
+2026-10-20 00:49:31.245 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_initialize_socket [C4.1.1:1] Not guarding fd 20
+2026-10-20 00:49:31.246 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.018s
+2026-10-20 00:49:31.246 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C4] Association has 1 connected flows
+2026-10-20 00:49:31.246 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C4] nw_path_get_rtt_values returned false for association path
+2026-10-20 00:49:31.246 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C4.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:31.246 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C4.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:31.247 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C5.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:31.247 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C5.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:31.247 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_handle_socket_event [C3.1.1:1] Socket received CONNECTED event
+2026-10-20 00:49:31.248 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C3.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (socket)
+2026-10-20 00:49:31.248 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C3.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:31.248 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.029s
+2026-10-20 00:49:31.248 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.029s
+2026-10-20 00:49:31.249 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_cancel [C3.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:31.249 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C3 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:31.249 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C3 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:31.249 Df Kindred[89785:231c5f] [com.apple.network:connection] [C3 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.030s
+2026-10-20 00:49:31.249 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C3] Checking whether to start candidate manager
+2026-10-20 00:49:31.250 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C3] reporting state ready
+2026-10-20 00:49:31.250 Df Kindred[89785:231c62] [com.apple.CFNetwork:Default] TCP Conn 0x6000000ea4e0 event 1. err: 0
+2026-10-20 00:49:31.250 Df Kindred[89785:231c62] [com.apple.CFNetwork:Default] TCP Conn 0x6000000ea4e0 complete. fd: 21, err: 0
+2026-10-20 00:49:31.251 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:31.251 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:31.251 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.015s
+2026-10-20 00:49:31.252 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_handle_socket_event [C4.1.1:1] Socket received CONNECTED event
+2026-10-20 00:49:31.252 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C4.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (socket)
+2026-10-20 00:49:31.252 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C4.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:31.252 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.025s
+2026-10-20 00:49:31.253 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.026s
+2026-10-20 00:49:31.253 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_cancel [C4.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:31.253 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C4 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:31.254 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C4 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:31.254 Df Kindred[89785:231c5f] [com.apple.network:connection] [C4 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.027s
+2026-10-20 00:49:31.255 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C4] Checking whether to start candidate manager
+2026-10-20 00:49:31.256 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C4] reporting state ready
+2026-10-20 00:49:31.256 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e5680 event 1. err: 0
+2026-10-20 00:49:31.256 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] TCP Conn 0x6000000e5680 complete. fd: 14, err: 0
+2026-10-20 00:49:31.256 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:31.257 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C5.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:31.257 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.021s
+2026-10-20 00:49:31.258 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.022s, uuid: 3D500EFB-23CA-4C71-B558-2A9669090361
+2026-10-20 00:49:31.259 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 6A6034D6-BFDB-4B5B-8B99-B28F677331CA
+2026-10-20 00:49:31.259 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 6A6034D6-BFDB-4B5B-8B99-B28F677331CA
+2026-10-20 00:49:31.260 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.024s
+2026-10-20 00:49:31.260 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C5] Association has 0 connected flows
+2026-10-20 00:49:31.260 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:31.260 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:31.260 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_handle_socket_event [C5.1.1:2] Socket received CONNECTED event
+2026-10-20 00:49:31.261 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Transport protocol connected (socket)
+2026-10-20 00:49:31.261 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:finish_transport @0.025s
+2026-10-20 00:49:31.261 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_receive_report [C5.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] pushing out endpoint race by 2000ms
+2026-10-20 00:49:31.262 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C5.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (CFNetworkConnection-1812150797)
+2026-10-20 00:49:31.262 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C5.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:31.262 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.026s
+2026-10-20 00:49:31.263 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.027s
+2026-10-20 00:49:31.263 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_cancel [C5.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:31.263 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C5 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:31.263 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C5 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:31.263 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.027s
+2026-10-20 00:49:31.264 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C5] Checking whether to start candidate manager
+2026-10-20 00:49:31.264 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C5] reporting state ready
+2026-10-20 00:49:31.264 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 5: connected successfully
+2026-10-20 00:49:31.264 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Connection 5: ready C(N) E(N)
+2026-10-20 00:49:31.264 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> now using Connection 5
+2026-10-20 00:49:31.265 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> sent request, body N 0
+2026-10-20 00:49:31.337 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> received response, status 200 content C
+2026-10-20 00:49:31.347 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> response ended
+2026-10-20 00:49:31.347 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> done using Connection 5
+2026-10-20 00:49:31.347 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5] event: client:connection_idle @0.111s
+2026-10-20 00:49:31.347 Df Kindred[89785:231c65] [com.apple.CFNetwork:Summary] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> summary for task success {transaction_duration_ms=131, response_status=200, connection=5, protocol="http/1.1", domain_lookup_duration_ms=11, connect_duration_ms=3, secure_connection_duration_ms=0, private_relay=false, request_start_ms=49, request_duration_ms=0, response_start_ms=121, response_duration_ms=10, request_bytes=431, request_throughput_kbps=28496, response_bytes=5774675, response_throughput_kbps=4603172, cache_hit=false}
+2026-10-20 00:49:31.347 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C5 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:31.347 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_passthrough_notify [C5.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:31.347 Df Kindred[89785:231c65] [com.apple.CFNetwork:Default] Task <C180FD99-8E78-48E8-A54D-B83DFC0E5161>.<1> finished successfully
+2026-10-20 00:49:31.347 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_protocol_socket_notify [C5.1.1:2] nw_protocol_notification_type_connection_idle is true
+2026-10-20 00:49:31.348 Df Kindred[89785:231c5f] [com.apple.network:connection] [C5] event: client:connection_idle @0.112s
+2026-10-20 00:49:31.349 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_report_connection_idle [C5 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Reporting connection idle to protocols
+2026-10-20 00:49:31.349 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_passthrough_notify [C5.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] received notification connection_idle
+2026-10-20 00:49:31.349 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_protocol_socket_notify [C5.1.1:2] nw_protocol_notification_type_connection_idle is true
+	Request       : platformContentLight type: descendantrecipe
+	Result        : None
+	Request       : platformContentLight type: materialrecipe
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platformContentLight.materialrecipe
+	Request       : platformStrokeLight type: descendantstyleset
+	Result        : None
+	Request       : platformStrokeLight type: visualstyleset
+	Result        : file:///Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS%2026.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/PrivateFrameworks/CoreMaterial.framework/platformStrokeLight.visualstyleset
+2026-10-20 00:49:31.549 Df Kindred[89785:23193c] [com.apple.KeyboardArbiter:Client] handleKeyboardChange: set currentKeyboard:N (wasKeyboard:N)
+2026-10-20 00:49:31.568 I  Kindred[89785:231c65] [com.apple.network:] nw_context_dealloc Deallocating context <nw_context (null) (private)>
+2026-10-20 00:49:31.568 I  Kindred[89785:231c65] [com.apple.network:] nw_context_dealloc Deallocating context <nw_context (null) (private)>
+2026-10-20 00:49:31.605 Df Kindred[89785:23193c] [com.apple.UIKit:KeyboardSceneDelegate] forceReloadInputViews
+2026-10-20 00:49:31.605 Df Kindred[89785:23193c] [com.apple.UIKit:KeyboardSceneDelegate] Reloading input views for key-window scene responder: <(null): 0x0; > force:Y
+2026-10-20 00:49:31.607 Df Kindred[89785:23193c] [com.apple.UIKit:KeyboardArbiterClientLog] isWritingToolsHandlingKeyboardTracking:Y (WT ready:Y, Arbiter ready:Y)
+2026-10-20 00:49:31.646 Df Kindred[89785:23193c] [com.apple.network:activity] <nw_activity 50:1 [8F516ECC-60C4-43A0-889C-3DCAB2BE3B72] (global parent) (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 30234ms
+2026-10-20 00:49:31.646 Df Kindred[89785:23193c] [com.apple.network:activity] <nw_activity 50:2 [57696DFF-E69F-448D-8208-E5786E5F3E41] (reporting strategy default) complete (reason success)> complete with reason 2 (success), duration 30234ms
+2026-10-20 00:49:31.646 Df Kindred[89785:23193c] [com.apple.network:activity] Unsetting the global parent activity <nw_activity 50:1 [8F516ECC-60C4-43A0-889C-3DCAB2BE3B72] (global parent) (reporting strategy default) complete (reason success)>
+2026-10-20 00:49:31.646 Df Kindred[89785:23193c] [com.apple.network:activity] Unset the global parent activity
+2026-10-20 00:49:31.647 Df Kindred[89785:23193c] [com.apple.app_launch_measurement:ApplicationLaunch] alm_release_pageins_recording_assertion: releasing pageins recording assertion
+2026-10-20 00:49:32.271 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoModulesCoreJSLogger'
+2026-10-20 00:49:32.294 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExponentConstants'
+	Localizations : [en]
+	Dev language  : en
+	User prefs    : [en-US]
+	Main bundle   : [en]
+	Allow mixed   : 0 
+	Result        : [en]
+	Request       : app type: config
+	Result        : file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Bundle/Application/3BDF051F-A497-4CCB-95E0-37D6EA93FE38/Kindred.app/EXConstants.bundle/app.config
+2026-10-20 00:49:32.395 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoAsset'
+2026-10-20 00:49:32.530 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_handle_socket_event [C1.1.1:2] Socket received READ_CLOSE event
+2026-10-20 00:49:32.530 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 1: read-side closed
+2026-10-20 00:49:32.530 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 1: cleaning up
+2026-10-20 00:49:32.530 Df Kindred[89785:231c63] [com.apple.network:connection] [C1 630C01DF-9113-4916-ACC3-7D0E98F86789 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/, definite, attribution: developer] cancel
+2026-10-20 00:49:32.530 Df Kindred[89785:231c63] [com.apple.network:connection] [C1 630C01DF-9113-4916-ACC3-7D0E98F86789 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/, definite, attribution: developer] cancelled
+	[C1.1.1 DA124C8B-385D-49B4-AAB8-42974DCA1615 ::1.56546<->IPv6#630d2aa5.8081]
+	Connected Path: satisfied (Path is satisfied), interface: lo0
+	Privacy Stance: Not Eligible
+	Duration: 6.091s, DNS @0.009s took 0.002s, TCP @0.022s took 0.003s
+	bytes in/out: 2475/887, packets in/out: 3/2, rtt: 0.001s, retransmitted bytes: 0, out-of-order bytes: 0
+	ecn packets sent/acked/marked/lost: 0/0/0/0
+2026-10-20 00:49:32.530 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C1 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)]
+2026-10-20 00:49:32.530 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C1.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)]
+2026-10-20 00:49:32.530 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_schedule_deactivation <nw_association Hostname#ba12b671:8081> will become dormant after 10000ms of inactivity
+2026-10-20 00:49:32.530 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C1.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)]
+2026-10-20 00:49:32.530 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_schedule_deactivation <nw_association IPv6#630d2aa5.8081> will become dormant after 10000ms of inactivity
+2026-10-20 00:49:32.531 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C1.1.2 IPv4#8775d1c5:8081 cancelled path ((null))]
+2026-10-20 00:49:32.531 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C1] reporting state cancelled
+2026-10-20 00:49:32.532 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 1: done
+2026-10-20 00:49:32.532 I  Kindred[89785:231c63] [com.apple.network:connection] [C1 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/, definite, attribution: developer] dealloc
+2026-10-20 00:49:32.624 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn [6:0x600000767ca0] using empty proxy configuration
+2026-10-20 00:49:32.624 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Stream client bypassing proxies on TCP Conn [6:0x600000767ca0]
+2026-10-20 00:49:32.624 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn 0x600000767ca0 started
+2026-10-20 00:49:32.625 I  Kindred[89785:23193c] [com.apple.network:connection] nw_connection_create_with_id [C6] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:32.625 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 82A1E6E3-EEE3-43C2-BE36-AF3FF9ACE13B Hostname#ba12b671:8081 tcp, definite, attribution: developer, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, no proxy, prohibit fallback, allow socket access] start
+2026-10-20 00:49:32.625 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C6 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:32.625 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:32.626 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.000s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:32.626 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C6 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:32.626 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.001s
+2026-10-20 00:49:32.627 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C6] reporting state preparing
+2026-10-20 00:49:32.627 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connect [C6 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:32.627 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.002s
+2026-10-20 00:49:32.627 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C6.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:32.627 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.002s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:32.628 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.003s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:32.629 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.003s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:32.630 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C6.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:32.630 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_host_resolve_callback [C6.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:32.630 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_host_resolve_callback [C6.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:32.631 I  Kindred[89785:231c63] [com.apple.network:connection] nw_resolver_create_prefer_connected_variant [C6.1] Prefer Connected: IPv6#630d2aa5.8081 is already the first endpoint
+2026-10-20 00:49:32.631 Df Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_update [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:32.632 Df Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_update [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:32.633 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.007s
+2026-10-20 00:49:32.633 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:32.633 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_start [C6.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:32.634 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.008s
+2026-10-20 00:49:32.635 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.009s, uuid: 48FD9AA1-2AA0-4FE9-AF9B-8B4FFA7CDE72
+2026-10-20 00:49:32.635 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 68F4D0ED-DAEA-4155-A97D-15EDE3307259
+2026-10-20 00:49:32.635 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C6.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 68F4D0ED-DAEA-4155-A97D-15EDE3307259
+2026-10-20 00:49:32.635 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_initialize_socket [C6.1.1:1] Not guarding fd 10
+2026-10-20 00:49:32.636 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFetchModule'
+2026-10-20 00:49:32.636 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.011s
+2026-10-20 00:49:32.636 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C6] Association has 3 connected flows
+2026-10-20 00:49:32.636 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C6] nw_path_get_rtt_values returned false for association path
+2026-10-20 00:49:32.636 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C6.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:32.637 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C6.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:32.637 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_handle_socket_event [C6.1.1:1] Socket received CONNECTED event
+2026-10-20 00:49:32.637 Df Kindred[89785:231c63] [com.apple.network:connection] nw_flow_connected [C6.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (socket)
+2026-10-20 00:49:32.637 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C6.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:32.638 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.012s
+2026-10-20 00:49:32.638 Df Kindred[89785:231c63] [com.apple.network:connection] [C6.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.013s
+2026-10-20 00:49:32.638 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C6.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:32.639 Df Kindred[89785:231c63] [com.apple.network:connection] nw_flow_connected [C6 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:32.639 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C6 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:32.639 Df Kindred[89785:231c63] [com.apple.network:connection] [C6 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.013s
+2026-10-20 00:49:32.639 I  Kindred[89785:231c63] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C6] Checking whether to start candidate manager
+2026-10-20 00:49:32.639 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C6] reporting state ready
+2026-10-20 00:49:32.640 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] TCP Conn 0x600000767ca0 event 1. err: 0
+2026-10-20 00:49:32.640 Df Kindred[89785:231c5f] [com.apple.CFNetwork:Default] TCP Conn 0x600000767ca0 complete. fd: 23, err: 0
+2026-10-20 00:49:32.890 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoRouterNativeLinkPreview'
+2026-10-20 00:49:33.346 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoSplashScreen'
+2026-10-20 00:49:33.391 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoHead'
+2026-10-20 00:49:33.405 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoKeepAwake'
+2026-10-20 00:49:33.414 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn [7:0x600004056c60] using empty proxy configuration
+2026-10-20 00:49:33.414 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] Stream client bypassing proxies on TCP Conn [7:0x600004056c60]
+2026-10-20 00:49:33.414 Df Kindred[89785:23193c] [com.apple.CFNetwork:Default] TCP Conn 0x600004056c60 started
+2026-10-20 00:49:33.414 I  Kindred[89785:23193c] [com.apple.network:connection] nw_connection_create_with_id [C7] create connection to Hostname#ba12b671:8081
+2026-10-20 00:49:33.415 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 F1EB183D-D943-4BC7-90EA-51486B7A08E0 Hostname#ba12b671:8081 tcp, definite, attribution: developer, context: Default Network Context (private), proc: 2F2E4A95-B1CE-30C5-B68C-DDB26D7F0FC6, delegated upid: 0, no proxy, prohibit fallback, allow socket access] start
+2026-10-20 00:49:33.415 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C7 Hostname#ba12b671:8081 initial parent-flow ((null))]
+2026-10-20 00:49:33.415 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 Hostname#ba12b671:8081 initial parent-flow ((null))] event: path:start @0.000s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:33.416 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.001s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:33.417 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_endpoint_report_on_nw_queue_block_invoke [C7 Hostname#ba12b671:8081 waiting parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] skipping state update
+2026-10-20 00:49:33.417 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_connect @0.002s
+2026-10-20 00:49:33.417 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C7] reporting state preparing
+2026-10-20 00:49:33.417 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connect [C7 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] connect bottom protocol
+2026-10-20 00:49:33.418 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 Hostname#ba12b671:8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:start_child @0.003s
+2026-10-20 00:49:33.418 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C7.1 Hostname#ba12b671:8081 initial path ((null))]
+2026-10-20 00:49:33.418 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1 Hostname#ba12b671:8081 initial path ((null))] event: path:start @0.003s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:33.419 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1 Hostname#ba12b671:8081 waiting path (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: path:satisfied @0.004s, uuid: 56C55402-3EAF-4144-8981-F2706F4A9B7A
+2026-10-20 00:49:33.419 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:start_dns @0.004s
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+2026-10-20 00:49:33.420 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_dns_service_locked [C7.1] Starting host resolution Hostname#ba12b671:8081, flags 0xc000d000 proto 0
+2026-10-20 00:49:33.421 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C7.1] flags=0x40000003 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv6#4e8630fc ttl=1
+2026-10-20 00:49:33.421 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_host_resolve_callback [C7.1] flags=0x40000002 ifindex=4294967295 error=NoError(0) hostname=localhost. addr=IPv4#11c164a7 ttl=1
+2026-10-20 00:49:33.421 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_resolver_create_prefer_connected_variant [C7.1] Prefer Connected: IPv6#630d2aa5.8081 is already the first endpoint
+2026-10-20 00:49:33.421 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv6#630d2aa5.8081
+2026-10-20 00:49:33.421 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_update [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Adding endpoint handler for IPv4#8775d1c5:8081
+2026-10-20 00:49:33.421 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: resolver:receive_dns @0.006s
+2026-10-20 00:49:33.421 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting child endpoint IPv6#630d2aa5.8081
+2026-10-20 00:49:33.422 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_start [C7.1.1 IPv6#630d2aa5.8081 initial path ((null))]
+2026-10-20 00:49:33.422 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1.1 IPv6#630d2aa5.8081 initial path ((null))] event: path:start @0.007s
+2026-10-20 00:49:33.423 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1.1 IPv6#630d2aa5.8081 waiting path (satisfied (Path is satisfied), interface: lo0)] event: path:satisfied @0.007s, uuid: 48FD9AA1-2AA0-4FE9-AF9B-8B4FFA7CDE72
+2026-10-20 00:49:33.423 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_association_create_flow <nw_association IPv6#630d2aa5.8081> Added association flow ID 38650C77-49A7-4470-B3A3-8D1D46080F99
+2026-10-20 00:49:33.423 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_setup_protocols [C7.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] setup flow id 38650C77-49A7-4470-B3A3-8D1D46080F99
+2026-10-20 00:49:33.423 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_initialize_socket [C7.1.1:1] Not guarding fd 24
+2026-10-20 00:49:33.424 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:start_connect @0.009s
+2026-10-20 00:49:33.424 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C7] Association has 4 connected flows
+2026-10-20 00:49:33.424 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_get_association_rtt_estimate_ms [C7] nw_path_get_rtt_values returned false for association path
+2026-10-20 00:49:33.424 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_start_connect_stall_timer [C7.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] starting connect connect stall timer (2000ms)
+2026-10-20 00:49:33.424 I  Kindred[89785:231d68] [com.facebook.react.log:javascript] Running "main" with {"rootTag":11,"initialProps":{},"fabric":true}
+2026-10-20 00:49:33.424 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_resolver_start_next_child [C7.1 Hostname#ba12b671:8081 in_progress resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] starting next child endpoint in 100ms
+2026-10-20 00:49:33.425 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_socket_handle_socket_event [C7.1.1:1] Socket received CONNECTED event
+2026-10-20 00:49:33.425 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C7.1.1 IPv6#630d2aa5.8081 in_progress socket-flow (satisfied (Path is satisfied), interface: lo0)] Output protocol connected (socket)
+2026-10-20 00:49:33.425 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C7.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] Connected path is satisfied, not viable
+2026-10-20 00:49:33.426 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)] event: flow:child_finish_connect @0.010s
+2026-10-20 00:49:33.426 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:child_finish_connect @0.011s
+2026-10-20 00:49:33.426 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_handler_cancel [C7.1.2 IPv4#8775d1c5:8081 initial path ((null))]
+2026-10-20 00:49:33.427 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_flow_connected [C7 IPv6#630d2aa5.8081 in_progress parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Output protocol connected (endpoint_flow)
+2026-10-20 00:49:33.427 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_endpoint_flow_connected_path_change [C7 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] Connected path is satisfied, child is not viable
+2026-10-20 00:49:33.427 Df Kindred[89785:231c5f] [com.apple.network:connection] [C7 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)] event: flow:finish_connect @0.012s
+2026-10-20 00:49:33.427 I  Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_start_candidate_manager_if_needed_locked [C7] Checking whether to start candidate manager
+2026-10-20 00:49:33.428 Df Kindred[89785:231c5f] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C7] reporting state ready
+2026-10-20 00:49:33.428 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] TCP Conn 0x600004056c60 event 1. err: 0
+2026-10-20 00:49:33.429 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] TCP Conn 0x600004056c60 complete. fd: 25, err: 0
+2026-10-20 00:49:33.605 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFontLoader'
+2026-10-20 00:49:33.612 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoFontUtils'
+2026-10-20 00:49:33.634 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoGlassEffect'
+2026-10-20 00:49:33.663 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoRouterToolbarModule'
+2026-10-20 00:49:33.771 I  Kindred[89785:231d68] [dev.expo.modules:expo] 🟢 Creating JS object for module 'ExpoLinking'
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+URL = file://~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data/Containers/Data/Application/1B4EC610-36BB-4142-8D35-6110F01BB7AF/Library/Caches/ExponentAsset-51b6ad87261f18b6433ec52871ddfabc.ttf
+	Request       : InfoPlist type: strings
+	Result        : None
+	Request       : InfoPlist type: stringsdict
+	Result        : None
+    "en-US"
+) for key AppleLanguages in CFPrefsPlistSource<0x600001fe1000> (Domain: kCFPreferencesAnyApplication, User: kCFPreferencesCurrentUser, ByHost: No, Container: ~/Library/Developer/CoreSimulator/Devices/29CA9184-D883-459A-B3BB-EE7CC65BBC61/data, Contents Need Refresh: No) via CFPrefsSearchListSource<0x600001fe0780> (Domain: com.kindredcare.mobile, Container: (null) Non-launch persona: 0)
+    contentsMask: 0x8; keyCommandsRegistrations: [environment: keyboardFocus; token: 0xBA0BFB64; keyCommands: 35];
+}
+2026-10-20 00:49:36.530 E  Kindred[89785:23193c] [com.apple.UIKit:UIFocus] RCTScrollViewComponentView implements focusItemsInRect: - caching for linear focus movement is limited as long as this view is on screen.
+2026-10-20 00:49:37.349 Df Kindred[89785:231c63] [com.apple.network:connection] nw_socket_handle_socket_event [C5.1.1:2] Socket received READ_CLOSE event
+2026-10-20 00:49:37.349 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 5: read-side closed
+2026-10-20 00:49:37.349 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 5: cleaning up
+2026-10-20 00:49:37.349 Df Kindred[89785:231c63] [com.apple.network:connection] [C5 720A2830-A185-478B-BA01-E7CC951E5322 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/node_modules/expo-router/entry.bundle, definite, attribution: developer] cancel
+2026-10-20 00:49:37.349 Df Kindred[89785:231c63] [com.apple.network:connection] [C5 720A2830-A185-478B-BA01-E7CC951E5322 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/node_modules/expo-router/entry.bundle, definite, attribution: developer] cancelled
+	[C5.1.1 3D500EFB-23CA-4C71-B558-2A9669090361 ::1.56550<->IPv6#630d2aa5.8081]
+	Connected Path: satisfied (Path is satisfied), interface: lo0
+	Privacy Stance: Not Eligible
+	Duration: 6.113s, DNS @0.004s took 0.011s, TCP @0.024s took 0.001s
+	bytes in/out: 5774677/431, packets in/out: 384/1, rtt: 0.001s, retransmitted bytes: 0, out-of-order bytes: 0
+	ecn packets sent/acked/marked/lost: 0/0/0/0
+2026-10-20 00:49:37.349 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C5 IPv6#630d2aa5.8081 ready parent-flow (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)]
+2026-10-20 00:49:37.349 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C5.1 Hostname#ba12b671:8081 ready resolver (satisfied (Path is satisfied), interface: en0[802.11], uses wifi, LQM: unknown)]
+2026-10-20 00:49:37.349 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_schedule_deactivation <nw_association Hostname#ba12b671:8081> will become dormant after 10000ms of inactivity
+2026-10-20 00:49:37.349 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C5.1.1 IPv6#630d2aa5.8081 ready socket-flow (satisfied (Path is satisfied), interface: lo0)]
+2026-10-20 00:49:37.349 I  Kindred[89785:231c63] [com.apple.network:connection] nw_association_schedule_deactivation <nw_association IPv6#630d2aa5.8081> will become dormant after 10000ms of inactivity
+2026-10-20 00:49:37.350 I  Kindred[89785:231c63] [com.apple.network:connection] nw_endpoint_handler_cancel [C5.1.2 IPv4#8775d1c5:8081 cancelled path ((null))]
+2026-10-20 00:49:37.350 Df Kindred[89785:231c63] [com.apple.network:connection] nw_connection_report_state_with_handler_on_nw_queue [C5] reporting state cancelled
+2026-10-20 00:49:37.351 Df Kindred[89785:231c63] [com.apple.CFNetwork:Default] Connection 5: done
+2026-10-20 00:49:37.351 I  Kindred[89785:231c63] [com.apple.network:connection] [C5 Hostname#ba12b671:8081 tcp, url: http://localhost:8081/node_modules/expo-router/entry.bundle, definite, attribution: developer] dealloc
+Child process terminated with signal 15: Terminated

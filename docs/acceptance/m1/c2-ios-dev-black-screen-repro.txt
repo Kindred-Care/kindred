@@ -1,0 +1,30 @@
+# Attempt to reproduce the 2026-10-20 black screen: development build re-pointed at Metro (localhost) by deep link, then 5 cold starts, iPhone 17 Pro simulator, 2026-10-30.
+# Per run: counts of consecutive frames by screen (background colour sampled at 90% height), then error/fault and JavaScript log line counts.
+== development 1
+   2 f01.png #2F2F2F other
+   8 f03.png #FCFBF8 blank
+   4 f11.png #FCFBF8 splash
+  26 f15.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+== development 2
+  10 f01.png #FCFBF8 blank
+   5 f11.png #FCFBF8 splash
+  25 f16.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+== development 3
+   1 f01.png #2F2F2F other
+   8 f02.png #FCFBF8 blank
+   2 f10.png #FCFBF8 splash
+  29 f12.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+== development 4
+   9 f01.png #FCFBF8 blank
+   1 f10.png #FFFFFF blank
+   1 f11.png #FCFBF8 splash
+  29 f12.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
+== development 5
+  10 f01.png #FCFBF8 blank
+   2 f11.png #FCFBF8 splash
+  28 f13.png #FCFBF8 login
+E/F lines: 1; JS lines: 1
