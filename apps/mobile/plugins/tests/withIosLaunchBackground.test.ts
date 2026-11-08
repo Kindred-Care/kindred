@@ -50,7 +50,7 @@ describe('withIosLaunchBackground', () => {
     );
   });
 
-  it('rejects a colour that is not #RRGGBB', async () => {
+  it('REQ-MOB-001 rejects a launch colour that is not #RRGGBB', async () => {
     expect(() => applyLaunchBackground({ document: {} }, 'warm white')).toThrow(/#RRGGBB/);
   });
 });
